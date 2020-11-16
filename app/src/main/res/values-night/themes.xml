@@ -1,0 +1,53 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Cinema" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/colorBlue</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/colorBackground</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">@android:color/transparent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <!--Rating bar-->
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="ratingBarStyle">@style/Widget.AppCompat.RatingBar.Small</item>
+        <item name="colorControlNormal">@color/lightGrey</item>
+        <item name="colorControlActivated">@color/colorDuskYellow</item>
+    </style>
+
+    <!--Button-->
+
+    <!--Title-->
+    <style name="Collapse.Title" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">22sp</item>
+        <item name="maxLines">2</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/colorTextTertiary</item>
+    </style>
+
+    <!--Desc Title-->
+    <style name="Detail.Movie.Title" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">16sp</item>
+        <item name="fontFamily">@font/open_sans_regular</item>
+        <item name="android:textColor">@color/colorTextTertiary</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!--Desc-->
+    <style name="Detail.Movie.Desc" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">14sp</item>
+        <item name="android:justificationMode" tools:targetApi="o">inter_word</item>
+        <item name="android:textColor">@color/colorTextTertiary</item>
+        <item name="fontFamily">@font/roboto_regular</item>
+    </style>
+
+</resources>

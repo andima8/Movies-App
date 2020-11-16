@@ -1,0 +1,140 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'de.mannodermaus.android-junit5'
+    id "io.gitlab.arturbosch.detekt"
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
+
+    defaultConfig {
+        applicationId "com.kotlin.andi.cinema"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    //spek 2
+    // Add Kotlin source directory to all source sets
+    sourceSets.each {
+        it.java.srcDirs += "src/$it.name/kotlin"
+    }
+
+    testOptions {
+        junitPlatform {
+            filters {
+                engines {
+                    include 'spek2'
+                }
+            }
+            jacocoOptions {
+                // here goes all jacoco config, for example
+                html.enabled = true
+                xml.enabled = false
+                csv.enabled = false
+            }
+        }
+        unitTests.all {
+            testLogging.events = ["passed", "skipped", "failed"]
+        }
+    }
+}
+
+detekt {
+    failFast = true // fail build on any finding
+    input = files("$projectDir")
+    buildUponDefaultConfig = true // preconfigure defaults
+    config = files("$projectDir/detekt/detekt.yml")
+    // point to your custom config defining rules to run, overwriting default behavior
+    baseline = file("$projectDir/detekt/baseline.xml")
+    // a way of suppressing issues before introducing detekt
+
+    reports {
+        html {
+            enabled = true // observe findings in your browser with structure and code snippets
+            destination = file("$projectDir/detekt/report.html")
+        }
+        xml {
+            enabled = true
+            destination = file("$projectDir/detekt/report.xml")
+        } // checkstyle like format mainly for integrations like Jenkins
+        txt.enabled = true
+        // similar to the console output, contains issue signature to manually edit baseline files
+    }
+}
+
+dependencies {
+    // kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "androidx.core:core-ktx:$coreVersion"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+
+    // ui
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "androidx.appcompat:appcompat:$appCompatVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+    implementation 'com.romandanylyk:pageindicatorview:1.0.3'
+    implementation "com.xwray:groupie:2.8.1"
+
+    implementation "androidx.recyclerview:recyclerview:$recyclerViewVersion"
+    implementation "com.google.android.material:material:$materialVersion"
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.1'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.1'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    // lottie
+    implementation "com.airbnb.android:lottie:$lottieVersion"
+
+    //coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$couroutineVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$couroutineVersion"
+
+    // architecture component
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$archLifecycleVersion"
+
+    // detekt
+    detektPlugins "io.gitlab.arturbosch.detekt:detekt-formatting:$detektVersion"
+    detekt "io.gitlab.arturbosch.detekt:detekt-formatting:$detektVersion"
+    detekt "io.gitlab.arturbosch.detekt:detekt-cli:$detektVersion"
+
+    // testing
+    // jUnit 4
+    testImplementation "junit:junit:$junit4Version"
+    androidTestImplementation "junit:junit:$junit4Version"
+    testRuntimeOnly "org.junit.vintage:junit-vintage-engine:$junit5Version"
+    // jUnit 5
+    testImplementation "org.junit.platform:junit-platform-runner:1.7.0"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junit5Version"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junit5Version"
+    // spek 2
+    testImplementation "org.spekframework.spek2:spek-dsl-jvm:$spekVersion"
+    testImplementation "org.spekframework.spek2:spek-runner-junit5:$spekVersion"
+    // spek requires kotlin-reflect, omit when already in classpath
+    testImplementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+    // espresso
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$espressoVersion"
+    androidTestImplementation "androidx.test:rules:$androidXTestVersion"
+    androidTestImplementation "androidx.test.ext:junit-ktx:$extJunitKTXTest"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
+}

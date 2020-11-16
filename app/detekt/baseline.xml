@@ -1,0 +1,108 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+    <ManuallySuppressedIssues />
+  <CurrentIssues>
+    <ID>CommentSpacing:com.kotlin.andi.cinema.ui.detail.DetailActivity.kt:23</ID>
+    <ID>CommentSpacing:com.kotlin.andi.cinema.ui.home.all.AllMoviesFragment.kt:22</ID>
+    <ID>CommentSpacing:com.kotlin.andi.cinema.ui.home.all.AllMoviesFragment.kt:25</ID>
+    <ID>CommentSpacing:com.kotlin.andi.cinema.ui.home.all.AllMoviesFragment.kt:28</ID>
+    <ID>CommentSpacing:com.kotlin.andi.cinema.ui.home.cinema.CinemaFragment.kt:21</ID>
+    <ID>CommentSpacing:com.kotlin.andi.cinema.ui.home.cinema.CinemaFragment.kt:24</ID>
+    <ID>CommentSpacing:com.kotlin.andi.cinema.ui.home.cinema.CinemaFragment.kt:27</ID>
+    <ID>CommentSpacing:com.kotlin.andi.cinema.ui.home.tvshows.TvShowsFragment.kt:21</ID>
+    <ID>CommentSpacing:com.kotlin.andi.cinema.ui.home.tvshows.TvShowsFragment.kt:24</ID>
+    <ID>CommentSpacing:com.kotlin.andi.cinema.ui.home.tvshows.TvShowsFragment.kt:27</ID>
+    <ID>CommentSpacing:com.kotlin.andi.cinema.utils.DataDummy.kt:12</ID>
+    <ID>CommentSpacing:com.kotlin.andi.cinema.utils.DataDummy.kt:82</ID>
+    <ID>FinalNewline:com.kotlin.andi.cinema.ui.banner.BannerAdapter.kt:1</ID>
+    <ID>FinalNewline:com.kotlin.andi.cinema.ui.banner.BannerCarouselItem.kt:1</ID>
+    <ID>FinalNewline:com.kotlin.andi.cinema.ui.banner.BannerFragment.kt:1</ID>
+    <ID>FinalNewline:com.kotlin.andi.cinema.data.MovieEntity.kt:1</ID>
+    <ID>FinalNewline:com.kotlin.andi.cinema.ui.home.HomeActivity.kt:1</ID>
+    <ID>FinalNewline:com.kotlin.andi.cinema.ui.home.HomeAdapter.kt:1</ID>
+    <ID>FinalNewline:com.kotlin.andi.cinema.ui.home.SectionPagerAdapter.kt:1</ID>
+    <ID>FinalNewline:com.kotlin.andi.cinema.ui.home.all.AllMoviesFragment.kt:1</ID>
+    <ID>FinalNewline:com.kotlin.andi.cinema.ui.home.cinema.CinemaFragment.kt:1</ID>
+    <ID>FinalNewline:com.kotlin.andi.cinema.ui.home.tvshows.TvShowsFragment.kt:1</ID>
+    <ID>FinalNewline:com.kotlin.andi.cinema.utils.DataDummy.kt:1</ID>
+    <ID>FinalNewline:com.kotlin.andi.cinema.viewmodel.MovieViewModel.kt:1</ID>
+    <ID>LongMethod:DataDummy.kt$DataDummy$fun generateDummyMovies(): MutableList&lt;MovieEntity&gt;</ID>
+    <ID>MagicNumber:DataDummy.kt$DataDummy$4.0F</ID>
+    <ID>MagicNumber:DataDummy.kt$DataDummy$4.5F</ID>
+    <ID>MaxLineLength:DataDummy.kt$DataDummy$" Di planet super benua yang tidak disebutkan namanya, monster aneh dan supervillains secara misterius muncul dan menyebabkan bencana. Untuk memerangi mereka, pahlawan dunia telah bangkit untuk melawan mereka. Saitama adalah salah satu pahlawan yang mampu mengatasi mereka."</ID>
+    <ID>MaxLineLength:DataDummy.kt$DataDummy$"Cerita dimulai ketika hobit Bilbo Baggins berangkat meninggalkan Shire dan mewariskan hartanya ke pewarisnya, Frodo. Gandalf penyihir abu-abu, seorang teman Bilbo, menasehati Frodo untuk berhati-hati dengan cincin yang menjadi salah satu warisan Bilbo. Tujuh belas tahun kemudian berlalu, dan Gandalf menyuruh Frodo untuk membawa cincin itu keluar dari Shire karena tuan kegelapan Sauron sedang mencari-cari cincin tersebut. Frodo, Samwise Gamgee dan Peregrin Took (atau Pippin) berangkat dan mereka bertemu dengan Ring-wraiths dalam perjalanan mereka. Setelah sampai di Brandyhall, mereka bertemu dengan Meriadoc Brandybuck (atau Merry) dan keempatnya mulai perjalanan mereka menuju Bree. Mereka hampir dibunuh Barrow-wights jika Tom Bombadil tidak menolong mereka."</ID>
+    <ID>MaxLineLength:DataDummy.kt$DataDummy$"Deputi sherif Rick Grimes terbangun dari koma, menemukan dunia dikuasai oleh zombi. Setelah berteman dengan Morgan Jones, yang kemudian berpisah dengannya, Rick pergi ke Atlanta untuk menemukan istrinya Lori, anaknya, Carl, dan rekan polisinya, Shane Walsh, bertemu dengan penyintas lainnya. Kelompok tersebut pergi ke Pusat Pengendalian dan Pencegahan Penyakit (CDC), tetapi mereka mengetahui dari satu-satunya anggota CDC yang tersisa bahwa tidak ada obat untuk epidemi ini."</ID>
+    <ID>MaxLineLength:DataDummy.kt$DataDummy$"One Piece menceritakan tentang petualangan seorang anak bernama Monkey D. Luffy yang bercita-cita menjadi raja bajak laut dan menemukan \"One Piece\" setelah terinspirasi oleh Shanks."</ID>
+    <ID>MaxLineLength:DataDummy.kt$DataDummy$"Pada bulan April 1986, ledakan di pembangkit listrik tenaga nuklir Chernobyl di Uni Republik Sosialis Soviet menjadi salah satu bencana buatan manusia yang terburuk di dunia."</ID>
+    <ID>MaxLineLength:DataDummy.kt$DataDummy$"Pada pertempuran luar angkasa di dekat Coruscant antara Republik dan Separtist, Anakin Skywalker dan Obi-Wan Kenobi berencana menyelamatkan Supreme Chancellor Palpatine yang telah diculik oleh komandan Separatist General Grievous. Setelah melawan beberapa droid dan memasuki kapal Grievous, sang Jedi menghadapi Count Dooku, yang melawan mereka dalam duel lightsaber. Setelah Dooku memingsankan Obi-Wan, Anakin melawan dan mebunuh Dooku karena perintah Palpatine. Setelah pertempuran kecil Grievous, yang kemudian melarikan diri, sang Jedi melakukan pendaratan darurat di Coruscant. Di sana, Anakin bertemu dengan istrinya, Padmé Amidala, yang sedang hamil. Pada awalnya dia senang, tetapi kemudian Anakin mulai berfirasat Padmé mati ketika melahirkan."</ID>
+    <ID>MaxLineLength:DataDummy.kt$DataDummy$"Pasca jentikan jari Thanos (Josh Brolin), bumi kehilangan separuh populasinya. Hal ini juga turut dirasakan oleh Hawkeye (Jeremy Renner) yang secara tiba-tiba harus kehilangan keluarganya. Di sisi lain Tony Stark (Robert Downey Jr) berusaha menguatkan diri dan memupuk harapan untuk bisa kembali menyelamatkan bumi. Para Avengers yang tersisa, Black Widow (Scarlet Johansson), Hulk (Mark Rufallo), Thor (Chris Hemsworth), War Machine (Don Cheadle) memikirkan berbagai cara memungkinkan untuk menghadapi Thanos dan merebut Infinity Stone."</ID>
+    <ID>MaxLineLength:DataDummy.kt$DataDummy$"Sekelompok perampok yang tidak biasa mencoba melakukan perampokan paling sempurna dalam sejarah Spanyol - mencuri 2,4 miliar euro dari Royal Mint Spanyol."</ID>
+    <ID>MaxLineLength:DataDummy.kt$DataDummy$"Spiderman Far From Home menceritakan tentang perjalanan kehidupan Peter Parker ( Tom Holland ) setelah Avangers Endgame. Ia merasa sangat kehilangan Tony Startk alias Iroman selaku mentor dalam perjalanannya menjadi super hero. Peter tidak bisa menjadi pahlawan yang sepenuhnya karena Peter sendiri masih duduk dibangku SMA. Sampai pada akhirnya Peter tidak ingin melanjutkan menjadi Spider-Man saat sedang berlibur bersama teman-temanya."</ID>
+    <ID>MaxLineLength:DataDummy.kt$DataDummy$"Venom menceritakan kisah Eddie Brock (Tom Hardy) seorang jurnalis yang mempertanyakan kasus yang dihindari oleh pemerintah. ... Hal itu membuatnya melakukan investigasi pada perusahaan Life Foundation yang dijalankan oleh Carlton Drake (Riz Ahmed)."</ID>
+    <ID>MaximumLineLength:com.kotlin.andi.cinema.utils.DataDummy.kt:104</ID>
+    <ID>MaximumLineLength:com.kotlin.andi.cinema.utils.DataDummy.kt:118</ID>
+    <ID>MaximumLineLength:com.kotlin.andi.cinema.utils.DataDummy.kt:132</ID>
+    <ID>MaximumLineLength:com.kotlin.andi.cinema.utils.DataDummy.kt:146</ID>
+    <ID>MaximumLineLength:com.kotlin.andi.cinema.utils.DataDummy.kt:20</ID>
+    <ID>MaximumLineLength:com.kotlin.andi.cinema.utils.DataDummy.kt:34</ID>
+    <ID>MaximumLineLength:com.kotlin.andi.cinema.utils.DataDummy.kt:48</ID>
+    <ID>MaximumLineLength:com.kotlin.andi.cinema.utils.DataDummy.kt:61</ID>
+    <ID>MaximumLineLength:com.kotlin.andi.cinema.utils.DataDummy.kt:75</ID>
+    <ID>MaximumLineLength:com.kotlin.andi.cinema.utils.DataDummy.kt:90</ID>
+    <ID>NewLineAtEndOfFile:AllMoviesFragment.kt$com.kotlin.andi.cinema.ui.home.all.AllMoviesFragment.kt</ID>
+    <ID>NewLineAtEndOfFile:BannerAdapter.kt$com.kotlin.andi.cinema.ui.banner.BannerAdapter.kt</ID>
+    <ID>NewLineAtEndOfFile:BannerCarouselItem.kt$com.kotlin.andi.cinema.ui.banner.BannerCarouselItem.kt</ID>
+    <ID>NewLineAtEndOfFile:BannerFragment.kt$com.kotlin.andi.cinema.ui.banner.BannerFragment.kt</ID>
+    <ID>NewLineAtEndOfFile:CinemaFragment.kt$com.kotlin.andi.cinema.ui.home.cinema.CinemaFragment.kt</ID>
+    <ID>NewLineAtEndOfFile:DataDummy.kt$com.kotlin.andi.cinema.utils.DataDummy.kt</ID>
+    <ID>NewLineAtEndOfFile:HomeActivity.kt$com.kotlin.andi.cinema.ui.home.HomeActivity.kt</ID>
+    <ID>NewLineAtEndOfFile:HomeAdapter.kt$com.kotlin.andi.cinema.ui.home.HomeAdapter.kt</ID>
+    <ID>NewLineAtEndOfFile:MovieEntity.kt$com.kotlin.andi.cinema.data.MovieEntity.kt</ID>
+    <ID>NewLineAtEndOfFile:MovieViewModel.kt$com.kotlin.andi.cinema.viewmodel.MovieViewModel.kt</ID>
+    <ID>NewLineAtEndOfFile:SectionPagerAdapter.kt$com.kotlin.andi.cinema.ui.home.SectionPagerAdapter.kt</ID>
+    <ID>NewLineAtEndOfFile:TvShowsFragment.kt$com.kotlin.andi.cinema.ui.home.tvshows.TvShowsFragment.kt</ID>
+    <ID>NoBlankLineBeforeRbrace:com.kotlin.andi.cinema.ui.banner.BannerAdapter.kt:16</ID>
+    <ID>NoBlankLineBeforeRbrace:com.kotlin.andi.cinema.ui.banner.BannerFragment.kt:41</ID>
+    <ID>NoBlankLineBeforeRbrace:com.kotlin.andi.cinema.ui.detail.DetailActivity.kt:46</ID>
+    <ID>NoBlankLineBeforeRbrace:com.kotlin.andi.cinema.ui.home.HomeAdapter.kt:54</ID>
+    <ID>NoBlankLineBeforeRbrace:com.kotlin.andi.cinema.ui.home.SectionPagerAdapter.kt:32</ID>
+    <ID>NoBlankLineBeforeRbrace:com.kotlin.andi.cinema.ui.home.all.AllMoviesFragment.kt:41</ID>
+    <ID>NoBlankLineBeforeRbrace:com.kotlin.andi.cinema.ui.home.cinema.CinemaFragment.kt:38</ID>
+    <ID>NoBlankLineBeforeRbrace:com.kotlin.andi.cinema.ui.home.tvshows.TvShowsFragment.kt:38</ID>
+    <ID>NoBlankLineBeforeRbrace:com.kotlin.andi.cinema.utils.DataDummy.kt:156</ID>
+    <ID>NoConsecutiveBlankLines:com.kotlin.andi.cinema.ui.banner.BannerAdapter.kt:17</ID>
+    <ID>NoConsecutiveBlankLines:com.kotlin.andi.cinema.ui.banner.BannerCarouselItem.kt:10</ID>
+    <ID>NoConsecutiveBlankLines:com.kotlin.andi.cinema.ui.banner.BannerFragment.kt:12</ID>
+    <ID>NoConsecutiveBlankLines:com.kotlin.andi.cinema.ui.banner.BannerFragment.kt:36</ID>
+    <ID>NoConsecutiveBlankLines:com.kotlin.andi.cinema.ui.banner.BannerFragment.kt:42</ID>
+    <ID>NoConsecutiveBlankLines:com.kotlin.andi.cinema.ui.detail.DetailActivity.kt:18</ID>
+    <ID>NoConsecutiveBlankLines:com.kotlin.andi.cinema.ui.detail.DetailActivity.kt:35</ID>
+    <ID>NoConsecutiveBlankLines:com.kotlin.andi.cinema.ui.detail.DetailActivity.kt:47</ID>
+    <ID>NoConsecutiveBlankLines:com.kotlin.andi.cinema.ui.home.HomeActivity.kt:16</ID>
+    <ID>NoConsecutiveBlankLines:com.kotlin.andi.cinema.ui.home.HomeActivity.kt:42</ID>
+    <ID>NoConsecutiveBlankLines:com.kotlin.andi.cinema.ui.home.HomeActivity.kt:57</ID>
+    <ID>NoConsecutiveBlankLines:com.kotlin.andi.cinema.ui.home.all.AllMoviesFragment.kt:16</ID>
+    <ID>NoConsecutiveBlankLines:com.kotlin.andi.cinema.ui.home.all.AllMoviesFragment.kt:35</ID>
+    <ID>NoConsecutiveBlankLines:com.kotlin.andi.cinema.ui.home.cinema.CinemaFragment.kt:39</ID>
+    <ID>NoConsecutiveBlankLines:com.kotlin.andi.cinema.ui.home.tvshows.TvShowsFragment.kt:39</ID>
+    <ID>NoConsecutiveBlankLines:com.kotlin.andi.cinema.utils.DataDummy.kt:153</ID>
+    <ID>NoConsecutiveBlankLines:com.kotlin.andi.cinema.utils.DataDummy.kt:157</ID>
+    <ID>NoMultipleSpaces:com.kotlin.andi.cinema.ui.home.HomeAdapter.kt:15</ID>
+    <ID>NoMultipleSpaces:com.kotlin.andi.cinema.ui.home.HomeAdapter.kt:16</ID>
+    <ID>NoUnusedImports:com.kotlin.andi.cinema.ui.home.all.AllMoviesFragment.kt:10</ID>
+    <ID>NoUnusedImports:com.kotlin.andi.cinema.ui.home.cinema.CinemaFragment.kt:10</ID>
+    <ID>NoUnusedImports:com.kotlin.andi.cinema.ui.home.tvshows.TvShowsFragment.kt:10</ID>
+    <ID>ParameterListWrapping:com.kotlin.andi.cinema.ui.banner.BannerCarouselItem.kt:11</ID>
+    <ID>ParameterListWrapping:com.kotlin.andi.cinema.ui.banner.BannerCarouselItem.kt:12</ID>
+    <ID>ParameterListWrapping:com.kotlin.andi.cinema.ui.banner.BannerCarouselItem.kt:13</ID>
+    <ID>ParameterListWrapping:com.kotlin.andi.cinema.ui.banner.BannerFragment.kt:38</ID>
+    <ID>ParameterListWrapping:com.kotlin.andi.cinema.ui.home.all.AllMoviesFragment.kt:37</ID>
+    <ID>ParameterListWrapping:com.kotlin.andi.cinema.ui.home.cinema.CinemaFragment.kt:35</ID>
+    <ID>ParameterListWrapping:com.kotlin.andi.cinema.ui.home.tvshows.TvShowsFragment.kt:35</ID>
+    <ID>SpacingAroundColon:com.kotlin.andi.cinema.ui.banner.BannerFragment.kt:16</ID>
+    <ID>SpacingAroundColon:com.kotlin.andi.cinema.ui.home.HomeAdapter.kt:15</ID>
+    <ID>SpacingAroundColon:com.kotlin.andi.cinema.viewmodel.MovieViewModel.kt:10</ID>
+    <ID>SpacingAroundColon:com.kotlin.andi.cinema.viewmodel.MovieViewModel.kt:7</ID>
+    <ID>SpacingAroundKeyword:com.kotlin.andi.cinema.ui.home.SectionPagerAdapter.kt:25</ID>
+  </CurrentIssues>
+</SmellBaseline>

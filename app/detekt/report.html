@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>detekt report</title>
+    <style>
+h2 {
+  background-color: #666666;
+  padding: 0.2em;
+  color: #ffffff;
+}
+h3 {
+  background-color:#f8dfdf;
+  padding:0.5em;
+}
+.rule {
+  background-color: #dddddd;
+  padding: 0.3em;
+  font-weight: bold;
+}
+.description {
+  color:#000000;
+  padding:0.3em;
+}
+.location {
+  color: #690505;
+  font-family: monospace;
+  display: block;
+}
+.message {
+  font-size: 0.8em;
+  color: #444444;
+  display: block;
+  margin-top: 1pt;
+}
+.rule-container {
+  border: 0.1em dashed #dddddd;
+  padding: 0.1em;
+  line-height: 1.5em;
+  margin-bottom: 8px;
+  margin-top: 8px;
+}
+pre {
+  border: 1px solid #e0e0e0;
+  overflow: scroll;
+}
+.lineno {
+  color: #999999;
+  background-color: #f0f0f0;
+}
+.error {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AwCFR4T/3uLMgAAADxJREFUCNdNyLERQEAABMCjL4lQwIzcjErpguAL+C9AvgKJDbeD/PRpLdm35Hm+MU+cB+tCKaJW4L4YBy+CAiLJrFs9mgAAAABJRU5ErkJggg==) bottom repeat-x;
+}
+.exception {
+  color: #b60808;
+  display: inline-block;
+  background-color: #ecdada;
+  border-color: #b60808;
+  border-radius: 10px;
+  border: solid 2px;
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-bottom: 16px;
+}
+</style>
+</head>
+<body>
+
+<h1>detekt report</h1>
+
+<h2>Metrics</h2>
+
+<div>
+  <ul>
+    <li>49 number of properties</li>
+    <li>37 number of functions</li>
+    <li>17 number of classes</li>
+    <li>10 number of packages</li>
+    <li>17 number of kt files</li>
+  </ul>
+</div>
+
+
+<h2>Complexity Report</h2>
+
+<div>
+  <ul>
+    <li>900 lines of code (loc)</li>
+    <li>773 source lines of code (sloc)</li>
+    <li>490 logical lines of code (lloc)</li>
+    <li>23 comment lines of code (cloc)</li>
+    <li>52 cyclomatic complexity (mcc)</li>
+    <li>10 cognitive complexity</li>
+    <li>2 number of total code smells</li>
+    <li>2% comment source ratio</li>
+    <li>106 mcc per 1,000 lloc</li>
+    <li>4 code smells per 1,000 lloc</li>
+  </ul>
+</div>
+
+
+<h2>Findings</h2>
+<div>Total: 2
+  <h3>formatting: 1</h3>
+  <details id="CommentSpacing" open="open">
+    <summary class="rule-container"><span class="rule">CommentSpacing: 1 </span><span class="description">Checks if comments have the right spacing</span></summary>
+    <ul>
+      <li><span class="location">G:\Cinema\app\src\test\java\com\kotlin\andi\cinema\ui\home\HomeActivityTest.kt:36:5</span><span class="message">Missing space after //</span>
+        <pre><code><span class="lineno">  33 </span>            }
+<span class="lineno">  34 </span>        }
+<span class="lineno">  35 </span>    }
+<span class="lineno">  36 </span>    <span class="error">//Get All Movies</span>
+<span class="lineno">  37 </span>    Feature(&quot;Showing All Movies&quot;) {
+<span class="lineno">  38 </span>        Scenario(&quot;Get Data from object dummy via ViewModel&quot;) {
+<span class="lineno">  39 </span>            Given(&quot;Initialize ViewModel and Expected total data&quot;) {
+</code></pre>
+      </li>
+    </ul>
+  </details>
+  <h3>style: 1</h3>
+  <details id="MaxLineLength" open="open">
+    <summary class="rule-container"><span class="rule">MaxLineLength: 1 </span><span class="description">Line detected that is longer than the defined maximum line length in the code style.</span></summary>
+    <ul>
+      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:132:17</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 129 </span>                R.drawable.onepunchman,
+<span class="lineno"> 130 </span>                R.drawable.onepunchman,
+<span class="lineno"> 131 </span>                &quot;9&quot;,
+<span class="lineno"> 132 </span>                <span class="error">&quot;Di planet super benua yang tidak disebutkan namanya, monster aneh dan supervillains secara misterius muncul dan menyebabkan bencana. Untuk memerangi mereka, pahlawan dunia telah bangkit untuk melawan mereka. Saitama adalah salah satu pahlawan yang mampu mengatasi mereka.&quot;</span>,
+<span class="lineno"> 133 </span>                &quot;Animation, Superheroes&quot;,
+<span class="lineno"> 134 </span>                &quot;TV Shows&quot;,
+<span class="lineno"> 135 </span>                4.0F
+</code></pre>
+      </li>
+    </ul>
+  </details>
+</div>
+
+
+generated with <a href="https://arturbosch.github.io/detekt">detekt version 1.14.2</a> on 2020-11-15 13:04:04 UTC.
+
+</body>
+</html>
