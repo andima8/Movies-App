@@ -1,4 +1,4 @@
-package com.kotlin.andi.cinema.ui.home
+package com.kotlin.andi.cinema.ui.home.tvshows
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -7,15 +7,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.kotlin.andi.cinema.BuildConfig
 import com.kotlin.andi.cinema.R
-import com.kotlin.andi.cinema.data.MovieEntity
+import com.kotlin.andi.cinema.data.TVEntity
 import com.kotlin.andi.cinema.ui.detail.DetailActivity
 import kotlinx.android.synthetic.main.items_movie.view.*
 
-class HomeAdapter: RecyclerView.Adapter<HomeAdapter.MovieViewHolder>()  {
-    private  val listMovies = ArrayList<MovieEntity>()
+class TVAdapter : RecyclerView.Adapter<TVAdapter.MovieViewHolder>() {
+    private val listMovies = ArrayList<TVEntity>()
 
-    fun setMovies(movies: List<MovieEntity>?) {
+    fun setMovies(movies: List<TVEntity>) {
         if (movies.isNullOrEmpty()) return
         this.listMovies.clear()
         this.listMovies.addAll(movies)
@@ -35,19 +36,21 @@ class HomeAdapter: RecyclerView.Adapter<HomeAdapter.MovieViewHolder>()  {
     override fun getItemCount(): Int = listMovies.size
 
     class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(movies: MovieEntity) {
+        fun bind(movies: TVEntity) {
             with(itemView) {
-                title_movies.text = movies.nameMovie
-                rating_movies.rating = movies.ratingMovie
+                title_movies.text = movies.name
+                rating_movies.rating = movies.voteAverage?.div(2) ?: 0f
                 setOnClickListener {
                     val detailIntent = Intent(context, DetailActivity::class.java)
-                    detailIntent.putExtra(DetailActivity.EXTRA_MOVIE, movies)
+                    detailIntent.putExtra(DetailActivity.EXTRA_TV, movies)
                     context.startActivity(detailIntent)
                 }
                 Glide.with(context)
-                    .load(movies.imgMovie)
-                    .apply(RequestOptions.placeholderOf(R.drawable.ic_loading)
-                        .error(R.drawable.ic_error))
+                    .load(BuildConfig.BASE_IMG_URL + movies.posterPath)
+                    .apply(
+                        RequestOptions.placeholderOf(R.drawable.ic_loading)
+                            .error(R.drawable.ic_error)
+                    )
                     .into(img_movies)
             }
         }

@@ -4,15 +4,14 @@ import android.os.Handler
 import android.os.Looper
 import androidx.fragment.app.FragmentManager
 import com.kotlin.andi.cinema.R
-import com.kotlin.andi.cinema.data.MovieEntity
+import com.kotlin.andi.cinema.data.PopularEntity
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
 import kotlinx.android.synthetic.main.items_banner.view.*
-import java.util.Timer
-import java.util.TimerTask
+import java.util.*
 
 class BannerCarouselItem(
-    private val banners: List<MovieEntity>,
+    private val banners: ArrayList<PopularEntity>,
     private val supportFragmentManager: FragmentManager
 ) : Item<GroupieViewHolder>() {
 
@@ -24,6 +23,7 @@ class BannerCarouselItem(
     override fun bind(viewHolder: GroupieViewHolder, position: Int) {
         var currentPage = 0
         val viewPagerAdapter = BannerAdapter(supportFragmentManager, banners)
+
         viewHolder.itemView.apply {
             view_pager_banner.adapter = viewPagerAdapter
             banner_indicator.setViewPager(viewHolder.itemView.view_pager_banner)

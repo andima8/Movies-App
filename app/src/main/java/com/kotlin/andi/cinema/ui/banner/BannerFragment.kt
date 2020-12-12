@@ -8,8 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.kotlin.andi.cinema.BuildConfig
 import com.kotlin.andi.cinema.R
-import com.kotlin.andi.cinema.data.MovieEntity
+import com.kotlin.andi.cinema.data.PopularEntity
 import com.kotlin.andi.cinema.ui.detail.DetailActivity
 import kotlinx.android.synthetic.main.fragment_banner.*
 
@@ -17,10 +18,10 @@ class BannerFragment : Fragment() {
 
     companion object {
         private const val MOVIE = "movie"
-        fun newInstance(movieEntity: MovieEntity): BannerFragment {
+        fun newInstance(popular: PopularEntity): BannerFragment {
             val newFragment = BannerFragment()
             val movieData = Bundle()
-            movieData.putParcelable(MOVIE, movieEntity)
+            movieData.putParcelable(MOVIE, popular)
             newFragment.arguments = movieData
             return newFragment
         }
@@ -28,19 +29,29 @@ class BannerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val movies = arguments?.getParcelable<MovieEntity>(MOVIE)
+        val movies = arguments?.getParcelable<PopularEntity>(MOVIE)
         Glide.with(this)
-            .load(movies?.bannerMovie)
+            .load(BuildConfig.BASE_IMG_URL + movies?.backdropPath)
             .apply(
                 RequestOptions.placeholderOf(R.drawable.ic_loading)
-                .error(R.drawable.ic_error))
+                    .error(R.drawable.ic_error)
+            )
             .into(imgBanner)
         imgBanner.setOnClickListener {
             val detailIntent = Intent(activity, DetailActivity::class.java)
-            detailIntent.putExtra(DetailActivity.EXTRA_MOVIE, movies)
+            detailIntent.putExtra(DetailActivity.EXTRA_POPULAR, movies)
             startActivity(detailIntent)
         }
-        movie_name.text = movies?.nameMovie
+        val title: String
+        title = when {
+            movies?.title.isNullOrEmpty() -> {
+                movies?.name.toString()
+            }
+            else -> {
+                movies?.title.toString()
+            }
+        }
+        movie_name.text = title
     }
 
     override fun onCreateView(

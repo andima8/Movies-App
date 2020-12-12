@@ -1,17 +1,14 @@
 package com.kotlin.andi.cinema.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.kotlin.andi.cinema.data.MovieEntity
-import com.kotlin.andi.cinema.utils.DataDummy
+import com.kotlin.andi.cinema.data.MoviesEntity
+import com.kotlin.andi.cinema.data.PopularEntity
+import com.kotlin.andi.cinema.data.TVEntity
+import com.kotlin.andi.cinema.data.source.MovieRepository
 
-class MovieViewModel: ViewModel() {
-
-    companion object {
-        const val CINEMA = "Cinema"
-        const val TV_SHOWS = "TV Shows"
-    }
-
-    fun getMovies(): MutableList<MovieEntity> = DataDummy.generateDummyMovies()
-    fun getCinema(): List<MovieEntity> = DataDummy.generateDummyMovies().filter { it.typeMovie == CINEMA }
-    fun getTVShows() : List<MovieEntity> = DataDummy.generateDummyMovies().filter { it.typeMovie == TV_SHOWS }
+class MovieViewModel(private val movieRepository: MovieRepository) : ViewModel() {
+    fun getAllMovies(): LiveData<List<MoviesEntity>> = movieRepository.getAllMovies()
+    fun getAllTVShows(): LiveData<List<TVEntity>> = movieRepository.getAllTVShows()
+    fun getPopular(): LiveData<List<PopularEntity>> = movieRepository.getAllPopular()
 }
