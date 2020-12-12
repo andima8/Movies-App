@@ -4,7 +4,12 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.kotlin.andi.cinema.BuildConfig
 import com.kotlin.andi.cinema.api.ApiConfig
-import com.kotlin.andi.cinema.data.source.remote.response.*
+import com.kotlin.andi.cinema.data.source.remote.response.ResultsMovies
+import com.kotlin.andi.cinema.data.source.remote.response.ResultsTV
+import com.kotlin.andi.cinema.data.source.remote.response.ResultsPopular
+import com.kotlin.andi.cinema.data.source.remote.response.MovieResponse
+import com.kotlin.andi.cinema.data.source.remote.response.TVResponse
+import com.kotlin.andi.cinema.data.source.remote.response.PopularResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -30,12 +35,12 @@ class JsonHelper {
                     val data = response.body()?.results
                     movies.postValue(data)
                 } else {
-                    Log.e(TAG, "onFailure: ${response.message()}")
+                    Log.e(TAG, "onFailure: " + response.message())
                 }
             }
 
             override fun onFailure(call: Call<MovieResponse>, t: Throwable) {
-                Log.e(TAG, "onFailure: ${t.message.toString()}")
+                Log.e(TAG, "onFailure: " + t.message.toString())
             }
         })
         return movies
@@ -50,7 +55,7 @@ class JsonHelper {
             }
 
             override fun onFailure(call: Call<TVResponse>, t: Throwable) {
-                Log.e(TAG, "onFailure: ${t.message.toString()}")
+                Log.e(TAG, "onFailure: " + t.message.toString())
             }
         })
         return tv
@@ -68,7 +73,7 @@ class JsonHelper {
             }
 
             override fun onFailure(call: Call<PopularResponse>, t: Throwable) {
-                Log.e(TAG, "onFailure: ${t.message.toString()}")
+                Log.e(TAG, "onFailure: " + t.message.toString())
             }
         })
         return popular

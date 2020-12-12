@@ -2,13 +2,12 @@
     <string name="app_name">The Movies</string>
     <string name="movie_image">Movie Image</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="all">All</string>
     <string name="cinema">Cinema</string>
     <string name="tv_shows">TV Shows</string>
     <string name="title">Title</string>
     <string name="detail">Detail</string>
     <string name="Description">Description</string>
-    <string name="genre">Genre</string>
+    <string name="language">Language</string>
     <string name="_4_5">4.5</string>
     <string name="popular">Popular Movies</string>
     <!-- TODO: Remove or change this placeholder text -->

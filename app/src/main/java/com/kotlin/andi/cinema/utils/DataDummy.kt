@@ -8,12 +8,9 @@ import com.kotlin.andi.cinema.data.source.remote.response.ResultsTV
 
 object DataDummy {
 
-    fun generateDummyMovies(): LiveData<List<ResultsMovies>> {
-
-        val movies = MutableLiveData<List<ResultsMovies>>()
-
+    fun generateDummyMovies(): MutableLiveData<List<ResultsMovies>> {
         // Cinema
-        movies.postValue(
+       return MutableLiveData(
             listOf(
                 ResultsMovies(
                     602211,
@@ -37,15 +34,11 @@ object DataDummy {
                 )
             )
         )
-
-        return movies
     }
 
     // TV
     fun generateDummyTV(): LiveData<List<ResultsTV>> {
-        val tv = MutableLiveData<List<ResultsTV>>()
-
-        tv.postValue(
+        return MutableLiveData(
             listOf(
                 ResultsTV(
                     82856,
@@ -67,14 +60,11 @@ object DataDummy {
                 )
             )
         )
-        return tv
     }
 
     // Popular
     fun generateDummyPopular(): LiveData<List<ResultsPopular>> {
-        val tv = MutableLiveData<List<ResultsPopular>>()
-
-        tv.postValue(
+        return MutableLiveData(
             listOf(
                 ResultsPopular(
                     577922,
@@ -96,6 +86,5 @@ object DataDummy {
                 )
             )
         )
-        return tv
     }
 }

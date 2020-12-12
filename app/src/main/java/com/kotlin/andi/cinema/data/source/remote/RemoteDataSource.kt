@@ -40,7 +40,7 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
     }
 
     interface LoadTVCallback {
-        fun onAllTVShowsReceived(TVResponses: LiveData<List<ResultsTV>>)
+        fun onAllTVShowsReceived(tvResponses: LiveData<List<ResultsTV>>)
     }
 
     fun getPopular(callback: LoadPopularCallback) {
@@ -52,6 +52,6 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
     }
 
     interface LoadPopularCallback {
-        fun onAllPopularReceived(PopularResponses: LiveData<List<ResultsPopular>>)
+        fun onAllPopularReceived(popularResponses: LiveData<List<ResultsPopular>>)
     }
 }

@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="movie_image">Movie Image</string>
-    <string name="all">All</string>
     <string name="cinema">Cinema</string>
     <string name="tv_shows">TV Shows</string>
     <string name="detail">Detail</string>
     <string name="Description">Description</string>
-    <string name="genre">Genre</string>
     <string name="_4_5">4.5</string>
     <string name="popular">Popular Movies</string>
 </resources>

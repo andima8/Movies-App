@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.kotlin.andi.cinema.data.source.MovieRepository
 import com.kotlin.andi.cinema.di.Injection
+import java.lang.IllegalArgumentException
 
 @Suppress("UNCHECKED_CAST")
 class ViewModelFactory private constructor(private val mMovieRepository: MovieRepository) :
@@ -24,7 +25,7 @@ class ViewModelFactory private constructor(private val mMovieRepository: MovieRe
             modelClass.isAssignableFrom(MovieViewModel::class.java) -> {
                 return MovieViewModel(mMovieRepository) as T
             }
-            else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)
+            else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
     }
 }

@@ -6,7 +6,9 @@ import com.kotlin.andi.cinema.data.MoviesEntity
 import com.kotlin.andi.cinema.data.PopularEntity
 import com.kotlin.andi.cinema.data.TVEntity
 import com.kotlin.andi.cinema.data.source.remote.RemoteDataSource
-import com.kotlin.andi.cinema.data.source.remote.RemoteDataSource.*
+import com.kotlin.andi.cinema.data.source.remote.RemoteDataSource.LoadMovieCallback
+import com.kotlin.andi.cinema.data.source.remote.RemoteDataSource.LoadTVCallback
+import com.kotlin.andi.cinema.data.source.remote.RemoteDataSource.LoadPopularCallback
 import com.kotlin.andi.cinema.data.source.remote.response.ResultsMovies
 import com.kotlin.andi.cinema.data.source.remote.response.ResultsPopular
 import com.kotlin.andi.cinema.data.source.remote.response.ResultsTV
@@ -54,8 +56,8 @@ class MovieRepository private constructor(private val remoteDataSource: RemoteDa
     override fun getAllTVShows(): LiveData<List<TVEntity>> {
         val tvResult = MutableLiveData<List<TVEntity>>()
         remoteDataSource.getTVShows(object : LoadTVCallback {
-            override fun onAllTVShowsReceived(TVResponses: LiveData<List<ResultsTV>>) {
-                TVResponses.observeForever { response ->
+            override fun onAllTVShowsReceived(tvResponses: LiveData<List<ResultsTV>>) {
+                tvResponses.observeForever { response ->
                     val tvList = ArrayList<TVEntity>()
                     response?.forEach {
                         val tv = TVEntity(
@@ -79,8 +81,8 @@ class MovieRepository private constructor(private val remoteDataSource: RemoteDa
     override fun getAllPopular(): LiveData<List<PopularEntity>> {
         val popularResult = MutableLiveData<List<PopularEntity>>()
         remoteDataSource.getPopular(object : LoadPopularCallback {
-            override fun onAllPopularReceived(PopularResponses: LiveData<List<ResultsPopular>>) {
-                PopularResponses.observeForever { response ->
+            override fun onAllPopularReceived(popularResponses: LiveData<List<ResultsPopular>>) {
+                popularResponses.observeForever { response ->
                     val popularList = ArrayList<PopularEntity>()
                     response?.forEach {
                         val popular = PopularEntity(
@@ -98,9 +100,7 @@ class MovieRepository private constructor(private val remoteDataSource: RemoteDa
                     popularResult.postValue(popularList)
                 }
             }
-
         })
         return popularResult
     }
 }
-

@@ -142,10 +142,10 @@ dependencies {
     androidTestImplementation "androidx.test:rules:$androidXTestVersion"
     androidTestImplementation "androidx.test.ext:junit-ktx:$extJunitKTXTest"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
-    testImplementation "androidx.arch.core:core-testing:2.1.0"
     //idling Resource
     implementation "com.android.support.test.espresso:espresso-idling-resource:$idlingResource"
     //mockito
     testImplementation 'org.mockito:mockito-inline:2.13.0'
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion"
 }

@@ -19,7 +19,7 @@
     <ID>FinalNewline:com.kotlin.andi.cinema.ui.banner.BannerFragment.kt:1</ID>
     <ID>FinalNewline:com.kotlin.andi.cinema.data.MovieEntity.kt:1</ID>
     <ID>FinalNewline:com.kotlin.andi.cinema.ui.home.HomeActivity.kt:1</ID>
-    <ID>FinalNewline:com.kotlin.andi.cinema.ui.home.HomeAdapter.kt:1</ID>
+    <ID>FinalNewline:com.kotlin.andi.cinema.ui.home.tvshows.TVAdapter.kt:1</ID>
     <ID>FinalNewline:com.kotlin.andi.cinema.ui.home.SectionPagerAdapter.kt:1</ID>
     <ID>FinalNewline:com.kotlin.andi.cinema.ui.home.all.AllMoviesFragment.kt:1</ID>
     <ID>FinalNewline:com.kotlin.andi.cinema.ui.home.cinema.CinemaFragment.kt:1</ID>
@@ -56,7 +56,7 @@
     <ID>NewLineAtEndOfFile:CinemaFragment.kt$com.kotlin.andi.cinema.ui.home.cinema.CinemaFragment.kt</ID>
     <ID>NewLineAtEndOfFile:DataDummy.kt$com.kotlin.andi.cinema.utils.DataDummy.kt</ID>
     <ID>NewLineAtEndOfFile:HomeActivity.kt$com.kotlin.andi.cinema.ui.home.HomeActivity.kt</ID>
-    <ID>NewLineAtEndOfFile:HomeAdapter.kt$com.kotlin.andi.cinema.ui.home.HomeAdapter.kt</ID>
+      <ID>NewLineAtEndOfFile:HomeAdapter.kt$com.kotlin.andi.cinema.ui.home.tvshows.TVAdapter.kt</ID>
     <ID>NewLineAtEndOfFile:MovieEntity.kt$com.kotlin.andi.cinema.data.MovieEntity.kt</ID>
     <ID>NewLineAtEndOfFile:MovieViewModel.kt$com.kotlin.andi.cinema.viewmodel.MovieViewModel.kt</ID>
     <ID>NewLineAtEndOfFile:SectionPagerAdapter.kt$com.kotlin.andi.cinema.ui.home.SectionPagerAdapter.kt</ID>
@@ -64,7 +64,7 @@
     <ID>NoBlankLineBeforeRbrace:com.kotlin.andi.cinema.ui.banner.BannerAdapter.kt:16</ID>
     <ID>NoBlankLineBeforeRbrace:com.kotlin.andi.cinema.ui.banner.BannerFragment.kt:41</ID>
     <ID>NoBlankLineBeforeRbrace:com.kotlin.andi.cinema.ui.detail.DetailActivity.kt:46</ID>
-    <ID>NoBlankLineBeforeRbrace:com.kotlin.andi.cinema.ui.home.HomeAdapter.kt:54</ID>
+      <ID>NoBlankLineBeforeRbrace:com.kotlin.andi.cinema.ui.home.tvshows.TVAdapter.kt:54</ID>
     <ID>NoBlankLineBeforeRbrace:com.kotlin.andi.cinema.ui.home.SectionPagerAdapter.kt:32</ID>
     <ID>NoBlankLineBeforeRbrace:com.kotlin.andi.cinema.ui.home.all.AllMoviesFragment.kt:41</ID>
     <ID>NoBlankLineBeforeRbrace:com.kotlin.andi.cinema.ui.home.cinema.CinemaFragment.kt:38</ID>
@@ -77,30 +77,30 @@
     <ID>NoConsecutiveBlankLines:com.kotlin.andi.cinema.ui.banner.BannerFragment.kt:42</ID>
     <ID>NoConsecutiveBlankLines:com.kotlin.andi.cinema.ui.detail.DetailActivity.kt:18</ID>
     <ID>NoConsecutiveBlankLines:com.kotlin.andi.cinema.ui.detail.DetailActivity.kt:35</ID>
-    <ID>NoConsecutiveBlankLines:com.kotlin.andi.cinema.ui.detail.DetailActivity.kt:47</ID>
-    <ID>NoConsecutiveBlankLines:com.kotlin.andi.cinema.ui.home.HomeActivity.kt:16</ID>
-    <ID>NoConsecutiveBlankLines:com.kotlin.andi.cinema.ui.home.HomeActivity.kt:42</ID>
-    <ID>NoConsecutiveBlankLines:com.kotlin.andi.cinema.ui.home.HomeActivity.kt:57</ID>
-    <ID>NoConsecutiveBlankLines:com.kotlin.andi.cinema.ui.home.all.AllMoviesFragment.kt:16</ID>
-    <ID>NoConsecutiveBlankLines:com.kotlin.andi.cinema.ui.home.all.AllMoviesFragment.kt:35</ID>
-    <ID>NoConsecutiveBlankLines:com.kotlin.andi.cinema.ui.home.cinema.CinemaFragment.kt:39</ID>
-    <ID>NoConsecutiveBlankLines:com.kotlin.andi.cinema.ui.home.tvshows.TvShowsFragment.kt:39</ID>
-    <ID>NoConsecutiveBlankLines:com.kotlin.andi.cinema.utils.DataDummy.kt:153</ID>
-    <ID>NoConsecutiveBlankLines:com.kotlin.andi.cinema.utils.DataDummy.kt:157</ID>
-    <ID>NoMultipleSpaces:com.kotlin.andi.cinema.ui.home.HomeAdapter.kt:15</ID>
-    <ID>NoMultipleSpaces:com.kotlin.andi.cinema.ui.home.HomeAdapter.kt:16</ID>
-    <ID>NoUnusedImports:com.kotlin.andi.cinema.ui.home.all.AllMoviesFragment.kt:10</ID>
-    <ID>NoUnusedImports:com.kotlin.andi.cinema.ui.home.cinema.CinemaFragment.kt:10</ID>
-    <ID>NoUnusedImports:com.kotlin.andi.cinema.ui.home.tvshows.TvShowsFragment.kt:10</ID>
-    <ID>ParameterListWrapping:com.kotlin.andi.cinema.ui.banner.BannerCarouselItem.kt:11</ID>
-    <ID>ParameterListWrapping:com.kotlin.andi.cinema.ui.banner.BannerCarouselItem.kt:12</ID>
-    <ID>ParameterListWrapping:com.kotlin.andi.cinema.ui.banner.BannerCarouselItem.kt:13</ID>
-    <ID>ParameterListWrapping:com.kotlin.andi.cinema.ui.banner.BannerFragment.kt:38</ID>
-    <ID>ParameterListWrapping:com.kotlin.andi.cinema.ui.home.all.AllMoviesFragment.kt:37</ID>
-    <ID>ParameterListWrapping:com.kotlin.andi.cinema.ui.home.cinema.CinemaFragment.kt:35</ID>
-    <ID>ParameterListWrapping:com.kotlin.andi.cinema.ui.home.tvshows.TvShowsFragment.kt:35</ID>
+      <ID>NoConsecutiveBlankLines:com.kotlin.andi.cinema.ui.detail.DetailActivity.kt:47</ID>
+      <ID>NoConsecutiveBlankLines:com.kotlin.andi.cinema.ui.home.HomeActivity.kt:16</ID>
+      <ID>NoConsecutiveBlankLines:com.kotlin.andi.cinema.ui.home.HomeActivity.kt:42</ID>
+      <ID>NoConsecutiveBlankLines:com.kotlin.andi.cinema.ui.home.HomeActivity.kt:57</ID>
+      <ID>NoConsecutiveBlankLines:com.kotlin.andi.cinema.ui.home.all.AllMoviesFragment.kt:16</ID>
+      <ID>NoConsecutiveBlankLines:com.kotlin.andi.cinema.ui.home.all.AllMoviesFragment.kt:35</ID>
+      <ID>NoConsecutiveBlankLines:com.kotlin.andi.cinema.ui.home.cinema.CinemaFragment.kt:39</ID>
+      <ID>NoConsecutiveBlankLines:com.kotlin.andi.cinema.ui.home.tvshows.TvShowsFragment.kt:39</ID>
+      <ID>NoConsecutiveBlankLines:com.kotlin.andi.cinema.utils.DataDummy.kt:153</ID>
+      <ID>NoConsecutiveBlankLines:com.kotlin.andi.cinema.utils.DataDummy.kt:157</ID>
+      <ID>NoMultipleSpaces:com.kotlin.andi.cinema.ui.home.tvshows.TVAdapter.kt:15</ID>
+      <ID>NoMultipleSpaces:com.kotlin.andi.cinema.ui.home.tvshows.TVAdapter.kt:16</ID>
+      <ID>NoUnusedImports:com.kotlin.andi.cinema.ui.home.all.AllMoviesFragment.kt:10</ID>
+      <ID>NoUnusedImports:com.kotlin.andi.cinema.ui.home.cinema.CinemaFragment.kt:10</ID>
+      <ID>NoUnusedImports:com.kotlin.andi.cinema.ui.home.tvshows.TvShowsFragment.kt:10</ID>
+      <ID>ParameterListWrapping:com.kotlin.andi.cinema.ui.banner.BannerCarouselItem.kt:11</ID>
+      <ID>ParameterListWrapping:com.kotlin.andi.cinema.ui.banner.BannerCarouselItem.kt:12</ID>
+      <ID>ParameterListWrapping:com.kotlin.andi.cinema.ui.banner.BannerCarouselItem.kt:13</ID>
+      <ID>ParameterListWrapping:com.kotlin.andi.cinema.ui.banner.BannerFragment.kt:38</ID>
+      <ID>ParameterListWrapping:com.kotlin.andi.cinema.ui.home.all.AllMoviesFragment.kt:37</ID>
+      <ID>ParameterListWrapping:com.kotlin.andi.cinema.ui.home.cinema.CinemaFragment.kt:35</ID>
+      <ID>ParameterListWrapping:com.kotlin.andi.cinema.ui.home.tvshows.TvShowsFragment.kt:35</ID>
     <ID>SpacingAroundColon:com.kotlin.andi.cinema.ui.banner.BannerFragment.kt:16</ID>
-    <ID>SpacingAroundColon:com.kotlin.andi.cinema.ui.home.HomeAdapter.kt:15</ID>
+      <ID>SpacingAroundColon:com.kotlin.andi.cinema.ui.home.tvshows.TVAdapter.kt:15</ID>
     <ID>SpacingAroundColon:com.kotlin.andi.cinema.viewmodel.MovieViewModel.kt:10</ID>
     <ID>SpacingAroundColon:com.kotlin.andi.cinema.viewmodel.MovieViewModel.kt:7</ID>
     <ID>SpacingAroundKeyword:com.kotlin.andi.cinema.ui.home.SectionPagerAdapter.kt:25</ID>

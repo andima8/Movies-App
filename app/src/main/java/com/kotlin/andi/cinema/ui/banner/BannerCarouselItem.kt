@@ -8,7 +8,8 @@ import com.kotlin.andi.cinema.data.PopularEntity
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
 import kotlinx.android.synthetic.main.items_banner.view.*
-import java.util.*
+import java.util.Timer
+import java.util.TimerTask
 
 class BannerCarouselItem(
     private val banners: ArrayList<PopularEntity>,
