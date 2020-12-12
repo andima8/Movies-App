@@ -1,8 +1,7 @@
-package com.kotlin.andi.cinema.data.source
+package com.kotlin.andi.cinema.movies.data
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.kotlin.andi.cinema.data.source.remote.RemoteDataSource
-import com.kotlin.andi.cinema.movies.data.FakeMovieRepository
 import com.kotlin.andi.cinema.movies.utils.LiveDataTestUtil
 import com.kotlin.andi.cinema.utils.DataDummy
 import com.nhaarman.mockitokotlin2.any
