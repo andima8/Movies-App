@@ -44,5 +44,8 @@ data class ResultsPopular(
     val voteAverage: Float? = 0f,
 
     @field:SerializedName("original_language")
-    val language: String? = null
+    val language: String? = null,
+
+    @field:SerializedName("media_type")
+    val mediaType: String? = null
 ) : Parcelable

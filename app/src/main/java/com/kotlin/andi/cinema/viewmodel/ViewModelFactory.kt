@@ -1,8 +1,9 @@
 package com.kotlin.andi.cinema.viewmodel
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.kotlin.andi.cinema.data.source.MovieRepository
+import com.kotlin.andi.cinema.data.MovieRepository
 import com.kotlin.andi.cinema.di.Injection
 import java.lang.IllegalArgumentException
 
@@ -14,9 +15,9 @@ class ViewModelFactory private constructor(private val mMovieRepository: MovieRe
         @Volatile
         private var instace: ViewModelFactory? = null
 
-        fun getInstance(): ViewModelFactory =
+        fun getInstance(context: Context): ViewModelFactory =
             instace ?: synchronized(this) {
-                instace ?: ViewModelFactory(Injection.provideRepository())
+                instace ?: ViewModelFactory(Injection.provideRepository(context))
             }
     }
 

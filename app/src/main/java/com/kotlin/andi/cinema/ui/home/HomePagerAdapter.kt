@@ -9,7 +9,7 @@ import com.kotlin.andi.cinema.R
 import com.kotlin.andi.cinema.ui.home.cinema.CinemaFragment
 import com.kotlin.andi.cinema.ui.home.tvshows.TvShowsFragment
 
-class SectionPagerAdapter(private val mContext: Context, fm: FragmentManager) : FragmentPagerAdapter(fm,
+class HomePagerAdapter(private val mContext: Context, fm: FragmentManager) : FragmentPagerAdapter(fm,
     BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
 ) {
 

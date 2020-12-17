@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-android-extensions'
     id 'de.mannodermaus.android-junit5'
     id "io.gitlab.arturbosch.detekt"
+    id 'kotlin-kapt'
 }
 
 android {
@@ -30,12 +31,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    kotlinOptions {
-        jvmTarget = '1.8'
+    kotlinOptions{
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
     //spek 2
     // Add Kotlin source directory to all source sets
@@ -148,4 +150,11 @@ dependencies {
     testImplementation 'org.mockito:mockito-inline:2.13.0'
     testImplementation "androidx.arch.core:core-testing:2.1.0"
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion"
+    //Room DB
+    implementation "androidx.room:room-runtime:$roomRuntimeVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"
+    androidTestImplementation "androidx.room:room-testing:$roomVersion"
+    // Paging
+    implementation "androidx.paging:paging-runtime:$pagingVersion"
 }

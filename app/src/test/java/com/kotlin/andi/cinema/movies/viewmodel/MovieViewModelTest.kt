@@ -3,10 +3,10 @@ package com.kotlin.andi.cinema.movies.viewmodel
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.kotlin.andi.cinema.data.MoviesEntity
-import com.kotlin.andi.cinema.data.PopularEntity
-import com.kotlin.andi.cinema.data.TVEntity
-import com.kotlin.andi.cinema.data.source.MovieRepository
+import com.kotlin.andi.cinema.data.source.local.entity.MoviesEntity
+import com.kotlin.andi.cinema.data.source.local.entity.PopularEntity
+import com.kotlin.andi.cinema.data.source.local.entity.TVEntity
+import com.kotlin.andi.cinema.data.MovieRepository
 import com.kotlin.andi.cinema.utils.DataDummy
 import com.kotlin.andi.cinema.viewmodel.MovieViewModel
 import com.nhaarman.mockitokotlin2.verify

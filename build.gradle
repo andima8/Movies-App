@@ -28,7 +28,7 @@ ext {
     //dependencies version
     appCompatVersion = '1.2.0'
     coreVersion = '1.3.2'
-    couroutineVersion = '1.3.8'
+    couroutineVersion = '1.4.1'
     constraintLayoutVersion = '2.0.4'
     junit4Version = '4.13.1'
     espressoVersion = '3.3.0'
@@ -46,6 +46,9 @@ ext {
     koinVersion = '2.2.0'
     idlingResource = '3.0.2'
     mockitoKotlinVersion = '2.2.0'
+    roomVersion = '2.2.5'
+    roomRuntimeVersion = '2.2.5'
+    pagingVersion = '2.1.2'
 }
 
 task clean(type: Delete) {

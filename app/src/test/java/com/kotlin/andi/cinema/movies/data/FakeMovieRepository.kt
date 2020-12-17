@@ -2,10 +2,10 @@ package com.kotlin.andi.cinema.movies.data
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.kotlin.andi.cinema.data.MoviesEntity
-import com.kotlin.andi.cinema.data.PopularEntity
-import com.kotlin.andi.cinema.data.TVEntity
-import com.kotlin.andi.cinema.data.source.MovieDataSource
+import com.kotlin.andi.cinema.data.source.local.entity.MoviesEntity
+import com.kotlin.andi.cinema.data.source.local.entity.PopularEntity
+import com.kotlin.andi.cinema.data.source.local.entity.TVEntity
+import com.kotlin.andi.cinema.data.MovieDataSource
 import com.kotlin.andi.cinema.data.source.remote.RemoteDataSource
 import com.kotlin.andi.cinema.data.source.remote.response.ResultsMovies
 import com.kotlin.andi.cinema.data.source.remote.response.ResultsPopular

@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.kotlin.andi.cinema.BuildConfig
 import com.kotlin.andi.cinema.R
-import com.kotlin.andi.cinema.data.TVEntity
+import com.kotlin.andi.cinema.data.source.local.entity.TVEntity
 import com.kotlin.andi.cinema.ui.detail.DetailActivity
 import kotlinx.android.synthetic.main.items_movie.view.*
 

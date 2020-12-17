@@ -20,7 +20,7 @@
     <ID>FinalNewline:com.kotlin.andi.cinema.data.MovieEntity.kt:1</ID>
     <ID>FinalNewline:com.kotlin.andi.cinema.ui.home.HomeActivity.kt:1</ID>
     <ID>FinalNewline:com.kotlin.andi.cinema.ui.home.tvshows.TVAdapter.kt:1</ID>
-    <ID>FinalNewline:com.kotlin.andi.cinema.ui.home.SectionPagerAdapter.kt:1</ID>
+    <ID>FinalNewline:com.kotlin.andi.cinema.ui.home.HomePagerAdapter.kt:1</ID>
     <ID>FinalNewline:com.kotlin.andi.cinema.ui.home.all.AllMoviesFragment.kt:1</ID>
     <ID>FinalNewline:com.kotlin.andi.cinema.ui.home.cinema.CinemaFragment.kt:1</ID>
     <ID>FinalNewline:com.kotlin.andi.cinema.ui.home.tvshows.TvShowsFragment.kt:1</ID>
@@ -59,13 +59,13 @@
       <ID>NewLineAtEndOfFile:HomeAdapter.kt$com.kotlin.andi.cinema.ui.home.tvshows.TVAdapter.kt</ID>
     <ID>NewLineAtEndOfFile:MovieEntity.kt$com.kotlin.andi.cinema.data.MovieEntity.kt</ID>
     <ID>NewLineAtEndOfFile:MovieViewModel.kt$com.kotlin.andi.cinema.viewmodel.MovieViewModel.kt</ID>
-    <ID>NewLineAtEndOfFile:SectionPagerAdapter.kt$com.kotlin.andi.cinema.ui.home.SectionPagerAdapter.kt</ID>
+    <ID>NewLineAtEndOfFile:SectionPagerAdapter.kt$com.kotlin.andi.cinema.ui.home.HomePagerAdapter.kt</ID>
     <ID>NewLineAtEndOfFile:TvShowsFragment.kt$com.kotlin.andi.cinema.ui.home.tvshows.TvShowsFragment.kt</ID>
     <ID>NoBlankLineBeforeRbrace:com.kotlin.andi.cinema.ui.banner.BannerAdapter.kt:16</ID>
     <ID>NoBlankLineBeforeRbrace:com.kotlin.andi.cinema.ui.banner.BannerFragment.kt:41</ID>
     <ID>NoBlankLineBeforeRbrace:com.kotlin.andi.cinema.ui.detail.DetailActivity.kt:46</ID>
       <ID>NoBlankLineBeforeRbrace:com.kotlin.andi.cinema.ui.home.tvshows.TVAdapter.kt:54</ID>
-    <ID>NoBlankLineBeforeRbrace:com.kotlin.andi.cinema.ui.home.SectionPagerAdapter.kt:32</ID>
+    <ID>NoBlankLineBeforeRbrace:com.kotlin.andi.cinema.ui.home.HomePagerAdapter.kt:32</ID>
     <ID>NoBlankLineBeforeRbrace:com.kotlin.andi.cinema.ui.home.all.AllMoviesFragment.kt:41</ID>
     <ID>NoBlankLineBeforeRbrace:com.kotlin.andi.cinema.ui.home.cinema.CinemaFragment.kt:38</ID>
     <ID>NoBlankLineBeforeRbrace:com.kotlin.andi.cinema.ui.home.tvshows.TvShowsFragment.kt:38</ID>
@@ -103,6 +103,6 @@
       <ID>SpacingAroundColon:com.kotlin.andi.cinema.ui.home.tvshows.TVAdapter.kt:15</ID>
     <ID>SpacingAroundColon:com.kotlin.andi.cinema.viewmodel.MovieViewModel.kt:10</ID>
     <ID>SpacingAroundColon:com.kotlin.andi.cinema.viewmodel.MovieViewModel.kt:7</ID>
-    <ID>SpacingAroundKeyword:com.kotlin.andi.cinema.ui.home.SectionPagerAdapter.kt:25</ID>
+    <ID>SpacingAroundKeyword:com.kotlin.andi.cinema.ui.home.HomePagerAdapter.kt:25</ID>
   </CurrentIssues>
 </SmellBaseline>

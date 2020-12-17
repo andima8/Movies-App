@@ -1,6 +1,7 @@
 package com.kotlin.andi.cinema.data.source.remote
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.kotlin.andi.cinema.data.source.remote.response.ResultsMovies
 import com.kotlin.andi.cinema.data.source.remote.response.ResultsPopular
 import com.kotlin.andi.cinema.data.source.remote.response.ResultsTV
@@ -19,39 +20,27 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
             }
     }
 
-    fun getMovies(callback: LoadMovieCallback) {
+    fun getMovies(): LiveData<ApiResponse<MutableLiveData<List<ResultsMovies>>>> {
         EspressoIdlingResource.increment()
-        callback.onAllMoviesReceived(
-            jsonHelper.loadCinema()
-        )
+        val result = MutableLiveData<ApiResponse<MutableLiveData<List<ResultsMovies>>>>()
+        result.value = ApiResponse.success(jsonHelper.loadCinema())
         EspressoIdlingResource.decrement()
+        return result
     }
 
-    interface LoadMovieCallback {
-        fun onAllMoviesReceived(movieResponses: LiveData<List<ResultsMovies>>)
-    }
-
-    fun getTVShows(callback: LoadTVCallback) {
+    fun getTVShows(): LiveData<ApiResponse<MutableLiveData<List<ResultsTV>>>> {
         EspressoIdlingResource.increment()
-        callback.onAllTVShowsReceived(
-            jsonHelper.loadTVShows()
-        )
+        val result = MutableLiveData<ApiResponse<MutableLiveData<List<ResultsTV>>>>()
+        result.value = ApiResponse.success(jsonHelper.loadTVShows())
         EspressoIdlingResource.decrement()
+        return result
     }
 
-    interface LoadTVCallback {
-        fun onAllTVShowsReceived(tvResponses: LiveData<List<ResultsTV>>)
-    }
-
-    fun getPopular(callback: LoadPopularCallback) {
+    fun getPopular(): LiveData<ApiResponse<MutableLiveData<List<ResultsPopular>>>> {
         EspressoIdlingResource.increment()
-        callback.onAllPopularReceived(
-            jsonHelper.loadPopular()
-        )
+        val result = MutableLiveData<ApiResponse<MutableLiveData<List<ResultsPopular>>>>()
+        result.value = ApiResponse.success(jsonHelper.loadPopular())
         EspressoIdlingResource.decrement()
-    }
-
-    interface LoadPopularCallback {
-        fun onAllPopularReceived(popularResponses: LiveData<List<ResultsPopular>>)
+        return result
     }
 }

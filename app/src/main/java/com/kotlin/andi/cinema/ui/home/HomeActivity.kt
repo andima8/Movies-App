@@ -2,15 +2,8 @@ package com.kotlin.andi.cinema.ui.home
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.kotlin.andi.cinema.R
-import com.kotlin.andi.cinema.data.PopularEntity
-import com.kotlin.andi.cinema.ui.banner.BannerCarouselItem
-import com.kotlin.andi.cinema.viewmodel.MovieViewModel
-import com.kotlin.andi.cinema.viewmodel.ViewModelFactory
-import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.GroupieViewHolder
+import com.kotlin.andi.cinema.ui.favorite.FavoriteFragment
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
@@ -18,30 +11,46 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-
-        getBannerData()
-
-        val sectionPagerAdapter = SectionPagerAdapter(this, supportFragmentManager)
-        view_pager.adapter = sectionPagerAdapter
-        tabs.setupWithViewPager(view_pager)
-
-        supportActionBar?.elevation = 0f
+        supportActionBar?.apply {
+            setDisplayShowHomeEnabled(true)
+        }
+        bottomNavigation()
     }
 
-    private fun getBannerData() {
-        val factory = ViewModelFactory.getInstance()
-        val viewModel = ViewModelProvider(this, factory)[MovieViewModel::class.java]
-        val groupAdapter = GroupAdapter<GroupieViewHolder>()
-        viewModel.getPopular().observe(this, { popular ->
-            rv_banner.apply {
-                layoutManager = LinearLayoutManager(this@HomeActivity)
-                adapter = groupAdapter
-            }
-            val bannerCarouselItem =
-                BannerCarouselItem(popular as ArrayList<PopularEntity>, supportFragmentManager)
-            popular.run {
-                groupAdapter.add(bannerCarouselItem)
-            }
-        })
+    private fun loadHomeFragment() {
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.main_container, HomeFragment(), HomeFragment::class.java.simpleName)
+            .addToBackStack(null)
+            .commit()
     }
+
+    private fun loadFavoriteFragment() {
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.main_container,
+                FavoriteFragment(),
+                FavoriteFragment::class.java.simpleName)
+            .addToBackStack(null)
+            .commit()
+    }
+
+    private fun bottomNavigation() {
+        bottom_navigation.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.home -> {
+                    loadHomeFragment()
+                    return@setOnNavigationItemSelectedListener true
+                }
+                R.id.favorite -> {
+                    loadFavoriteFragment()
+                    return@setOnNavigationItemSelectedListener true
+                }
+            }
+            true
+        }
+        bottom_navigation.selectedItemId = R.id.home
+    }
+
+
 }

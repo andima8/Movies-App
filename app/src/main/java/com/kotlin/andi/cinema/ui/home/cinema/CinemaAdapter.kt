@@ -9,8 +9,9 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.kotlin.andi.cinema.BuildConfig
 import com.kotlin.andi.cinema.R
-import com.kotlin.andi.cinema.data.MoviesEntity
+import com.kotlin.andi.cinema.data.source.local.entity.MoviesEntity
 import com.kotlin.andi.cinema.ui.detail.DetailActivity
+import com.kotlin.andi.cinema.vo.Resource
 import kotlinx.android.synthetic.main.items_movie.view.*
 
 class CinemaAdapter : RecyclerView.Adapter<CinemaAdapter.MovieViewHolder>() {
