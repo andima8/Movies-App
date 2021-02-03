@@ -6,7 +6,6 @@
     <string name="detail">Detail</string>
     <string name="Description">Description</string>
     <string name="_4_5">4.5</string>
-    <string name="popular">Popular Movies</string>
     <string name="home">Home</string>
     <string name="favorite">Favorite</string>
     <string name="like">Like</string>
@@ -14,4 +13,6 @@
     <string name="delete_favorite">Delete From Favorites</string>
     <string name="error">System Error</string>
     <string name="data_not_found">data not found</string>
+    <string name="message_undo">Cancel delete item?</string>
+    <string name="no_favorite_tv_shows">No Favorite TV Shows</string>
 </resources>

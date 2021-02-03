@@ -4,6 +4,8 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -13,14 +15,19 @@ import com.kotlin.andi.cinema.data.source.local.entity.TVEntity
 import com.kotlin.andi.cinema.ui.detail.DetailActivity
 import kotlinx.android.synthetic.main.items_movie.view.*
 
-class TVAdapter : RecyclerView.Adapter<TVAdapter.MovieViewHolder>() {
-    private val listMovies = ArrayList<TVEntity>()
+class TVAdapter : PagedListAdapter<TVEntity, TVAdapter.MovieViewHolder>(DIFF_CALLBACK) {
 
-    fun setMovies(movies: List<TVEntity>) {
-        if (movies.isNullOrEmpty()) return
-        this.listMovies.clear()
-        this.listMovies.addAll(movies)
-    }
+   companion object {
+       private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<TVEntity>() {
+           override fun areItemsTheSame(oldItem: TVEntity, newItem: TVEntity): Boolean {
+               return oldItem.id == newItem.id
+           }
+
+           override fun areContentsTheSame(oldItem: TVEntity, newItem: TVEntity): Boolean {
+               return oldItem == newItem
+           }
+       }
+   }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val view =
@@ -29,11 +36,11 @@ class TVAdapter : RecyclerView.Adapter<TVAdapter.MovieViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        val movie = listMovies[position]
-        holder.bind(movie)
+        val movie = getItem(position)
+        if (movie != null) {
+            holder.bind(movie)
+        }
     }
-
-    override fun getItemCount(): Int = listMovies.size
 
     class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(movies: TVEntity) {

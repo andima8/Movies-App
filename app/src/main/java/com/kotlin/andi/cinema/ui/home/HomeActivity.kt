@@ -51,6 +51,4 @@ class HomeActivity : AppCompatActivity() {
         }
         bottom_navigation.selectedItemId = R.id.home
     }
-
-
 }

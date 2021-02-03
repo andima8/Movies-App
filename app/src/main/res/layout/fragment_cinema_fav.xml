@@ -26,6 +26,21 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:visibility="invisible" />
 
+    <TextView
+    android:id="@+id/tv_fav_notFound"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/no_fav_movies"
+    android:textColor="@android:color/white"
+    android:textSize="20sp"
+    android:textStyle="bold"
+    android:visibility="invisible"
+    app:layout_constraintBottom_toTopOf="@+id/iv_fav_notFound"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="@+id/rv_fav_cinema_movie"
+    app:layout_constraintVertical_bias="0.92" />
+
     <ImageView
         android:id="@+id/iv_fav_notFound"
         android:layout_width="263dp"

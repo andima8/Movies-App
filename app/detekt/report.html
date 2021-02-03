@@ -72,11 +72,11 @@ pre {
 
 <div>
   <ul>
-    <li>120 number of properties</li>
-    <li>95 number of functions</li>
-    <li>36 number of classes</li>
-    <li>18 number of packages</li>
-    <li>33 number of kt files</li>
+    <li>214 number of properties</li>
+    <li>215 number of functions</li>
+    <li>54 number of classes</li>
+    <li>24 number of packages</li>
+    <li>48 number of kt files</li>
   </ul>
 </div>
 
@@ -85,275 +85,431 @@ pre {
 
 <div>
   <ul>
-    <li>1,677 lines of code (loc)</li>
-    <li>1,420 source lines of code (sloc)</li>
-    <li>924 logical lines of code (lloc)</li>
-    <li>11 comment lines of code (cloc)</li>
-    <li>126 cyclomatic complexity (mcc)</li>
-    <li>20 cognitive complexity</li>
-    <li>24 number of total code smells</li>
-    <li>0% comment source ratio</li>
-    <li>136 mcc per 1,000 lloc</li>
-    <li>25 code smells per 1,000 lloc</li>
+    <li>2,909 lines of code (loc)</li>
+    <li>2,459 source lines of code (sloc)</li>
+    <li>1,652 logical lines of code (lloc)</li>
+    <li>37 comment lines of code (cloc)</li>
+    <li>272 cyclomatic complexity (mcc)</li>
+    <li>76 cognitive complexity</li>
+    <li>38 number of total code smells</li>
+    <li>1% comment source ratio</li>
+    <li>164 mcc per 1,000 lloc</li>
+    <li>23 code smells per 1,000 lloc</li>
   </ul>
 </div>
 
 
 <h2>Findings</h2>
-<div>Total: 24
-  <h3>formatting: 6</h3>
-  <details id="MaximumLineLength" open="open">
-    <summary class="rule-container"><span class="rule">MaximumLineLength: 6 </span><span class="description">Reports lines with exceeded length</span></summary>
+<div>Total: 38
+  <h3>complexity: 3</h3>
+  <details id="TooManyFunctions" open="open">
+    <summary class="rule-container"><span class="rule">TooManyFunctions: 3 </span><span class="description">Too many functions inside a/an file/class/object/interface always indicate a violation of the single responsibility principle. Maybe the file/class/object/interface wants to manage too many things at once. Extract functionality which clearly belongs together.</span></summary>
     <ul>
-      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:17:1</span><span class="message">Exceeded max line length (120)</span>
-        <pre><code><span class="lineno">  14 </span>            listOf(
-<span class="lineno">  15 </span>                ResultsMovies(
-<span class="lineno">  16 </span>                    602211,
-<span class="lineno">  17 </span><span class="error">                    &quot;</span>A rowdy, unorthodox Santa Claus is fighting to save his declining business. Meanwhile, Billy, a neglected and precocious 12 year old, hires a hit man to kill Santa after receiving a lump of coal in his stocking.&quot;,
-<span class="lineno">  18 </span>                    &quot;/4n8QNNdk4BOX9Dslfbz5Dy6j1HK.jpg&quot;,
-<span class="lineno">  19 </span>                    &quot;/ckfwfLkl0CkafTasoRw5FILhZAS.jpg&quot;,
-<span class="lineno">  20 </span>                    &quot;&quot;,
+      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\data\source\local\LocalDataSource.kt:11:7</span><span class="message">Class 'LocalDataSource' with '12' functions detected. Defined threshold inside classes is set to '11'</span>
+        <pre><code><span class="lineno">   8 </span>import com.kotlin.andi.cinema.data.source.local.entity.favorite.TVFavEntity
+<span class="lineno">   9 </span>import com.kotlin.andi.cinema.data.source.local.room.MovieDao
+<span class="lineno">  10 </span>
+<span class="lineno">  11 </span>class <span class="error">LocalDataSource</span> private constructor(private val mMovieDao: MovieDao) {
+<span class="lineno">  12 </span>
+<span class="lineno">  13 </span>    companion object {
+<span class="lineno">  14 </span>        private var INSTANCE: LocalDataSource? = null
 </code></pre>
       </li>
-      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:27:1</span><span class="message">Exceeded max line length (120)</span>
-        <pre><code><span class="lineno">  24 </span>                ),
-<span class="lineno">  25 </span>                ResultsMovies(
-<span class="lineno">  26 </span>                    590706,
-<span class="lineno">  27 </span><span class="error">                    &quot;</span>Every six years, an ancient order of jiu-jitsu fighters joins forces to battle a vicious race of alien invaders. But when a celebrated war hero goes down in defeat, the fate of the planet and mankind hangs in the balance.&quot;,
-<span class="lineno">  28 </span>                    &quot;/eLT8Cu357VOwBVTitkmlDEg32Fs.jpg&quot;,
-<span class="lineno">  29 </span>                    &quot;/jeAQdDX9nguP6YOX6QSWKDPkbBo.jpg&quot;,
-<span class="lineno">  30 </span>                    &quot;&quot;,
+      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\data\source\local\room\MovieDao.kt:16:11</span><span class="message">Interface 'MovieDao' with '12' functions detected. Defined threshold inside interfaces is set to '11'</span>
+        <pre><code><span class="lineno">  13 </span>import com.kotlin.andi.cinema.data.source.local.entity.favorite.TVFavEntity
+<span class="lineno">  14 </span>
+<span class="lineno">  15 </span>@Dao
+<span class="lineno">  16 </span>interface <span class="error">MovieDao</span> {
+<span class="lineno">  17 </span>
+<span class="lineno">  18 </span>    // Insert to DB
+<span class="lineno">  19 </span>    @Insert(onConflict = OnConflictStrategy.REPLACE)
 </code></pre>
       </li>
-      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:45:1</span><span class="message">Exceeded max line length (120)</span>
-        <pre><code><span class="lineno">  42 </span>            listOf(
-<span class="lineno">  43 </span>                ResultsTV(
-<span class="lineno">  44 </span>                    82856,
-<span class="lineno">  45 </span><span class="error">                    &quot;</span>After the fall of the Galactic Empire, lawlessness has spread throughout the galaxy. A lone gunfighter makes his way through the outer reaches, earning his keep as a bounty hunter.&quot;,
-<span class="lineno">  46 </span>                    &quot;/sWgBv7LV2PRoQgkxwlibdGXKz1S.jpg&quot;,
-<span class="lineno">  47 </span>                    &quot;/9ijMGlJKqcslswWUzTEwScm82Gs.jpg&quot;,
-<span class="lineno">  48 </span>                    &quot;The Mandalorian&quot;,
-</code></pre>
-      </li>
-      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:54:1</span><span class="message">Exceeded max line length (120)</span>
-        <pre><code><span class="lineno">  51 </span>                ),
-<span class="lineno">  52 </span>                ResultsTV(
-<span class="lineno">  53 </span>                    71712,
-<span class="lineno">  54 </span><span class="error">                    &quot;</span>A young surgeon with Savant syndrome is recruited into the surgical unit of a prestigious hospital. The question will arise: can a person who doesn't have the ability to relate to people actually save their lives?&quot;,
-<span class="lineno">  55 </span>                    &quot;/6tfT03sGp9k4c0J3dypjrI8TSAI.jpg&quot;,
-<span class="lineno">  56 </span>                    &quot;/iDbIEpCM9nhoayUDTwqFL1iVwzb.jpg&quot;,
-<span class="lineno">  57 </span>                    &quot;The Good Doctor&quot;,
-</code></pre>
-      </li>
-      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:71:1</span><span class="message">Exceeded max line length (120)</span>
-        <pre><code><span class="lineno">  68 </span>            listOf(
-<span class="lineno">  69 </span>                ResultsPopular(
-<span class="lineno">  70 </span>                    577922,
-<span class="lineno">  71 </span><span class="error">                    &quot;</span>Armed with only one word - Tenet - and fighting for the survival of the entire world, the Protagonist journeys through a twilight world of international espionage on a mission that will unfold in something beyond real time.&quot;,
-<span class="lineno">  72 </span>                    &quot;/k68nPLbIST6NP96JmTxmZijEvCA.jpg&quot;,
-<span class="lineno">  73 </span>                    &quot;/wzJRB4MKi3yK138bJyuL9nx47y6.jpg&quot;,
-<span class="lineno">  74 </span>                    &quot;&quot;,
-</code></pre>
-      </li>
-      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:80:1</span><span class="message">Exceeded max line length (120)</span>
-        <pre><code><span class="lineno">  77 </span>                ),
-<span class="lineno">  78 </span>                ResultsPopular(
-<span class="lineno">  79 </span>                    82856,
-<span class="lineno">  80 </span><span class="error">                    &quot;</span>After the fall of the Galactic Empire, lawlessness has spread throughout the galaxy. A lone gunfighter makes his way through the outer reaches, earning his keep as a bounty hunter.&quot;,
-<span class="lineno">  81 </span>                    &quot;/sWgBv7LV2PRoQgkxwlibdGXKz1S.jpg&quot;,
-<span class="lineno">  82 </span>                    &quot;/9ijMGlJKqcslswWUzTEwScm82Gs.jpg&quot;,
-<span class="lineno">  83 </span>                    &quot;The Mandalorian&quot;,
+      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\ui\detail\DetailActivity.kt:24:7</span><span class="message">Class 'DetailActivity' with '19' functions detected. Defined threshold inside classes is set to '11'</span>
+        <pre><code><span class="lineno">  21 </span>import com.kotlin.andi.cinema.viewmodel.ViewModelFactory
+<span class="lineno">  22 </span>import kotlinx.android.synthetic.main.activity_detail.*
+<span class="lineno">  23 </span>
+<span class="lineno">  24 </span>class <span class="error">DetailActivity</span> : AppCompatActivity() {
+<span class="lineno">  25 </span>
+<span class="lineno">  26 </span>    companion object {
+<span class="lineno">  27 </span>        const val EXTRA_MOVIE = &quot;extra_movie&quot;
 </code></pre>
       </li>
     </ul>
   </details>
-  <h3>style: 18</h3>
-  <details id="MagicNumber" open="open">
-    <summary class="rule-container"><span class="rule">MagicNumber: 12 </span><span class="description">Report magic numbers. Magic number is a numeric literal that is not defined as a constant and hence it's unclear what the purpose of this number is. It's better to declare such numbers as constants and give them a proper name. By default, -1, 0, 1, and 2 are not considered to be magic numbers.</span></summary>
+  <h3>formatting: 10</h3>
+  <details id="MaximumLineLength" open="open">
+    <summary class="rule-container"><span class="rule">MaximumLineLength: 9 </span><span class="description">Reports lines with exceeded length</span></summary>
     <ul>
-      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:16:21</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
-        <pre><code><span class="lineno">  13 </span>       return MutableLiveData(
-<span class="lineno">  14 </span>            listOf(
-<span class="lineno">  15 </span>                ResultsMovies(
-<span class="lineno">  16 </span>                    <span class="error">602211</span>,
-<span class="lineno">  17 </span>                    &quot;A rowdy, unorthodox Santa Claus is fighting to save his declining business. Meanwhile, Billy, a neglected and precocious 12 year old, hires a hit man to kill Santa after receiving a lump of coal in his stocking.&quot;,
-<span class="lineno">  18 </span>                    &quot;/4n8QNNdk4BOX9Dslfbz5Dy6j1HK.jpg&quot;,
-<span class="lineno">  19 </span>                    &quot;/ckfwfLkl0CkafTasoRw5FILhZAS.jpg&quot;,
+      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:15:1</span><span class="message">Exceeded max line length (120)</span>
+        <pre><code><span class="lineno">  12 </span>       return listOf(
+<span class="lineno">  13 </span>                ResultsMovies(
+<span class="lineno">  14 </span>                    602211,
+<span class="lineno">  15 </span><span class="error">                    &quot;</span>A rowdy, unorthodox Santa Claus is fighting to save his declining business. Meanwhile, Billy, a neglected and precocious 12 year old, hires a hit man to kill Santa after receiving a lump of coal in his stocking.&quot;,
+<span class="lineno">  16 </span>                    &quot;/4n8QNNdk4BOX9Dslfbz5Dy6j1HK.jpg&quot;,
+<span class="lineno">  17 </span>                    &quot;/ckfwfLkl0CkafTasoRw5FILhZAS.jpg&quot;,
+<span class="lineno">  18 </span>                    &quot;&quot;,
 </code></pre>
       </li>
-      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:22:21</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
-        <pre><code><span class="lineno">  19 </span>                    &quot;/ckfwfLkl0CkafTasoRw5FILhZAS.jpg&quot;,
-<span class="lineno">  20 </span>                    &quot;&quot;,
-<span class="lineno">  21 </span>                    &quot;Fatman&quot;,
-<span class="lineno">  22 </span>                    <span class="error">6.1f</span>,
-<span class="lineno">  23 </span>                    &quot;en&quot;
-<span class="lineno">  24 </span>                ),
-<span class="lineno">  25 </span>                ResultsMovies(
+      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:25:1</span><span class="message">Exceeded max line length (120)</span>
+        <pre><code><span class="lineno">  22 </span>                ),
+<span class="lineno">  23 </span>                ResultsMovies(
+<span class="lineno">  24 </span>                    590706,
+<span class="lineno">  25 </span><span class="error">                    &quot;</span>Every six years, an ancient order of jiu-jitsu fighters joins forces to battle a vicious race of alien invaders. But when a celebrated war hero goes down in defeat, the fate of the planet and mankind hangs in the balance.&quot;,
+<span class="lineno">  26 </span>                    &quot;/eLT8Cu357VOwBVTitkmlDEg32Fs.jpg&quot;,
+<span class="lineno">  27 </span>                    &quot;/jeAQdDX9nguP6YOX6QSWKDPkbBo.jpg&quot;,
+<span class="lineno">  28 </span>                    &quot;&quot;,
 </code></pre>
       </li>
-      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:26:21</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
-        <pre><code><span class="lineno">  23 </span>                    &quot;en&quot;
-<span class="lineno">  24 </span>                ),
-<span class="lineno">  25 </span>                ResultsMovies(
-<span class="lineno">  26 </span>                    <span class="error">590706</span>,
-<span class="lineno">  27 </span>                    &quot;Every six years, an ancient order of jiu-jitsu fighters joins forces to battle a vicious race of alien invaders. But when a celebrated war hero goes down in defeat, the fate of the planet and mankind hangs in the balance.&quot;,
-<span class="lineno">  28 </span>                    &quot;/eLT8Cu357VOwBVTitkmlDEg32Fs.jpg&quot;,
-<span class="lineno">  29 </span>                    &quot;/jeAQdDX9nguP6YOX6QSWKDPkbBo.jpg&quot;,
+      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:41:1</span><span class="message">Exceeded max line length (120)</span>
+        <pre><code><span class="lineno">  38 </span>        return listOf(
+<span class="lineno">  39 </span>                ResultsTV(
+<span class="lineno">  40 </span>                    82856,
+<span class="lineno">  41 </span><span class="error">                    &quot;</span>After the fall of the Galactic Empire, lawlessness has spread throughout the galaxy. A lone gunfighter makes his way through the outer reaches, earning his keep as a bounty hunter.&quot;,
+<span class="lineno">  42 </span>                    &quot;/sWgBv7LV2PRoQgkxwlibdGXKz1S.jpg&quot;,
+<span class="lineno">  43 </span>                    &quot;/9ijMGlJKqcslswWUzTEwScm82Gs.jpg&quot;,
+<span class="lineno">  44 </span>                    &quot;The Mandalorian&quot;,
 </code></pre>
       </li>
-      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:32:21</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
-        <pre><code><span class="lineno">  29 </span>                    &quot;/jeAQdDX9nguP6YOX6QSWKDPkbBo.jpg&quot;,
-<span class="lineno">  30 </span>                    &quot;&quot;,
-<span class="lineno">  31 </span>                    &quot;Jiu Jitsu&quot;,
-<span class="lineno">  32 </span>                    <span class="error">5.7f</span>,
-<span class="lineno">  33 </span>                    &quot;en&quot;
-<span class="lineno">  34 </span>                )
-<span class="lineno">  35 </span>            )
+      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:50:1</span><span class="message">Exceeded max line length (120)</span>
+        <pre><code><span class="lineno">  47 </span>                ),
+<span class="lineno">  48 </span>                ResultsTV(
+<span class="lineno">  49 </span>                    71712,
+<span class="lineno">  50 </span><span class="error">                    &quot;</span>A young surgeon with Savant syndrome is recruited into the surgical unit of a prestigious hospital. The question will arise: can a person who doesn't have the ability to relate to people actually save their lives?&quot;,
+<span class="lineno">  51 </span>                    &quot;/6tfT03sGp9k4c0J3dypjrI8TSAI.jpg&quot;,
+<span class="lineno">  52 </span>                    &quot;/iDbIEpCM9nhoayUDTwqFL1iVwzb.jpg&quot;,
+<span class="lineno">  53 </span>                    &quot;The Good Doctor&quot;,
 </code></pre>
       </li>
-      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:44:21</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
-        <pre><code><span class="lineno">  41 </span>        return MutableLiveData(
-<span class="lineno">  42 </span>            listOf(
-<span class="lineno">  43 </span>                ResultsTV(
-<span class="lineno">  44 </span>                    <span class="error">82856</span>,
-<span class="lineno">  45 </span>                    &quot;After the fall of the Galactic Empire, lawlessness has spread throughout the galaxy. A lone gunfighter makes his way through the outer reaches, earning his keep as a bounty hunter.&quot;,
-<span class="lineno">  46 </span>                    &quot;/sWgBv7LV2PRoQgkxwlibdGXKz1S.jpg&quot;,
-<span class="lineno">  47 </span>                    &quot;/9ijMGlJKqcslswWUzTEwScm82Gs.jpg&quot;,
+      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:67:1</span><span class="message">Exceeded max line length (120)</span>
+        <pre><code><span class="lineno">  64 </span>            MoviesFavEntity(
+<span class="lineno">  65 </span>                1,
+<span class="lineno">  66 </span>                &quot;602211&quot;,
+<span class="lineno">  67 </span><span class="error">                &quot;</span>A rowdy, unorthodox Santa Claus is fighting to save his declining business. Meanwhile, Billy, a neglected and precocious 12 year old, hires a hit man to kill Santa after receiving a lump of coal in his stocking.&quot;,
+<span class="lineno">  68 </span>                &quot;/4n8QNNdk4BOX9Dslfbz5Dy6j1HK.jpg&quot;,
+<span class="lineno">  69 </span>                &quot;/ckfwfLkl0CkafTasoRw5FILhZAS.jpg&quot;,
+<span class="lineno">  70 </span>                &quot;&quot;,
+</code></pre>
+      </li>
+      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:78:1</span><span class="message">Exceeded max line length (120)</span>
+        <pre><code><span class="lineno">  75 </span>            MoviesFavEntity(
+<span class="lineno">  76 </span>                2,
+<span class="lineno">  77 </span>                &quot;590706&quot;,
+<span class="lineno">  78 </span><span class="error">                &quot;</span>Every six years, an ancient order of jiu-jitsu fighters joins forces to battle a vicious race of alien invaders. But when a celebrated war hero goes down in defeat, the fate of the planet and mankind hangs in the balance.&quot;,
+<span class="lineno">  79 </span>                &quot;/eLT8Cu357VOwBVTitkmlDEg32Fs.jpg&quot;,
+<span class="lineno">  80 </span>                &quot;/jeAQdDX9nguP6YOX6QSWKDPkbBo.jpg&quot;,
+<span class="lineno">  81 </span>                &quot;&quot;,
+</code></pre>
+      </li>
+      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:94:1</span><span class="message">Exceeded max line length (120)</span>
+        <pre><code><span class="lineno">  91 </span>            TVFavEntity(
+<span class="lineno">  92 </span>                1,
+<span class="lineno">  93 </span>                &quot;82856&quot;,
+<span class="lineno">  94 </span><span class="error">                &quot;</span>After the fall of the Galactic Empire, lawlessness has spread throughout the galaxy. A lone gunfighter makes his way through the outer reaches, earning his keep as a bounty hunter.&quot;,
+<span class="lineno">  95 </span>                &quot;/sWgBv7LV2PRoQgkxwlibdGXKz1S.jpg&quot;,
+<span class="lineno">  96 </span>                &quot;/9ijMGlJKqcslswWUzTEwScm82Gs.jpg&quot;,
+<span class="lineno">  97 </span>                &quot;The Mandalorian&quot;,
+</code></pre>
+      </li>
+      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:120:1</span><span class="message">Exceeded max line length (120)</span>
+        <pre><code><span class="lineno"> 117 </span>            MoviesFavEntity(
+<span class="lineno"> 118 </span>                1,
+<span class="lineno"> 119 </span>                id,
+<span class="lineno"> 120 </span><span class="error">                &quot;</span>A rowdy, unorthodox Santa Claus is fighting to save his declining business. Meanwhile, Billy, a neglected and precocious 12 year old, hires a hit man to kill Santa after receiving a lump of coal in his stocking.&quot;,
+<span class="lineno"> 121 </span>                &quot;/4n8QNNdk4BOX9Dslfbz5Dy6j1HK.jpg&quot;,
+<span class="lineno"> 122 </span>                &quot;/ckfwfLkl0CkafTasoRw5FILhZAS.jpg&quot;,
+<span class="lineno"> 123 </span>                &quot;&quot;,
+</code></pre>
+      </li>
+      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:136:1</span><span class="message">Exceeded max line length (120)</span>
+        <pre><code><span class="lineno"> 133 </span>            TVFavEntity(
+<span class="lineno"> 134 </span>                1,
+<span class="lineno"> 135 </span>                id,
+<span class="lineno"> 136 </span><span class="error">                &quot;</span>After the fall of the Galactic Empire, lawlessness has spread throughout the galaxy. A lone gunfighter makes his way through the outer reaches, earning his keep as a bounty hunter.&quot;,
+<span class="lineno"> 137 </span>                &quot;/sWgBv7LV2PRoQgkxwlibdGXKz1S.jpg&quot;,
+<span class="lineno"> 138 </span>                &quot;/9ijMGlJKqcslswWUzTEwScm82Gs.jpg&quot;,
+<span class="lineno"> 139 </span>                &quot;The Mandalorian&quot;,
+</code></pre>
+      </li>
+    </ul>
+  </details>
+  <details id="NoWildcardImports" open="open">
+    <summary class="rule-container"><span class="rule">NoWildcardImports: 1 </span><span class="description">Detects wildcast import usages</span></summary>
+    <ul>
+      <li><span class="location">G:\Cinema\app\src\androidTest\java\com\kotlin\andi\cinema\ui\home\all\AllMoviesFragmentTest.kt:9:1</span><span class="message">Wildcard import</span>
+        <pre><code><span class="lineno">   6 </span>import androidx.test.espresso.action.ViewActions.click
+<span class="lineno">   7 </span>import androidx.test.espresso.assertion.ViewAssertions.matches
+<span class="lineno">   8 </span>import androidx.test.espresso.contrib.RecyclerViewActions
+<span class="lineno">   9 </span><span class="error">import androidx.test.espresso.matcher.ViewMatchers.*</span>
+<span class="lineno">  10 </span>import androidx.test.ext.junit.rules.ActivityScenarioRule
+<span class="lineno">  11 </span>import com.kotlin.andi.cinema.R
+<span class="lineno">  12 </span>import com.kotlin.andi.cinema.ui.splash.SplashScreenActivity
+</code></pre>
+      </li>
+    </ul>
+  </details>
+  <h3>style: 25</h3>
+  <details id="MagicNumber" open="open">
+    <summary class="rule-container"><span class="rule">MagicNumber: 14 </span><span class="description">Report magic numbers. Magic number is a numeric literal that is not defined as a constant and hence it's unclear what the purpose of this number is. It's better to declare such numbers as constants and give them a proper name. By default, -1, 0, 1, and 2 are not considered to be magic numbers.</span></summary>
+    <ul>
+      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:14:21</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  11 </span>        // Cinema
+<span class="lineno">  12 </span>       return listOf(
+<span class="lineno">  13 </span>                ResultsMovies(
+<span class="lineno">  14 </span>                    <span class="error">602211</span>,
+<span class="lineno">  15 </span>                    &quot;A rowdy, unorthodox Santa Claus is fighting to save his declining business. Meanwhile, Billy, a neglected and precocious 12 year old, hires a hit man to kill Santa after receiving a lump of coal in his stocking.&quot;,
+<span class="lineno">  16 </span>                    &quot;/4n8QNNdk4BOX9Dslfbz5Dy6j1HK.jpg&quot;,
+<span class="lineno">  17 </span>                    &quot;/ckfwfLkl0CkafTasoRw5FILhZAS.jpg&quot;,
+</code></pre>
+      </li>
+      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:20:21</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  17 </span>                    &quot;/ckfwfLkl0CkafTasoRw5FILhZAS.jpg&quot;,
+<span class="lineno">  18 </span>                    &quot;&quot;,
+<span class="lineno">  19 </span>                    &quot;Fatman&quot;,
+<span class="lineno">  20 </span>                    <span class="error">6.1f</span>,
+<span class="lineno">  21 </span>                    &quot;en&quot;
+<span class="lineno">  22 </span>                ),
+<span class="lineno">  23 </span>                ResultsMovies(
+</code></pre>
+      </li>
+      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:24:21</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  21 </span>                    &quot;en&quot;
+<span class="lineno">  22 </span>                ),
+<span class="lineno">  23 </span>                ResultsMovies(
+<span class="lineno">  24 </span>                    <span class="error">590706</span>,
+<span class="lineno">  25 </span>                    &quot;Every six years, an ancient order of jiu-jitsu fighters joins forces to battle a vicious race of alien invaders. But when a celebrated war hero goes down in defeat, the fate of the planet and mankind hangs in the balance.&quot;,
+<span class="lineno">  26 </span>                    &quot;/eLT8Cu357VOwBVTitkmlDEg32Fs.jpg&quot;,
+<span class="lineno">  27 </span>                    &quot;/jeAQdDX9nguP6YOX6QSWKDPkbBo.jpg&quot;,
+</code></pre>
+      </li>
+      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:30:21</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  27 </span>                    &quot;/jeAQdDX9nguP6YOX6QSWKDPkbBo.jpg&quot;,
+<span class="lineno">  28 </span>                    &quot;&quot;,
+<span class="lineno">  29 </span>                    &quot;Jiu Jitsu&quot;,
+<span class="lineno">  30 </span>                    <span class="error">5.7f</span>,
+<span class="lineno">  31 </span>                    &quot;en&quot;
+<span class="lineno">  32 </span>                )
+<span class="lineno">  33 </span>            )
+</code></pre>
+      </li>
+      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:40:21</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  37 </span>    fun generateDummyTV(): List&lt;ResultsTV&gt; {
+<span class="lineno">  38 </span>        return listOf(
+<span class="lineno">  39 </span>                ResultsTV(
+<span class="lineno">  40 </span>                    <span class="error">82856</span>,
+<span class="lineno">  41 </span>                    &quot;After the fall of the Galactic Empire, lawlessness has spread throughout the galaxy. A lone gunfighter makes his way through the outer reaches, earning his keep as a bounty hunter.&quot;,
+<span class="lineno">  42 </span>                    &quot;/sWgBv7LV2PRoQgkxwlibdGXKz1S.jpg&quot;,
+<span class="lineno">  43 </span>                    &quot;/9ijMGlJKqcslswWUzTEwScm82Gs.jpg&quot;,
+</code></pre>
+      </li>
+      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:45:21</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  42 </span>                    &quot;/sWgBv7LV2PRoQgkxwlibdGXKz1S.jpg&quot;,
+<span class="lineno">  43 </span>                    &quot;/9ijMGlJKqcslswWUzTEwScm82Gs.jpg&quot;,
+<span class="lineno">  44 </span>                    &quot;The Mandalorian&quot;,
+<span class="lineno">  45 </span>                    <span class="error">8.5f</span>,
+<span class="lineno">  46 </span>                    &quot;en&quot;
+<span class="lineno">  47 </span>                ),
+<span class="lineno">  48 </span>                ResultsTV(
 </code></pre>
       </li>
       <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:49:21</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
-        <pre><code><span class="lineno">  46 </span>                    &quot;/sWgBv7LV2PRoQgkxwlibdGXKz1S.jpg&quot;,
-<span class="lineno">  47 </span>                    &quot;/9ijMGlJKqcslswWUzTEwScm82Gs.jpg&quot;,
-<span class="lineno">  48 </span>                    &quot;The Mandalorian&quot;,
-<span class="lineno">  49 </span>                    <span class="error">8.5f</span>,
-<span class="lineno">  50 </span>                    &quot;en&quot;
-<span class="lineno">  51 </span>                ),
-<span class="lineno">  52 </span>                ResultsTV(
+        <pre><code><span class="lineno">  46 </span>                    &quot;en&quot;
+<span class="lineno">  47 </span>                ),
+<span class="lineno">  48 </span>                ResultsTV(
+<span class="lineno">  49 </span>                    <span class="error">71712</span>,
+<span class="lineno">  50 </span>                    &quot;A young surgeon with Savant syndrome is recruited into the surgical unit of a prestigious hospital. The question will arise: can a person who doesn't have the ability to relate to people actually save their lives?&quot;,
+<span class="lineno">  51 </span>                    &quot;/6tfT03sGp9k4c0J3dypjrI8TSAI.jpg&quot;,
+<span class="lineno">  52 </span>                    &quot;/iDbIEpCM9nhoayUDTwqFL1iVwzb.jpg&quot;,
 </code></pre>
       </li>
-      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:53:21</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
-        <pre><code><span class="lineno">  50 </span>                    &quot;en&quot;
-<span class="lineno">  51 </span>                ),
-<span class="lineno">  52 </span>                ResultsTV(
-<span class="lineno">  53 </span>                    <span class="error">71712</span>,
-<span class="lineno">  54 </span>                    &quot;A young surgeon with Savant syndrome is recruited into the surgical unit of a prestigious hospital. The question will arise: can a person who doesn't have the ability to relate to people actually save their lives?&quot;,
-<span class="lineno">  55 </span>                    &quot;/6tfT03sGp9k4c0J3dypjrI8TSAI.jpg&quot;,
-<span class="lineno">  56 </span>                    &quot;/iDbIEpCM9nhoayUDTwqFL1iVwzb.jpg&quot;,
+      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:54:21</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  51 </span>                    &quot;/6tfT03sGp9k4c0J3dypjrI8TSAI.jpg&quot;,
+<span class="lineno">  52 </span>                    &quot;/iDbIEpCM9nhoayUDTwqFL1iVwzb.jpg&quot;,
+<span class="lineno">  53 </span>                    &quot;The Good Doctor&quot;,
+<span class="lineno">  54 </span>                    <span class="error">8.6f</span>,
+<span class="lineno">  55 </span>                    &quot;en&quot;
+<span class="lineno">  56 </span>                )
+<span class="lineno">  57 </span>            )
 </code></pre>
       </li>
-      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:58:21</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
-        <pre><code><span class="lineno">  55 </span>                    &quot;/6tfT03sGp9k4c0J3dypjrI8TSAI.jpg&quot;,
-<span class="lineno">  56 </span>                    &quot;/iDbIEpCM9nhoayUDTwqFL1iVwzb.jpg&quot;,
-<span class="lineno">  57 </span>                    &quot;The Good Doctor&quot;,
-<span class="lineno">  58 </span>                    <span class="error">8.6f</span>,
-<span class="lineno">  59 </span>                    &quot;en&quot;
-<span class="lineno">  60 </span>                )
-<span class="lineno">  61 </span>            )
+      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:72:17</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  69 </span>                &quot;/ckfwfLkl0CkafTasoRw5FILhZAS.jpg&quot;,
+<span class="lineno">  70 </span>                &quot;&quot;,
+<span class="lineno">  71 </span>                &quot;Fatman&quot;,
+<span class="lineno">  72 </span>                <span class="error">6.1f</span>,
+<span class="lineno">  73 </span>                &quot;en&quot;
+<span class="lineno">  74 </span>            ),
+<span class="lineno">  75 </span>            MoviesFavEntity(
 </code></pre>
       </li>
-      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:70:21</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
-        <pre><code><span class="lineno">  67 </span>        return MutableLiveData(
-<span class="lineno">  68 </span>            listOf(
-<span class="lineno">  69 </span>                ResultsPopular(
-<span class="lineno">  70 </span>                    <span class="error">577922</span>,
-<span class="lineno">  71 </span>                    &quot;Armed with only one word - Tenet - and fighting for the survival of the entire world, the Protagonist journeys through a twilight world of international espionage on a mission that will unfold in something beyond real time.&quot;,
-<span class="lineno">  72 </span>                    &quot;/k68nPLbIST6NP96JmTxmZijEvCA.jpg&quot;,
-<span class="lineno">  73 </span>                    &quot;/wzJRB4MKi3yK138bJyuL9nx47y6.jpg&quot;,
+      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:83:17</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  80 </span>                &quot;/jeAQdDX9nguP6YOX6QSWKDPkbBo.jpg&quot;,
+<span class="lineno">  81 </span>                &quot;&quot;,
+<span class="lineno">  82 </span>                &quot;Jiu Jitsu&quot;,
+<span class="lineno">  83 </span>                <span class="error">5.7f</span>,
+<span class="lineno">  84 </span>                &quot;en&quot;
+<span class="lineno">  85 </span>            )
+<span class="lineno">  86 </span>        )
 </code></pre>
       </li>
-      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:76:21</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
-        <pre><code><span class="lineno">  73 </span>                    &quot;/wzJRB4MKi3yK138bJyuL9nx47y6.jpg&quot;,
-<span class="lineno">  74 </span>                    &quot;&quot;,
-<span class="lineno">  75 </span>                    &quot;Tenet&quot;,
-<span class="lineno">  76 </span>                    <span class="error">7.4f</span>
-<span class="lineno">  77 </span>                ),
-<span class="lineno">  78 </span>                ResultsPopular(
-<span class="lineno">  79 </span>                    82856,
+      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:98:17</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  95 </span>                &quot;/sWgBv7LV2PRoQgkxwlibdGXKz1S.jpg&quot;,
+<span class="lineno">  96 </span>                &quot;/9ijMGlJKqcslswWUzTEwScm82Gs.jpg&quot;,
+<span class="lineno">  97 </span>                &quot;The Mandalorian&quot;,
+<span class="lineno">  98 </span>                <span class="error">8.5f</span>,
+<span class="lineno">  99 </span>                &quot;en&quot;
+<span class="lineno"> 100 </span>            ),
+<span class="lineno"> 101 </span>            TVFavEntity(
 </code></pre>
       </li>
-      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:79:21</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
-        <pre><code><span class="lineno">  76 </span>                    7.4f
-<span class="lineno">  77 </span>                ),
-<span class="lineno">  78 </span>                ResultsPopular(
-<span class="lineno">  79 </span>                    <span class="error">82856</span>,
-<span class="lineno">  80 </span>                    &quot;After the fall of the Galactic Empire, lawlessness has spread throughout the galaxy. A lone gunfighter makes his way through the outer reaches, earning his keep as a bounty hunter.&quot;,
-<span class="lineno">  81 </span>                    &quot;/sWgBv7LV2PRoQgkxwlibdGXKz1S.jpg&quot;,
-<span class="lineno">  82 </span>                    &quot;/9ijMGlJKqcslswWUzTEwScm82Gs.jpg&quot;,
+      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:108:17</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno"> 105 </span>                &quot;/6tfT03sGp9k4c0J3dypjrI8TSAI.jpg&quot;,
+<span class="lineno"> 106 </span>                &quot;/iDbIEpCM9nhoayUDTwqFL1iVwzb.jpg&quot;,
+<span class="lineno"> 107 </span>                &quot;The Good Doctor&quot;,
+<span class="lineno"> 108 </span>                <span class="error">8.6f</span>,
+<span class="lineno"> 109 </span>                &quot;en&quot;
+<span class="lineno"> 110 </span>            )
+<span class="lineno"> 111 </span>        )
 </code></pre>
       </li>
-      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:85:21</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
-        <pre><code><span class="lineno">  82 </span>                    &quot;/9ijMGlJKqcslswWUzTEwScm82Gs.jpg&quot;,
-<span class="lineno">  83 </span>                    &quot;The Mandalorian&quot;,
-<span class="lineno">  84 </span>                    &quot;&quot;,
-<span class="lineno">  85 </span>                    <span class="error">8.5f</span>
-<span class="lineno">  86 </span>                )
-<span class="lineno">  87 </span>            )
-<span class="lineno">  88 </span>        )
+      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:125:17</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno"> 122 </span>                &quot;/ckfwfLkl0CkafTasoRw5FILhZAS.jpg&quot;,
+<span class="lineno"> 123 </span>                &quot;&quot;,
+<span class="lineno"> 124 </span>                &quot;Fatman&quot;,
+<span class="lineno"> 125 </span>                <span class="error">6.1f</span>,
+<span class="lineno"> 126 </span>                &quot;en&quot;
+<span class="lineno"> 127 </span>            )
+<span class="lineno"> 128 </span>        )
+</code></pre>
+      </li>
+      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:140:17</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno"> 137 </span>                &quot;/sWgBv7LV2PRoQgkxwlibdGXKz1S.jpg&quot;,
+<span class="lineno"> 138 </span>                &quot;/9ijMGlJKqcslswWUzTEwScm82Gs.jpg&quot;,
+<span class="lineno"> 139 </span>                &quot;The Mandalorian&quot;,
+<span class="lineno"> 140 </span>                <span class="error">8.5f</span>,
+<span class="lineno"> 141 </span>                &quot;en&quot;
+<span class="lineno"> 142 </span>            )
+<span class="lineno"> 143 </span>        )
 </code></pre>
       </li>
     </ul>
   </details>
   <details id="MaxLineLength" open="open">
-    <summary class="rule-container"><span class="rule">MaxLineLength: 6 </span><span class="description">Line detected that is longer than the defined maximum line length in the code style.</span></summary>
+    <summary class="rule-container"><span class="rule">MaxLineLength: 10 </span><span class="description">Line detected that is longer than the defined maximum line length in the code style.</span></summary>
     <ul>
-      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:17:21</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
-        <pre><code><span class="lineno">  14 </span>            listOf(
-<span class="lineno">  15 </span>                ResultsMovies(
-<span class="lineno">  16 </span>                    602211,
-<span class="lineno">  17 </span>                    <span class="error">&quot;A rowdy, unorthodox Santa Claus is fighting to save his declining business. Meanwhile, Billy, a neglected and precocious 12 year old, hires a hit man to kill Santa after receiving a lump of coal in his stocking.&quot;</span>,
-<span class="lineno">  18 </span>                    &quot;/4n8QNNdk4BOX9Dslfbz5Dy6j1HK.jpg&quot;,
-<span class="lineno">  19 </span>                    &quot;/ckfwfLkl0CkafTasoRw5FILhZAS.jpg&quot;,
-<span class="lineno">  20 </span>                    &quot;&quot;,
+      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:15:21</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  12 </span>       return listOf(
+<span class="lineno">  13 </span>                ResultsMovies(
+<span class="lineno">  14 </span>                    602211,
+<span class="lineno">  15 </span>                    <span class="error">&quot;A rowdy, unorthodox Santa Claus is fighting to save his declining business. Meanwhile, Billy, a neglected and precocious 12 year old, hires a hit man to kill Santa after receiving a lump of coal in his stocking.&quot;</span>,
+<span class="lineno">  16 </span>                    &quot;/4n8QNNdk4BOX9Dslfbz5Dy6j1HK.jpg&quot;,
+<span class="lineno">  17 </span>                    &quot;/ckfwfLkl0CkafTasoRw5FILhZAS.jpg&quot;,
+<span class="lineno">  18 </span>                    &quot;&quot;,
 </code></pre>
       </li>
-      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:27:21</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
-        <pre><code><span class="lineno">  24 </span>                ),
-<span class="lineno">  25 </span>                ResultsMovies(
-<span class="lineno">  26 </span>                    590706,
-<span class="lineno">  27 </span>                    <span class="error">&quot;Every six years, an ancient order of jiu-jitsu fighters joins forces to battle a vicious race of alien invaders. But when a celebrated war hero goes down in defeat, the fate of the planet and mankind hangs in the balance.&quot;</span>,
-<span class="lineno">  28 </span>                    &quot;/eLT8Cu357VOwBVTitkmlDEg32Fs.jpg&quot;,
-<span class="lineno">  29 </span>                    &quot;/jeAQdDX9nguP6YOX6QSWKDPkbBo.jpg&quot;,
-<span class="lineno">  30 </span>                    &quot;&quot;,
+      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:25:21</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  22 </span>                ),
+<span class="lineno">  23 </span>                ResultsMovies(
+<span class="lineno">  24 </span>                    590706,
+<span class="lineno">  25 </span>                    <span class="error">&quot;Every six years, an ancient order of jiu-jitsu fighters joins forces to battle a vicious race of alien invaders. But when a celebrated war hero goes down in defeat, the fate of the planet and mankind hangs in the balance.&quot;</span>,
+<span class="lineno">  26 </span>                    &quot;/eLT8Cu357VOwBVTitkmlDEg32Fs.jpg&quot;,
+<span class="lineno">  27 </span>                    &quot;/jeAQdDX9nguP6YOX6QSWKDPkbBo.jpg&quot;,
+<span class="lineno">  28 </span>                    &quot;&quot;,
 </code></pre>
       </li>
-      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:45:21</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
-        <pre><code><span class="lineno">  42 </span>            listOf(
-<span class="lineno">  43 </span>                ResultsTV(
-<span class="lineno">  44 </span>                    82856,
-<span class="lineno">  45 </span>                    <span class="error">&quot;After the fall of the Galactic Empire, lawlessness has spread throughout the galaxy. A lone gunfighter makes his way through the outer reaches, earning his keep as a bounty hunter.&quot;</span>,
-<span class="lineno">  46 </span>                    &quot;/sWgBv7LV2PRoQgkxwlibdGXKz1S.jpg&quot;,
-<span class="lineno">  47 </span>                    &quot;/9ijMGlJKqcslswWUzTEwScm82Gs.jpg&quot;,
-<span class="lineno">  48 </span>                    &quot;The Mandalorian&quot;,
+      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:41:21</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  38 </span>        return listOf(
+<span class="lineno">  39 </span>                ResultsTV(
+<span class="lineno">  40 </span>                    82856,
+<span class="lineno">  41 </span>                    <span class="error">&quot;After the fall of the Galactic Empire, lawlessness has spread throughout the galaxy. A lone gunfighter makes his way through the outer reaches, earning his keep as a bounty hunter.&quot;</span>,
+<span class="lineno">  42 </span>                    &quot;/sWgBv7LV2PRoQgkxwlibdGXKz1S.jpg&quot;,
+<span class="lineno">  43 </span>                    &quot;/9ijMGlJKqcslswWUzTEwScm82Gs.jpg&quot;,
+<span class="lineno">  44 </span>                    &quot;The Mandalorian&quot;,
 </code></pre>
       </li>
-      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:54:21</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
-        <pre><code><span class="lineno">  51 </span>                ),
-<span class="lineno">  52 </span>                ResultsTV(
-<span class="lineno">  53 </span>                    71712,
-<span class="lineno">  54 </span>                    <span class="error">&quot;A young surgeon with Savant syndrome is recruited into the surgical unit of a prestigious hospital. The question will arise: can a person who doesn't have the ability to relate to people actually save their lives?&quot;</span>,
-<span class="lineno">  55 </span>                    &quot;/6tfT03sGp9k4c0J3dypjrI8TSAI.jpg&quot;,
-<span class="lineno">  56 </span>                    &quot;/iDbIEpCM9nhoayUDTwqFL1iVwzb.jpg&quot;,
-<span class="lineno">  57 </span>                    &quot;The Good Doctor&quot;,
+      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:50:21</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  47 </span>                ),
+<span class="lineno">  48 </span>                ResultsTV(
+<span class="lineno">  49 </span>                    71712,
+<span class="lineno">  50 </span>                    <span class="error">&quot;A young surgeon with Savant syndrome is recruited into the surgical unit of a prestigious hospital. The question will arise: can a person who doesn't have the ability to relate to people actually save their lives?&quot;</span>,
+<span class="lineno">  51 </span>                    &quot;/6tfT03sGp9k4c0J3dypjrI8TSAI.jpg&quot;,
+<span class="lineno">  52 </span>                    &quot;/iDbIEpCM9nhoayUDTwqFL1iVwzb.jpg&quot;,
+<span class="lineno">  53 </span>                    &quot;The Good Doctor&quot;,
 </code></pre>
       </li>
-      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:71:21</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
-        <pre><code><span class="lineno">  68 </span>            listOf(
-<span class="lineno">  69 </span>                ResultsPopular(
-<span class="lineno">  70 </span>                    577922,
-<span class="lineno">  71 </span>                    <span class="error">&quot;Armed with only one word - Tenet - and fighting for the survival of the entire world, the Protagonist journeys through a twilight world of international espionage on a mission that will unfold in something beyond real time.&quot;</span>,
-<span class="lineno">  72 </span>                    &quot;/k68nPLbIST6NP96JmTxmZijEvCA.jpg&quot;,
-<span class="lineno">  73 </span>                    &quot;/wzJRB4MKi3yK138bJyuL9nx47y6.jpg&quot;,
-<span class="lineno">  74 </span>                    &quot;&quot;,
+      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:67:17</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  64 </span>            MoviesFavEntity(
+<span class="lineno">  65 </span>                1,
+<span class="lineno">  66 </span>                &quot;602211&quot;,
+<span class="lineno">  67 </span>                <span class="error">&quot;A rowdy, unorthodox Santa Claus is fighting to save his declining business. Meanwhile, Billy, a neglected and precocious 12 year old, hires a hit man to kill Santa after receiving a lump of coal in his stocking.&quot;</span>,
+<span class="lineno">  68 </span>                &quot;/4n8QNNdk4BOX9Dslfbz5Dy6j1HK.jpg&quot;,
+<span class="lineno">  69 </span>                &quot;/ckfwfLkl0CkafTasoRw5FILhZAS.jpg&quot;,
+<span class="lineno">  70 </span>                &quot;&quot;,
 </code></pre>
       </li>
-      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:80:21</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
-        <pre><code><span class="lineno">  77 </span>                ),
-<span class="lineno">  78 </span>                ResultsPopular(
-<span class="lineno">  79 </span>                    82856,
-<span class="lineno">  80 </span>                    <span class="error">&quot;After the fall of the Galactic Empire, lawlessness has spread throughout the galaxy. A lone gunfighter makes his way through the outer reaches, earning his keep as a bounty hunter.&quot;</span>,
-<span class="lineno">  81 </span>                    &quot;/sWgBv7LV2PRoQgkxwlibdGXKz1S.jpg&quot;,
-<span class="lineno">  82 </span>                    &quot;/9ijMGlJKqcslswWUzTEwScm82Gs.jpg&quot;,
-<span class="lineno">  83 </span>                    &quot;The Mandalorian&quot;,
+      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:78:17</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  75 </span>            MoviesFavEntity(
+<span class="lineno">  76 </span>                2,
+<span class="lineno">  77 </span>                &quot;590706&quot;,
+<span class="lineno">  78 </span>                <span class="error">&quot;Every six years, an ancient order of jiu-jitsu fighters joins forces to battle a vicious race of alien invaders. But when a celebrated war hero goes down in defeat, the fate of the planet and mankind hangs in the balance.&quot;</span>,
+<span class="lineno">  79 </span>                &quot;/eLT8Cu357VOwBVTitkmlDEg32Fs.jpg&quot;,
+<span class="lineno">  80 </span>                &quot;/jeAQdDX9nguP6YOX6QSWKDPkbBo.jpg&quot;,
+<span class="lineno">  81 </span>                &quot;&quot;,
+</code></pre>
+      </li>
+      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:94:17</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  91 </span>            TVFavEntity(
+<span class="lineno">  92 </span>                1,
+<span class="lineno">  93 </span>                &quot;82856&quot;,
+<span class="lineno">  94 </span>                <span class="error">&quot;After the fall of the Galactic Empire, lawlessness has spread throughout the galaxy. A lone gunfighter makes his way through the outer reaches, earning his keep as a bounty hunter.&quot;</span>,
+<span class="lineno">  95 </span>                &quot;/sWgBv7LV2PRoQgkxwlibdGXKz1S.jpg&quot;,
+<span class="lineno">  96 </span>                &quot;/9ijMGlJKqcslswWUzTEwScm82Gs.jpg&quot;,
+<span class="lineno">  97 </span>                &quot;The Mandalorian&quot;,
+</code></pre>
+      </li>
+      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:104:17</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 101 </span>            TVFavEntity(
+<span class="lineno"> 102 </span>                2,
+<span class="lineno"> 103 </span>                &quot;71712&quot;,
+<span class="lineno"> 104 </span>                <span class="error">&quot;A young surgeon with Savant syndrome is recruited into the surgical unit of a prestigious hospital. The question will arise: can a person who doesn't have the ability to relate to people actually save their lives?&quot;</span>,
+<span class="lineno"> 105 </span>                &quot;/6tfT03sGp9k4c0J3dypjrI8TSAI.jpg&quot;,
+<span class="lineno"> 106 </span>                &quot;/iDbIEpCM9nhoayUDTwqFL1iVwzb.jpg&quot;,
+<span class="lineno"> 107 </span>                &quot;The Good Doctor&quot;,
+</code></pre>
+      </li>
+      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:120:17</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 117 </span>            MoviesFavEntity(
+<span class="lineno"> 118 </span>                1,
+<span class="lineno"> 119 </span>                id,
+<span class="lineno"> 120 </span>                <span class="error">&quot;A rowdy, unorthodox Santa Claus is fighting to save his declining business. Meanwhile, Billy, a neglected and precocious 12 year old, hires a hit man to kill Santa after receiving a lump of coal in his stocking.&quot;</span>,
+<span class="lineno"> 121 </span>                &quot;/4n8QNNdk4BOX9Dslfbz5Dy6j1HK.jpg&quot;,
+<span class="lineno"> 122 </span>                &quot;/ckfwfLkl0CkafTasoRw5FILhZAS.jpg&quot;,
+<span class="lineno"> 123 </span>                &quot;&quot;,
+</code></pre>
+      </li>
+      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt:136:17</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 133 </span>            TVFavEntity(
+<span class="lineno"> 134 </span>                1,
+<span class="lineno"> 135 </span>                id,
+<span class="lineno"> 136 </span>                <span class="error">&quot;After the fall of the Galactic Empire, lawlessness has spread throughout the galaxy. A lone gunfighter makes his way through the outer reaches, earning his keep as a bounty hunter.&quot;</span>,
+<span class="lineno"> 137 </span>                &quot;/sWgBv7LV2PRoQgkxwlibdGXKz1S.jpg&quot;,
+<span class="lineno"> 138 </span>                &quot;/9ijMGlJKqcslswWUzTEwScm82Gs.jpg&quot;,
+<span class="lineno"> 139 </span>                &quot;The Mandalorian&quot;,
+</code></pre>
+      </li>
+    </ul>
+  </details>
+  <details id="ReturnCount" open="open">
+    <summary class="rule-container"><span class="rule">ReturnCount: 1 </span><span class="description">Restrict the number of return statements in methods.</span></summary>
+    <ul>
+      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\ui\detail\DetailActivity.kt:42:18</span><span class="message">Function onCreate has 4 return statements which exceeds the limit of 2.</span>
+        <pre><code><span class="lineno">  39 </span>    private lateinit var dataTV: TVEntity
+<span class="lineno">  40 </span>    private lateinit var tvId: String
+<span class="lineno">  41 </span>
+<span class="lineno">  42 </span>    override fun <span class="error">onCreate</span>(savedInstanceState: Bundle?) {
+<span class="lineno">  43 </span>        super.onCreate(savedInstanceState)
+<span class="lineno">  44 </span>        setContentView(R.layout.activity_detail)
+<span class="lineno">  45 </span>        // Mengambil data dari parcelable home
 </code></pre>
       </li>
     </ul>
@@ -361,7 +517,7 @@ pre {
 </div>
 
 
-generated with <a href="https://arturbosch.github.io/detekt">detekt version 1.14.2</a> on 2020-12-12 17:46:47 UTC.
+generated with <a href="https://arturbosch.github.io/detekt">detekt version 1.14.2</a> on 2020-12-18 14:37:29 UTC.
 
 </body>
 </html>

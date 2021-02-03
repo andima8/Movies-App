@@ -1,9 +1,13 @@
 package com.kotlin.andi.cinema.data.source.local.room
 
 import androidx.lifecycle.LiveData
-import androidx.room.*
+import androidx.paging.DataSource
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.Delete
+import androidx.room.Query
+import androidx.room.OnConflictStrategy
 import com.kotlin.andi.cinema.data.source.local.entity.MoviesEntity
-import com.kotlin.andi.cinema.data.source.local.entity.PopularEntity
 import com.kotlin.andi.cinema.data.source.local.entity.TVEntity
 import com.kotlin.andi.cinema.data.source.local.entity.favorite.MoviesFavEntity
 import com.kotlin.andi.cinema.data.source.local.entity.favorite.TVFavEntity
@@ -17,9 +21,6 @@ interface MovieDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addTVShows(tvEntity: List<TVEntity>)
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addPopular(popularEntity: List<PopularEntity>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addFavMovies(moviesFavEntity: MoviesFavEntity)
@@ -43,19 +44,15 @@ interface MovieDao {
 
     // Select Data
     @Query("SELECT * FROM movie_table")
-    fun readAllMovie(): LiveData<List<MoviesEntity>>
+    fun readAllMovie(): DataSource.Factory<Int, MoviesEntity>
 
     @Query("SELECT * FROM tv_table")
-    fun readAllTVShows(): LiveData<List<TVEntity>>
-
-    @Query("SELECT * FROM popular_table")
-    fun readAllPopular(): LiveData<List<PopularEntity>>
+    fun readAllTVShows(): DataSource.Factory<Int, TVEntity>
 
     // Select Favorite
     @Query("SELECT * FROM movie_fav_table ORDER BY id")
-    fun readFavMovies(): LiveData<List<MoviesFavEntity>>
+    fun readFavMovies(): DataSource.Factory<Int, MoviesFavEntity>
 
     @Query("SELECT * FROM tv_fav_table ORDER BY id")
-    fun readFavTV(): LiveData<List<TVFavEntity>>
-
+    fun readFavTV(): DataSource.Factory<Int, TVFavEntity>
 }

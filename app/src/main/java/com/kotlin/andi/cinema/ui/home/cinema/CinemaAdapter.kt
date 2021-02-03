@@ -4,6 +4,8 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -11,16 +13,20 @@ import com.kotlin.andi.cinema.BuildConfig
 import com.kotlin.andi.cinema.R
 import com.kotlin.andi.cinema.data.source.local.entity.MoviesEntity
 import com.kotlin.andi.cinema.ui.detail.DetailActivity
-import com.kotlin.andi.cinema.vo.Resource
 import kotlinx.android.synthetic.main.items_movie.view.*
 
-class CinemaAdapter : RecyclerView.Adapter<CinemaAdapter.MovieViewHolder>() {
-    private val listMovies = ArrayList<MoviesEntity>()
+class CinemaAdapter : PagedListAdapter<MoviesEntity, CinemaAdapter.MovieViewHolder>(DIFF_CALLBACK) {
 
-    fun setMovies(movies: List<MoviesEntity>) {
-        if (movies.isNullOrEmpty()) return
-        this.listMovies.clear()
-        this.listMovies.addAll(movies)
+    companion object {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<MoviesEntity>() {
+            override fun areItemsTheSame(oldItem: MoviesEntity, newItem: MoviesEntity): Boolean {
+                return oldItem.id == newItem.id
+            }
+
+            override fun areContentsTheSame(oldItem: MoviesEntity, newItem: MoviesEntity): Boolean {
+                return oldItem == newItem
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
@@ -30,11 +36,11 @@ class CinemaAdapter : RecyclerView.Adapter<CinemaAdapter.MovieViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        val movie = listMovies[position]
-        holder.bind(movie)
+        val movie = getItem(position)
+        if (movie != null) {
+            holder.bind(movie)
+        }
     }
-
-    override fun getItemCount(): Int = listMovies.size
 
     class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(movies: MoviesEntity) {

@@ -3,25 +3,33 @@ package com.kotlin.andi.cinema.movies.viewmodel
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
+import androidx.paging.PagedList
 import com.kotlin.andi.cinema.data.source.local.entity.MoviesEntity
-import com.kotlin.andi.cinema.data.source.local.entity.PopularEntity
 import com.kotlin.andi.cinema.data.source.local.entity.TVEntity
 import com.kotlin.andi.cinema.data.MovieRepository
+import com.kotlin.andi.cinema.data.source.local.entity.favorite.MoviesFavEntity
+import com.kotlin.andi.cinema.data.source.local.entity.favorite.TVFavEntity
 import com.kotlin.andi.cinema.utils.DataDummy
 import com.kotlin.andi.cinema.viewmodel.MovieViewModel
+import com.kotlin.andi.cinema.vo.Resource
 import com.nhaarman.mockitokotlin2.verify
-import org.junit.Assert
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
-import org.mockito.Mockito
+import org.mockito.Mockito.`when`
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
 class MovieViewModelTest {
+
+    companion object {
+        private const val MOVIE_ID = "602211"
+        private const val TV_ID = "82856"
+    }
 
     private lateinit var viewModel: MovieViewModel
 
@@ -32,13 +40,34 @@ class MovieViewModelTest {
     private lateinit var movieRepository: MovieRepository
 
     @Mock
-    private lateinit var observerCinema: Observer<List<MoviesEntity>>
+    private lateinit var observerCinema: Observer<Resource<PagedList<MoviesEntity>>>
 
     @Mock
-    private lateinit var observerTV: Observer<List<TVEntity>>
+    private lateinit var moviePagedList: PagedList<MoviesEntity>
 
     @Mock
-    private lateinit var observerPopular: Observer<List<PopularEntity>>
+    private lateinit var observerTV: Observer<Resource<PagedList<TVEntity>>>
+
+    @Mock
+    private lateinit var tvPagedList: PagedList<TVEntity>
+
+    @Mock
+    private lateinit var observerFavCinema: Observer<PagedList<MoviesFavEntity>>
+
+    @Mock
+    private lateinit var movieFavPagedList: PagedList<MoviesFavEntity>
+
+    @Mock
+    private lateinit var observerFavTV: Observer<PagedList<TVFavEntity>>
+
+    @Mock
+    private lateinit var tvFavPagedList: PagedList<TVFavEntity>
+
+    @Mock
+    private lateinit var checkObserverMovies: Observer<List<MoviesFavEntity>>
+
+    @Mock
+    private lateinit var checkObserverTV: Observer<List<TVFavEntity>>
 
     @Before
     fun setUp() {
@@ -47,95 +76,101 @@ class MovieViewModelTest {
 
     @Test
     fun getMovies() {
-        val dummyMovies = DataDummy.generateDummyMovies()
-        val movies = MutableLiveData<List<MoviesEntity>>()
-        dummyMovies.observeForever { response ->
-            val movieData = ArrayList<MoviesEntity>()
-            response.forEach {
-                val movie = MoviesEntity(
-                    it.id,
-                    it.overview,
-                    it.posterPath,
-                    it.backdropPath,
-                    it.name,
-                    it.title,
-                    it.voteAverage,
-                    it.language
-                )
-                movieData.add(movie)
-            }
-            movies.value = movieData
-        }
-        Mockito.`when`(movieRepository.getAllMovies()).thenReturn(movies)
-        val moviesEntity = viewModel.getAllMovies().value
+        val dummyMovies = Resource.success(moviePagedList)
+        `when`(dummyMovies.data?.size).thenReturn(2)
+        val movies = MutableLiveData<Resource<PagedList<MoviesEntity>>>()
+        movies.value = dummyMovies
+
+        `when`(movieRepository.getAllMovies()).thenReturn(movies)
+        val moviesEntity = viewModel.getAllMovies().value?.data
         verify(movieRepository).getAllMovies()
-        Assert.assertNotNull(moviesEntity)
+        assertNotNull(moviesEntity)
         assertEquals(2, moviesEntity?.size)
 
         viewModel.getAllMovies().observeForever(observerCinema)
-        verify(observerCinema).onChanged(moviesEntity)
+        verify(observerCinema).onChanged(dummyMovies)
     }
 
     @Test
     fun getAllTVShows() {
-        val dummyTV = DataDummy.generateDummyTV()
-        val tv = MutableLiveData<List<TVEntity>>()
-        dummyTV.observeForever { response ->
-            val movieData = ArrayList<TVEntity>()
-            response.forEach {
-                val movie = TVEntity(
-                    it.id,
-                    it.overview,
-                    it.posterPath,
-                    it.backdropPath,
-                    it.name,
-                    it.voteAverage,
-                    it.language
-                )
-                movieData.add(movie)
-            }
-            tv.value = movieData
-        }
+        val dummyTV = Resource.success(tvPagedList)
+        `when`(dummyTV.data?.size).thenReturn(2)
+        val tv = MutableLiveData<Resource<PagedList<TVEntity>>>()
+        tv.value = dummyTV
 
-        Mockito.`when`(movieRepository.getAllTVShows()).thenReturn(tv)
-        val tvEntity = viewModel.getAllTVShows().value
+        `when`(movieRepository.getAllTVShows()).thenReturn(tv)
+        val tvEntity = viewModel.getAllTVShows().value?.data
         verify(movieRepository).getAllTVShows()
-        Assert.assertNotNull(tvEntity)
+        assertNotNull(tvEntity)
         assertEquals(2, tvEntity?.size)
 
         viewModel.getAllTVShows().observeForever(observerTV)
-        verify(observerTV).onChanged(tvEntity)
+        verify(observerTV).onChanged(dummyTV)
     }
 
     @Test
-    fun getPopular() {
-        val dummyPopular = DataDummy.generateDummyPopular()
-        val popular = MutableLiveData<List<PopularEntity>>()
-        dummyPopular.observeForever { response ->
-            val movieData = ArrayList<PopularEntity>()
-            response.forEach {
-                val movie = PopularEntity(
-                    it.id,
-                    it.overview,
-                    it.posterPath,
-                    it.backdropPath,
-                    it.name,
-                    it.title,
-                    it.voteAverage,
-                    it.language
-                )
-                movieData.add(movie)
-            }
-            popular.value = movieData
-        }
+    fun getAllFavMovies() {
+        val dummyMovies = movieFavPagedList
+        `when`(dummyMovies.size).thenReturn(2)
+        val movies = MutableLiveData<PagedList<MoviesFavEntity>>()
+        movies.value = dummyMovies
 
-        Mockito.`when`(movieRepository.getAllPopular()).thenReturn(popular)
-        val popularEntity = viewModel.getPopular().value
-        verify(movieRepository).getAllPopular()
-        Assert.assertNotNull(popularEntity)
-        assertEquals(2, popularEntity?.size)
+        `when`(movieRepository.readFavMovies()).thenReturn(movies)
+        val moviesEntity = viewModel.readFavMovies().value
+        verify(movieRepository).readFavMovies()
+        assertNotNull(moviesEntity)
+        assertEquals(2, moviesEntity?.size)
 
-        viewModel.getPopular().observeForever(observerPopular)
-        verify(observerPopular).onChanged(popularEntity)
+        viewModel.readFavMovies().observeForever(observerFavCinema)
+        verify(observerFavCinema).onChanged(dummyMovies)
+    }
+
+    @Test
+    fun getAllFavTV() {
+        val dummyMovies = tvFavPagedList
+        `when`(dummyMovies.size).thenReturn(2)
+        val movies = MutableLiveData<PagedList<TVFavEntity>>()
+        movies.value = dummyMovies
+
+        `when`(movieRepository.readFavTV()).thenReturn(movies)
+        val moviesEntity = viewModel.readFavTV().value
+        verify(movieRepository).readFavTV()
+        assertNotNull(moviesEntity)
+        assertEquals(2, moviesEntity?.size)
+
+        viewModel.readFavTV().observeForever(observerFavTV)
+        verify(observerFavTV).onChanged(dummyMovies)
+    }
+
+    @Test
+    fun checkFavMovies() {
+        val dummyMovies = DataDummy.checkDummyFavMovies(MOVIE_ID)[0]
+        val movies = MutableLiveData<List<MoviesFavEntity>>()
+        movies.value = listOf(dummyMovies)
+
+        `when`(movieRepository.checkFavMovies(MOVIE_ID)).thenReturn(movies)
+        val moviesFavEntity = viewModel.checkFavMovies(MOVIE_ID)
+        verify(movieRepository).checkFavMovies(MOVIE_ID)
+        assertNotNull(moviesFavEntity)
+        assertEquals(MOVIE_ID, moviesFavEntity.value?.first()?.movieId)
+
+        viewModel.checkFavMovies(MOVIE_ID).observeForever(checkObserverMovies)
+        verify(checkObserverMovies).onChanged(listOf(dummyMovies))
+    }
+
+    @Test
+    fun checkFavTV() {
+        val dummyMovies = DataDummy.checkDummyFavTV(TV_ID)[0]
+        val movies = MutableLiveData<List<TVFavEntity>>()
+        movies.value = listOf(dummyMovies)
+
+        `when`(movieRepository.checkFavTV(TV_ID)).thenReturn(movies)
+        val tvFavEntity = viewModel.checkFavTV(TV_ID)
+        verify(movieRepository).checkFavTV(TV_ID)
+        assertNotNull(tvFavEntity)
+        assertEquals(TV_ID, tvFavEntity.value?.first()?.tvId)
+
+        viewModel.checkFavTV(TV_ID).observeForever(checkObserverTV)
+        verify(checkObserverTV).onChanged(listOf(dummyMovies))
     }
 }

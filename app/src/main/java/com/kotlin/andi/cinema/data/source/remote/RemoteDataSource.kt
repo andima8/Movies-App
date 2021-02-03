@@ -3,7 +3,6 @@ package com.kotlin.andi.cinema.data.source.remote
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.kotlin.andi.cinema.data.source.remote.response.ResultsMovies
-import com.kotlin.andi.cinema.data.source.remote.response.ResultsPopular
 import com.kotlin.andi.cinema.data.source.remote.response.ResultsTV
 import com.kotlin.andi.cinema.utils.EspressoIdlingResource
 import com.kotlin.andi.cinema.utils.JsonHelper
@@ -32,14 +31,6 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
         EspressoIdlingResource.increment()
         val result = MutableLiveData<ApiResponse<MutableLiveData<List<ResultsTV>>>>()
         result.value = ApiResponse.success(jsonHelper.loadTVShows())
-        EspressoIdlingResource.decrement()
-        return result
-    }
-
-    fun getPopular(): LiveData<ApiResponse<MutableLiveData<List<ResultsPopular>>>> {
-        EspressoIdlingResource.increment()
-        val result = MutableLiveData<ApiResponse<MutableLiveData<List<ResultsPopular>>>>()
-        result.value = ApiResponse.success(jsonHelper.loadPopular())
         EspressoIdlingResource.decrement()
         return result
     }

@@ -1,29 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <checkstyle version="4.3">
+<file name="G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\data\source\local\LocalDataSource.kt">
+	<error line="11" column="7" severity="warning" message="Class &apos;LocalDataSource&apos; with &apos;12&apos; functions detected. Defined threshold inside classes is set to &apos;11&apos;" source="detekt.TooManyFunctions" />
+</file>
+<file name="G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\data\source\local\room\MovieDao.kt">
+	<error line="16" column="11" severity="warning" message="Interface &apos;MovieDao&apos; with &apos;12&apos; functions detected. Defined threshold inside interfaces is set to &apos;11&apos;" source="detekt.TooManyFunctions" />
+</file>
+<file name="G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\ui\detail\DetailActivity.kt">
+	<error line="24" column="7" severity="warning" message="Class &apos;DetailActivity&apos; with &apos;19&apos; functions detected. Defined threshold inside classes is set to &apos;11&apos;" source="detekt.TooManyFunctions" />
+	<error line="42" column="18" severity="warning" message="Function onCreate has 4 return statements which exceeds the limit of 2." source="detekt.ReturnCount" />
+</file>
+<file name="G:\Cinema\app\src\androidTest\java\com\kotlin\andi\cinema\ui\home\all\AllMoviesFragmentTest.kt">
+	<error line="9" column="1" severity="warning" message="Wildcard import" source="detekt.NoWildcardImports" />
+</file>
 <file name="G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\utils\DataDummy.kt">
-	<error line="17" column="1" severity="warning" message="Exceeded max line length (120)" source="detekt.MaximumLineLength" />
-	<error line="27" column="1" severity="warning" message="Exceeded max line length (120)" source="detekt.MaximumLineLength" />
-	<error line="45" column="1" severity="warning" message="Exceeded max line length (120)" source="detekt.MaximumLineLength" />
-	<error line="54" column="1" severity="warning" message="Exceeded max line length (120)" source="detekt.MaximumLineLength" />
-	<error line="71" column="1" severity="warning" message="Exceeded max line length (120)" source="detekt.MaximumLineLength" />
-	<error line="80" column="1" severity="warning" message="Exceeded max line length (120)" source="detekt.MaximumLineLength" />
-	<error line="17" column="21" severity="warning" message="Line detected that is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
-	<error line="27" column="21" severity="warning" message="Line detected that is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
-	<error line="45" column="21" severity="warning" message="Line detected that is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
-	<error line="54" column="21" severity="warning" message="Line detected that is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
-	<error line="71" column="21" severity="warning" message="Line detected that is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
-	<error line="80" column="21" severity="warning" message="Line detected that is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
-	<error line="16" column="21" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
-	<error line="22" column="21" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
-	<error line="26" column="21" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
-	<error line="32" column="21" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
-	<error line="44" column="21" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
+	<error line="15" column="1" severity="warning" message="Exceeded max line length (120)" source="detekt.MaximumLineLength" />
+	<error line="25" column="1" severity="warning" message="Exceeded max line length (120)" source="detekt.MaximumLineLength" />
+	<error line="41" column="1" severity="warning" message="Exceeded max line length (120)" source="detekt.MaximumLineLength" />
+	<error line="50" column="1" severity="warning" message="Exceeded max line length (120)" source="detekt.MaximumLineLength" />
+	<error line="67" column="1" severity="warning" message="Exceeded max line length (120)" source="detekt.MaximumLineLength" />
+	<error line="78" column="1" severity="warning" message="Exceeded max line length (120)" source="detekt.MaximumLineLength" />
+	<error line="94" column="1" severity="warning" message="Exceeded max line length (120)" source="detekt.MaximumLineLength" />
+	<error line="120" column="1" severity="warning" message="Exceeded max line length (120)" source="detekt.MaximumLineLength" />
+	<error line="136" column="1" severity="warning" message="Exceeded max line length (120)" source="detekt.MaximumLineLength" />
+	<error line="15" column="21" severity="warning" message="Line detected that is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+	<error line="25" column="21" severity="warning" message="Line detected that is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+	<error line="41" column="21" severity="warning" message="Line detected that is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+	<error line="50" column="21" severity="warning" message="Line detected that is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+	<error line="67" column="17" severity="warning" message="Line detected that is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+	<error line="78" column="17" severity="warning" message="Line detected that is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+	<error line="94" column="17" severity="warning" message="Line detected that is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+	<error line="104" column="17" severity="warning" message="Line detected that is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+	<error line="120" column="17" severity="warning" message="Line detected that is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+	<error line="136" column="17" severity="warning" message="Line detected that is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+	<error line="14" column="21" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
+	<error line="20" column="21" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
+	<error line="24" column="21" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
+	<error line="30" column="21" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
+	<error line="40" column="21" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
+	<error line="45" column="21" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
 	<error line="49" column="21" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
-	<error line="53" column="21" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
-	<error line="58" column="21" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
-	<error line="70" column="21" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
-	<error line="76" column="21" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
-	<error line="79" column="21" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
-	<error line="85" column="21" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
+	<error line="54" column="21" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
+	<error line="72" column="17" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
+	<error line="83" column="17" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
+	<error line="98" column="17" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
+	<error line="108" column="17" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
+	<error line="125" column="17" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
+	<error line="140" column="17" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
 </file>
 </checkstyle>

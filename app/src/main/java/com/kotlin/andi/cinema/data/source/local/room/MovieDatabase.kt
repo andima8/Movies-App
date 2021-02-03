@@ -5,13 +5,11 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.kotlin.andi.cinema.data.source.local.entity.MoviesEntity
-import com.kotlin.andi.cinema.data.source.local.entity.PopularEntity
 import com.kotlin.andi.cinema.data.source.local.entity.TVEntity
 import com.kotlin.andi.cinema.data.source.local.entity.favorite.MoviesFavEntity
 import com.kotlin.andi.cinema.data.source.local.entity.favorite.TVFavEntity
 
-@Database(entities = [MoviesEntity::class, TVEntity::class, PopularEntity::class,
-    MoviesFavEntity::class, TVFavEntity::class],
+@Database(entities = [MoviesEntity::class, TVEntity::class, MoviesFavEntity::class, TVFavEntity::class],
     version = 1,
     exportSchema = false)
 abstract class MovieDatabase : RoomDatabase() {
@@ -24,7 +22,7 @@ abstract class MovieDatabase : RoomDatabase() {
 
         fun getDatabase(context: Context): MovieDatabase {
             val tempInstance = INSTANCE
-            if (tempInstance != null){
+            if (tempInstance != null) {
                 return tempInstance
             }
           synchronized(this) {

@@ -30,8 +30,6 @@ abstract class NetworkBoundResource<ResultType, RequestType>(private val mExecut
         }
     }
 
-    protected fun onFetchFailed() {}
-
     protected abstract fun loadFromDB(): LiveData<ResultType>
 
     protected abstract fun shouldFetch(data: ResultType?): Boolean
@@ -66,7 +64,6 @@ abstract class NetworkBoundResource<ResultType, RequestType>(private val mExecut
                     }
                 }
                 StatusResponse.ERROR -> {
-                    onFetchFailed()
                     result.addSource(dbSource) { newData ->
                         result.value = Resource.error(response.message, newData)
                     }

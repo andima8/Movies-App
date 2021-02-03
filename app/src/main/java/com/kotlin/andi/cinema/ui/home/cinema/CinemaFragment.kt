@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.kotlin.andi.cinema.R
+import com.kotlin.andi.cinema.utils.invisible
+import com.kotlin.andi.cinema.utils.visible
 import com.kotlin.andi.cinema.viewmodel.MovieViewModel
 import com.kotlin.andi.cinema.viewmodel.ViewModelFactory
 import com.kotlin.andi.cinema.vo.Status
@@ -22,18 +24,18 @@ class CinemaFragment : Fragment() {
             val factory = ViewModelFactory.getInstance(requireContext())
             val viewModel = ViewModelProvider(this, factory)[MovieViewModel::class.java]
             val movieAdapter = CinemaAdapter()
-            progressbar_cinema.visibility = View.VISIBLE
+            progressbar_cinema.visible()
             viewModel.getAllMovies().observe(viewLifecycleOwner, { movies ->
                 if (movies != null) {
                     when (movies.status) {
-                        Status.LOADING -> progressbar_cinema.visibility = View.VISIBLE
+                        Status.LOADING -> progressbar_cinema.visible()
                         Status.SUCCESS -> {
-                            progressbar_cinema.visibility = View.GONE
-                            movies.data?.let { movieAdapter.setMovies(it) }
+                            progressbar_cinema.invisible()
+                            movieAdapter.submitList(movies.data)
                             movieAdapter.notifyDataSetChanged()
                         }
-                        Status.ERROR ->{
-                            progressbar_cinema.visibility = View.GONE
+                        Status.ERROR -> {
+                            progressbar_cinema.invisible()
                             Toast.makeText(context, getString(R.string.error), Toast.LENGTH_SHORT).show()
                         }
                     }

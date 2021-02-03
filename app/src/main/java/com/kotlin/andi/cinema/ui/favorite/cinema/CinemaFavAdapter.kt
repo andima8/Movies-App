@@ -4,6 +4,8 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -13,15 +15,23 @@ import com.kotlin.andi.cinema.data.source.local.entity.favorite.MoviesFavEntity
 import com.kotlin.andi.cinema.ui.detail.DetailActivity
 import kotlinx.android.synthetic.main.items_movie.view.*
 
-class CinemaFavAdapter : RecyclerView.Adapter<CinemaFavAdapter.MovieViewHolder>() {
+class CinemaFavAdapter : PagedListAdapter<MoviesFavEntity, CinemaFavAdapter.MovieViewHolder>(DIFF_CALLBACK) {
 
-    // untuk menghapus data
-    private var listMovies = emptyList<MoviesFavEntity>()
+   companion object {
+       private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<MoviesFavEntity>() {
+           override fun areItemsTheSame(
+               oldItem: MoviesFavEntity,
+               newItem: MoviesFavEntity,
+           ): Boolean = oldItem.id == newItem.id
 
-    fun setMovies(movies: List<MoviesFavEntity>) {
-        this.listMovies = movies
-        notifyDataSetChanged()
-    }
+           override fun areContentsTheSame(
+               oldItem: MoviesFavEntity,
+               newItem: MoviesFavEntity,
+           ): Boolean = oldItem == newItem
+       }
+   }
+
+    fun getSwipedData(swipedPosition: Int): MoviesFavEntity? = getItem(swipedPosition)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val view =
@@ -30,11 +40,11 @@ class CinemaFavAdapter : RecyclerView.Adapter<CinemaFavAdapter.MovieViewHolder>(
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        val movie = listMovies[position]
-        holder.bind(movie)
+        val movie = getItem(position)
+        if (movie != null) {
+            holder.bind(movie)
+        }
     }
-
-    override fun getItemCount(): Int = listMovies.size
 
     class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(movies: MoviesFavEntity) {

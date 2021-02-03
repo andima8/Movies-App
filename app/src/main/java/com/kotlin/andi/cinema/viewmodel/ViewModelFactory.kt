@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.kotlin.andi.cinema.data.MovieRepository
 import com.kotlin.andi.cinema.di.Injection
-import java.lang.IllegalArgumentException
 
 @Suppress("UNCHECKED_CAST")
 class ViewModelFactory private constructor(private val mMovieRepository: MovieRepository) :
@@ -13,18 +12,18 @@ class ViewModelFactory private constructor(private val mMovieRepository: MovieRe
 
     companion object {
         @Volatile
-        private var instace: ViewModelFactory? = null
+        private var instance: ViewModelFactory? = null
 
         fun getInstance(context: Context): ViewModelFactory =
-            instace ?: synchronized(this) {
-                instace ?: ViewModelFactory(Injection.provideRepository(context))
+            instance ?: synchronized(this) {
+                instance ?: ViewModelFactory(Injection.provideRepository(context))
             }
     }
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        when {
+        return when {
             modelClass.isAssignableFrom(MovieViewModel::class.java) -> {
-                return MovieViewModel(mMovieRepository) as T
+                MovieViewModel(mMovieRepository) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

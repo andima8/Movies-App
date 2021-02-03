@@ -18,4 +18,4 @@ data class MoviesFavEntity(
     val title: String? = null,
     val voteAverage: Float? = null,
     val language: String? = null
-): Parcelable
+) : Parcelable

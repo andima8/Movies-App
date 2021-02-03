@@ -1,7 +1,6 @@
 package com.kotlin.andi.cinema.ui.home.tvshows
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,10 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.kotlin.andi.cinema.R
+import com.kotlin.andi.cinema.utils.invisible
+import com.kotlin.andi.cinema.utils.visible
 import com.kotlin.andi.cinema.viewmodel.MovieViewModel
 import com.kotlin.andi.cinema.viewmodel.ViewModelFactory
 import com.kotlin.andi.cinema.vo.Status
-import kotlinx.android.synthetic.main.fragment_cinema.*
 import kotlinx.android.synthetic.main.fragment_tv_shows.*
 
 class TvShowsFragment : Fragment() {
@@ -24,19 +24,17 @@ class TvShowsFragment : Fragment() {
             val factory = ViewModelFactory.getInstance(requireContext())
             val viewModel = ViewModelProvider(this, factory)[MovieViewModel::class.java]
             val tvAdapter = TVAdapter()
-            progressbar_tv.visibility = View.VISIBLE
+            progressbar_tv.visible()
             viewModel.getAllTVShows().observe(viewLifecycleOwner, { tv ->
                if (tv != null) {
                    when (tv.status) {
-                       Status.LOADING -> progressbar_tv.visibility = View.VISIBLE
+                       Status.LOADING -> progressbar_tv.visible()
                        Status.SUCCESS -> {
-                           progressbar_tv.visibility = View.GONE
-                           tv.data?.let { tvAdapter.setMovies(it) }
-                           Log.d("TV FRAG", "$tv")
-                           tvAdapter.notifyDataSetChanged()
+                           progressbar_tv.invisible()
+                           tvAdapter.submitList(tv.data)
                        }
-                       Status.ERROR ->{
-                           progressbar_tv.visibility = View.GONE
+                       Status.ERROR -> {
+                           progressbar_tv.invisible()
                            Toast.makeText(context, getString(R.string.error), Toast.LENGTH_SHORT).show()
                        }
                    }

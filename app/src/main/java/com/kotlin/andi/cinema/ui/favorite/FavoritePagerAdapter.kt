@@ -9,9 +9,10 @@ import com.kotlin.andi.cinema.R
 import com.kotlin.andi.cinema.ui.favorite.cinema.CinemaFavFragment
 import com.kotlin.andi.cinema.ui.favorite.tvshows.TvShowsFavFragment
 
-class FavoritePagerAdapter(private val mContext: Context, fm: FragmentManager)
-    : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)
-{
+class FavoritePagerAdapter(
+    private val mContext: Context,
+    fm: FragmentManager
+) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
     companion object {
         @StringRes
         private val TAB_TITLES = intArrayOf(R.string.cinema, R.string.tv_shows)

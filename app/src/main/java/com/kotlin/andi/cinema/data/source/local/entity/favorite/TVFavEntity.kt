@@ -9,7 +9,7 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class TVFavEntity(
     @PrimaryKey(autoGenerate = true)
-    val id: Int? = 0,
+    val id: Int = 0,
     val tvId: String? = null,
     val overview: String? = null,
     val posterPath: String? = null,

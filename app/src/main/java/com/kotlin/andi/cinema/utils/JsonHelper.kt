@@ -6,10 +6,8 @@ import com.kotlin.andi.cinema.BuildConfig
 import com.kotlin.andi.cinema.api.ApiConfig
 import com.kotlin.andi.cinema.data.source.remote.response.ResultsMovies
 import com.kotlin.andi.cinema.data.source.remote.response.ResultsTV
-import com.kotlin.andi.cinema.data.source.remote.response.ResultsPopular
 import com.kotlin.andi.cinema.data.source.remote.response.MovieResponse
 import com.kotlin.andi.cinema.data.source.remote.response.TVResponse
-import com.kotlin.andi.cinema.data.source.remote.response.PopularResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -18,7 +16,6 @@ class JsonHelper {
 
     private val movies = MutableLiveData<List<ResultsMovies>>()
     private val tv = MutableLiveData<List<ResultsTV>>()
-    private val popular = MutableLiveData<List<ResultsPopular>>()
 
     companion object {
         private const val TAG = "JSON HELPER"
@@ -59,23 +56,5 @@ class JsonHelper {
             }
         })
         return tv
-    }
-
-    fun loadPopular(): MutableLiveData<List<ResultsPopular>> {
-        val client = ApiConfig.getApiService().getPopular(BuildConfig.API_KEY)
-        client.enqueue(object : Callback<PopularResponse> {
-            override fun onResponse(
-                call: Call<PopularResponse>,
-                response: Response<PopularResponse>
-            ) {
-                val data = response.body()?.results
-                popular.postValue(data)
-            }
-
-            override fun onFailure(call: Call<PopularResponse>, t: Throwable) {
-                Log.e(TAG, "onFailure: " + t.message.toString())
-            }
-        })
-        return popular
     }
 }

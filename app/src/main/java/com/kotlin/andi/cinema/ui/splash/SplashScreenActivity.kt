@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.kotlin.andi.cinema.R
 import com.kotlin.andi.cinema.ui.home.HomeActivity
+import com.kotlin.andi.cinema.utils.EspressoIdlingResource
 import kotlinx.android.synthetic.main.activity_splash_screen.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -24,10 +25,14 @@ class SplashScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
         // Start Animation
+        EspressoIdlingResource.increment()
         sp_animation.playAnimation()
         splashScope.launch(Dispatchers.IO) {
-            for (i in 0 until A) Thread.sleep(B.toLong())
+            for (i in 0 until A) {
+                Thread.sleep(B.toLong())
+            }
             startActivity()
+            EspressoIdlingResource.decrement()
         }
     }
 

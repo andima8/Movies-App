@@ -1,6 +1,6 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-    ext.kotlin_version = "1.4.10"
+    ext.kotlin_version = "1.4.20"
     repositories {
         google()
         jcenter()
@@ -14,7 +14,6 @@ buildscript {
         // in the individual module build.gradle files
     }
 }
-
 
 allprojects {
     repositories {
@@ -46,8 +45,8 @@ ext {
     koinVersion = '2.2.0'
     idlingResource = '3.0.2'
     mockitoKotlinVersion = '2.2.0'
-    roomVersion = '2.2.5'
-    roomRuntimeVersion = '2.2.5'
+    roomVersion = '2.2.6'
+    roomRuntimeVersion = '2.2.6'
     pagingVersion = '2.1.2'
 }
 

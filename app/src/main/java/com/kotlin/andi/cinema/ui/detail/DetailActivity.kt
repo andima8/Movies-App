@@ -14,7 +14,6 @@ import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.kotlin.andi.cinema.BuildConfig
 import com.kotlin.andi.cinema.R
 import com.kotlin.andi.cinema.data.source.local.entity.MoviesEntity
-import com.kotlin.andi.cinema.data.source.local.entity.PopularEntity
 import com.kotlin.andi.cinema.data.source.local.entity.TVEntity
 import com.kotlin.andi.cinema.data.source.local.entity.favorite.MoviesFavEntity
 import com.kotlin.andi.cinema.data.source.local.entity.favorite.TVFavEntity
@@ -28,7 +27,7 @@ class DetailActivity : AppCompatActivity() {
         const val EXTRA_MOVIE = "extra_movie"
         const val EXTRA_FAV_MOVIE = "extra_fav_movie"
         const val EXTRA_TV = "extra_tv"
-        const val EXTRA_POPULAR = "extra_popular"
+        const val EXTRA_FAV_TV = "extra_fav_tv"
     }
 
     private lateinit var moviesFavEntity: MoviesFavEntity
@@ -56,21 +55,38 @@ class DetailActivity : AppCompatActivity() {
             }
             intent.getParcelableExtra<TVEntity>(EXTRA_TV) != null -> {
                 dataTV = intent.getParcelableExtra(EXTRA_TV) ?: return
-                tvId = dataTV.id.toString()
-                getDataTV(dataTV)
-                initTVObserver()
-                setFavorites()
-                fab_favorite.setOnClickListener {
-                    if (stateFav) removeFavTVShows()
-                    else addTVtoFavorites()
-                    stateFav = !stateFav
-                    setFavorites()
-                }
+                tvDetail(dataTV)
             }
-            else -> {
-                val data = intent.getParcelableExtra<PopularEntity>(EXTRA_POPULAR)
+            intent.getParcelableExtra<TVFavEntity>(EXTRA_FAV_TV) != null -> {
+                tvFavEntity = intent.getParcelableExtra(EXTRA_FAV_TV) ?: return
+                tvFavDetail(tvFavEntity)
+            }
+        }
+    }
 
-            }
+    private fun tvDetail(data: TVEntity?) {
+        tvId = data?.id.toString()
+        initTVObserver()
+        setFavorites()
+        getDataTV(data)
+        fab_favorite.setOnClickListener {
+            if (stateFav) removeFavTVShows()
+            else addTVtoFavorites()
+            stateFav = !stateFav
+            setFavorites()
+        }
+    }
+
+    private fun tvFavDetail(data: TVFavEntity?) {
+        tvId = data?.id.toString()
+        stateFav = true
+        setFavorites()
+        getDataFavTV(data)
+        fab_favorite.setOnClickListener {
+            if (stateFav) removeFavTVShows()
+            else addMoviesToFavorites()
+            stateFav = !stateFav
+            setFavorites()
         }
     }
 
@@ -222,26 +238,52 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun addTVtoFavorites() {
-        val tvId = dataTV.id.toString()
-        val overview = dataTV.overview
-        val poster = dataTV.posterPath
-        val backdrop = dataTV.backdropPath
-        val nameTVShows = dataTV.name
-        val vote = dataTV.voteAverage
-        val language = dataTV.language
-        val inputTVEntity =
-            TVFavEntity(
-                0,
-                tvId,
-                overview,
-                poster,
-                backdrop,
-                nameTVShows,
-                vote,
-                language
-            )
-        movieViewModel.addTVFav(inputTVEntity)
-        Toast.makeText(this, getString(R.string.add_favorite), Toast.LENGTH_SHORT).show()
+        when {
+            intent.getParcelableExtra<TVEntity>(EXTRA_TV) != null -> {
+                val tvId = dataTV.id.toString()
+                val overview = dataTV.overview
+                val poster = dataTV.posterPath
+                val backdrop = dataTV.backdropPath
+                val nameTVShows = dataTV.name
+                val vote = dataTV.voteAverage
+                val language = dataTV.language
+                val inputTVEntity =
+                    TVFavEntity(
+                        0,
+                        tvId,
+                        overview,
+                        poster,
+                        backdrop,
+                        nameTVShows,
+                        vote,
+                        language
+                    )
+                movieViewModel.addTVFav(inputTVEntity)
+                Toast.makeText(this, getString(R.string.add_favorite), Toast.LENGTH_SHORT).show()
+            }
+            intent.getParcelableExtra<TVFavEntity>(EXTRA_FAV_TV) != null -> {
+                val tvId = tvFavEntity.id.toString()
+                val overview = tvFavEntity.overview
+                val poster = tvFavEntity.posterPath
+                val backdrop = tvFavEntity.backdropPath
+                val nameTVShows = tvFavEntity.name
+                val vote = tvFavEntity.voteAverage
+                val language = tvFavEntity.language
+                val inputTVEntity =
+                    TVFavEntity(
+                        0,
+                        tvId,
+                        overview,
+                        poster,
+                        backdrop,
+                        nameTVShows,
+                        vote,
+                        language
+                    )
+                movieViewModel.addTVFav(inputTVEntity)
+                Toast.makeText(this, getString(R.string.add_favorite), Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun removeFavTVShows() {
@@ -310,6 +352,34 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun getDataTV(data: TVEntity?) {
+        Glide.with(this)
+            .load(BuildConfig.BASE_IMG_URL + data?.posterPath)
+            .apply(
+                RequestOptions.placeholderOf(R.drawable.ic_loading)
+                    .error(R.drawable.ic_error)
+            )
+            .into(detail_movie_img)
+
+        detail_movie_language.text = data?.language
+        tv_rating.text = (data?.voteAverage?.div(2)).toString()
+        if (data != null) {
+            detail_movie_rating.rating = data.voteAverage?.div(2) ?: 0f
+        }
+        detail_movie_desc.text = data?.overview
+
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        toolbar.setTitleTextColor(R.style.Collapse_Title)
+        setSupportActionBar(toolbar)
+
+        val collapsingToolbar =
+            findViewById<CollapsingToolbarLayout>(R.id.collapsing_toolbar)
+        collapsingToolbar.apply {
+            title = data?.name
+            setExpandedTitleTextAppearance(R.style.Collapse_Title)
+        }
+    }
+
+    private fun getDataFavTV(data: TVFavEntity?) {
         Glide.with(this)
             .load(BuildConfig.BASE_IMG_URL + data?.posterPath)
             .apply(
