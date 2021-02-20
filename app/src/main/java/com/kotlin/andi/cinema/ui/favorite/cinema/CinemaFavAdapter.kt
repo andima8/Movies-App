@@ -11,27 +11,27 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.kotlin.andi.cinema.BuildConfig
 import com.kotlin.andi.cinema.R
-import com.kotlin.andi.cinema.data.source.local.entity.favorite.MoviesFavEntity
+import com.kotlin.andi.cinema.domain.model.MoviesFav
 import com.kotlin.andi.cinema.ui.detail.DetailActivity
 import kotlinx.android.synthetic.main.items_movie.view.*
 
-class CinemaFavAdapter : PagedListAdapter<MoviesFavEntity, CinemaFavAdapter.MovieViewHolder>(DIFF_CALLBACK) {
+class CinemaFavAdapter : PagedListAdapter<MoviesFav, CinemaFavAdapter.MovieViewHolder>(DIFF_CALLBACK) {
 
    companion object {
-       private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<MoviesFavEntity>() {
+       private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<MoviesFav>() {
            override fun areItemsTheSame(
-               oldItem: MoviesFavEntity,
-               newItem: MoviesFavEntity,
+               oldItem: MoviesFav,
+               newItem: MoviesFav,
            ): Boolean = oldItem.id == newItem.id
 
            override fun areContentsTheSame(
-               oldItem: MoviesFavEntity,
-               newItem: MoviesFavEntity,
+               oldItem: MoviesFav,
+               newItem: MoviesFav,
            ): Boolean = oldItem == newItem
        }
    }
 
-    fun getSwipedData(swipedPosition: Int): MoviesFavEntity? = getItem(swipedPosition)
+    fun getSwipedData(swipedPosition: Int): MoviesFav? = getItem(swipedPosition)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val view =
@@ -47,7 +47,7 @@ class CinemaFavAdapter : PagedListAdapter<MoviesFavEntity, CinemaFavAdapter.Movi
     }
 
     class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(movies: MoviesFavEntity) {
+        fun bind(movies: MoviesFav) {
             with(itemView) {
                 title_movies.text = movies.title
                 rating_movies.rating = movies.voteAverage?.div(2) ?: 0f

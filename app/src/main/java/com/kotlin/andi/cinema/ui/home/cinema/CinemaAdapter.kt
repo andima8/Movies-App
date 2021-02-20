@@ -11,19 +11,19 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.kotlin.andi.cinema.BuildConfig
 import com.kotlin.andi.cinema.R
-import com.kotlin.andi.cinema.data.source.local.entity.MoviesEntity
+import com.kotlin.andi.cinema.domain.model.Movies
 import com.kotlin.andi.cinema.ui.detail.DetailActivity
 import kotlinx.android.synthetic.main.items_movie.view.*
 
-class CinemaAdapter : PagedListAdapter<MoviesEntity, CinemaAdapter.MovieViewHolder>(DIFF_CALLBACK) {
+class CinemaAdapter : PagedListAdapter<Movies, CinemaAdapter.MovieViewHolder>(DIFF_CALLBACK) {
 
     companion object {
-        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<MoviesEntity>() {
-            override fun areItemsTheSame(oldItem: MoviesEntity, newItem: MoviesEntity): Boolean {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Movies>() {
+            override fun areItemsTheSame(oldItem: Movies, newItem: Movies): Boolean {
                 return oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(oldItem: MoviesEntity, newItem: MoviesEntity): Boolean {
+            override fun areContentsTheSame(oldItem: Movies, newItem: Movies): Boolean {
                 return oldItem == newItem
             }
         }
@@ -43,7 +43,7 @@ class CinemaAdapter : PagedListAdapter<MoviesEntity, CinemaAdapter.MovieViewHold
     }
 
     class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(movies: MoviesEntity) {
+        fun bind(movies: Movies) {
             with(itemView) {
                 title_movies.text = movies.title
                 rating_movies.rating = movies.voteAverage?.div(2) ?: 0f

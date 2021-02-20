@@ -1,14 +1,14 @@
-package com.kotlin.andi.cinema.data
+package com.kotlin.andi.cinema.domain.repository
 
 import androidx.lifecycle.LiveData
 import androidx.paging.PagedList
+import com.kotlin.andi.cinema.domain.model.TVFav
 import com.kotlin.andi.cinema.domain.model.Movies
 import com.kotlin.andi.cinema.domain.model.MoviesFav
 import com.kotlin.andi.cinema.domain.model.TV
-import com.kotlin.andi.cinema.domain.model.TVFav
 import com.kotlin.andi.cinema.vo.Resource
 
-interface MovieDataSource {
+interface IMoviesRepository {
     fun getAllMovies(): LiveData<Resource<PagedList<Movies>>>
     fun getAllTVShows(): LiveData<Resource<PagedList<TV>>>
     // Add Favorite

@@ -13,20 +13,20 @@ import com.google.android.material.snackbar.Snackbar
 import com.kotlin.andi.cinema.R
 import com.kotlin.andi.cinema.utils.invisible
 import com.kotlin.andi.cinema.utils.visible
-import com.kotlin.andi.cinema.viewmodel.MovieViewModel
+import com.kotlin.andi.cinema.viewmodel.FavoriteViewModel
 import com.kotlin.andi.cinema.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.fragment_cinema_fav.*
 
 class CinemaFavFragment : Fragment() {
 
     private lateinit var movieAdapter: CinemaFavAdapter
-    private lateinit var viewModel: MovieViewModel
+    private lateinit var viewModel: FavoriteViewModel
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         if (activity != null) {
             val factory = ViewModelFactory.getInstance(requireContext())
-            viewModel = ViewModelProvider(this, factory)[MovieViewModel::class.java]
+            viewModel = ViewModelProvider(this, factory)[FavoriteViewModel::class.java]
             movieAdapter = CinemaFavAdapter()
             progressbar_fav_cinema.visible()
             rv_fav_cinema_movie.adapter = movieAdapter

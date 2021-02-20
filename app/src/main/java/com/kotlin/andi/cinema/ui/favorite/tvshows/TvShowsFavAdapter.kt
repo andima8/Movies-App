@@ -11,27 +11,27 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.kotlin.andi.cinema.BuildConfig
 import com.kotlin.andi.cinema.R
-import com.kotlin.andi.cinema.data.source.local.entity.favorite.TVFavEntity
+import com.kotlin.andi.cinema.domain.model.TVFav
 import com.kotlin.andi.cinema.ui.detail.DetailActivity
 import kotlinx.android.synthetic.main.items_movie.view.*
 
-class TvShowsFavAdapter : PagedListAdapter<TVFavEntity, TvShowsFavAdapter.TvViewHolder>(DIFF_CALLBACK) {
+class TvShowsFavAdapter : PagedListAdapter<TVFav, TvShowsFavAdapter.TvViewHolder>(DIFF_CALLBACK) {
 
     companion object {
-        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<TVFavEntity>() {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<TVFav>() {
             override fun areItemsTheSame(
-                oldItem: TVFavEntity,
-                newItem: TVFavEntity
+                oldItem: TVFav,
+                newItem: TVFav
             ): Boolean = oldItem.id == newItem.id
 
             override fun areContentsTheSame(
-                oldItem: TVFavEntity,
-                newItem: TVFavEntity
+                oldItem: TVFav,
+                newItem: TVFav
             ): Boolean = oldItem == newItem
         }
     }
 
-    fun getSwipedData(swipedPosition: Int): TVFavEntity? = getItem(swipedPosition)
+    fun getSwipedData(swipedPosition: Int): TVFav? = getItem(swipedPosition)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TvViewHolder {
         val view =
@@ -47,7 +47,7 @@ class TvShowsFavAdapter : PagedListAdapter<TVFavEntity, TvShowsFavAdapter.TvView
     }
 
     class TvViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(movies: TVFavEntity) {
+        fun bind(movies: TVFav) {
             with(itemView) {
                 title_movies.text = movies.name
                 rating_movies.rating = movies.voteAverage?.div(2) ?: 0f

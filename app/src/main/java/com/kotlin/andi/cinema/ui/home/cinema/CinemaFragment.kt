@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.kotlin.andi.cinema.R
 import com.kotlin.andi.cinema.utils.invisible
 import com.kotlin.andi.cinema.utils.visible
-import com.kotlin.andi.cinema.viewmodel.MovieViewModel
+import com.kotlin.andi.cinema.viewmodel.HomeViewModel
 import com.kotlin.andi.cinema.viewmodel.ViewModelFactory
 import com.kotlin.andi.cinema.vo.Status
 import kotlinx.android.synthetic.main.fragment_cinema.*
@@ -22,7 +22,7 @@ class CinemaFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         if (activity != null) {
             val factory = ViewModelFactory.getInstance(requireContext())
-            val viewModel = ViewModelProvider(this, factory)[MovieViewModel::class.java]
+            val viewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
             val movieAdapter = CinemaAdapter()
             progressbar_cinema.visible()
             viewModel.getAllMovies().observe(viewLifecycleOwner, { movies ->

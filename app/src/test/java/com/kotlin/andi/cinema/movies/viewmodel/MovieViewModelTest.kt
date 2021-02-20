@@ -10,7 +10,7 @@ import com.kotlin.andi.cinema.data.MovieRepository
 import com.kotlin.andi.cinema.data.source.local.entity.favorite.MoviesFavEntity
 import com.kotlin.andi.cinema.data.source.local.entity.favorite.TVFavEntity
 import com.kotlin.andi.cinema.utils.DataDummy
-import com.kotlin.andi.cinema.viewmodel.MovieViewModel
+import com.kotlin.andi.cinema.viewmodel.DetailViewModel
 import com.kotlin.andi.cinema.vo.Resource
 import com.nhaarman.mockitokotlin2.verify
 import org.junit.Assert.assertEquals
@@ -31,7 +31,7 @@ class MovieViewModelTest {
         private const val TV_ID = "82856"
     }
 
-    private lateinit var viewModel: MovieViewModel
+    private lateinit var viewModel: DetailViewModel
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
@@ -71,7 +71,7 @@ class MovieViewModelTest {
 
     @Before
     fun setUp() {
-        viewModel = MovieViewModel(movieRepository)
+        viewModel = DetailViewModel(movieRepository)
     }
 
     @Test

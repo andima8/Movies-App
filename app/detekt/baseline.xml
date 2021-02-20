@@ -25,7 +25,7 @@
     <ID>FinalNewline:com.kotlin.andi.cinema.ui.home.cinema.CinemaFragment.kt:1</ID>
     <ID>FinalNewline:com.kotlin.andi.cinema.ui.home.tvshows.TvShowsFragment.kt:1</ID>
     <ID>FinalNewline:com.kotlin.andi.cinema.utils.DataDummy.kt:1</ID>
-    <ID>FinalNewline:com.kotlin.andi.cinema.viewmodel.MovieViewModel.kt:1</ID>
+    <ID>FinalNewline:com.kotlin.andi.cinema.viewmodel.DetailViewModel.kt:1</ID>
     <ID>LongMethod:DataDummy.kt$DataDummy$fun generateDummyMovies(): MutableList&lt;MovieEntity&gt;</ID>
     <ID>MagicNumber:DataDummy.kt$DataDummy$4.0F</ID>
     <ID>MagicNumber:DataDummy.kt$DataDummy$4.5F</ID>
@@ -58,7 +58,7 @@
     <ID>NewLineAtEndOfFile:HomeActivity.kt$com.kotlin.andi.cinema.ui.home.HomeActivity.kt</ID>
       <ID>NewLineAtEndOfFile:HomeAdapter.kt$com.kotlin.andi.cinema.ui.home.tvshows.TVAdapter.kt</ID>
     <ID>NewLineAtEndOfFile:MovieEntity.kt$com.kotlin.andi.cinema.data.MovieEntity.kt</ID>
-    <ID>NewLineAtEndOfFile:MovieViewModel.kt$com.kotlin.andi.cinema.viewmodel.MovieViewModel.kt</ID>
+    <ID>NewLineAtEndOfFile:MovieViewModel.kt$com.kotlin.andi.cinema.viewmodel.DetailViewModel.kt</ID>
     <ID>NewLineAtEndOfFile:SectionPagerAdapter.kt$com.kotlin.andi.cinema.ui.home.HomePagerAdapter.kt</ID>
     <ID>NewLineAtEndOfFile:TvShowsFragment.kt$com.kotlin.andi.cinema.ui.home.tvshows.TvShowsFragment.kt</ID>
     <ID>NoBlankLineBeforeRbrace:com.kotlin.andi.cinema.ui.banner.BannerAdapter.kt:16</ID>
@@ -101,8 +101,8 @@
       <ID>ParameterListWrapping:com.kotlin.andi.cinema.ui.home.tvshows.TvShowsFragment.kt:35</ID>
     <ID>SpacingAroundColon:com.kotlin.andi.cinema.ui.banner.BannerFragment.kt:16</ID>
       <ID>SpacingAroundColon:com.kotlin.andi.cinema.ui.home.tvshows.TVAdapter.kt:15</ID>
-    <ID>SpacingAroundColon:com.kotlin.andi.cinema.viewmodel.MovieViewModel.kt:10</ID>
-    <ID>SpacingAroundColon:com.kotlin.andi.cinema.viewmodel.MovieViewModel.kt:7</ID>
+    <ID>SpacingAroundColon:com.kotlin.andi.cinema.viewmodel.DetailViewModel.kt:10</ID>
+    <ID>SpacingAroundColon:com.kotlin.andi.cinema.viewmodel.DetailViewModel.kt:7</ID>
     <ID>SpacingAroundKeyword:com.kotlin.andi.cinema.ui.home.HomePagerAdapter.kt:25</ID>
   </CurrentIssues>
 </SmellBaseline>

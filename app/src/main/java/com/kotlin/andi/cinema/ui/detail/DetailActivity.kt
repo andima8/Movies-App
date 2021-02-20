@@ -13,11 +13,11 @@ import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.kotlin.andi.cinema.BuildConfig
 import com.kotlin.andi.cinema.R
-import com.kotlin.andi.cinema.data.source.local.entity.MoviesEntity
-import com.kotlin.andi.cinema.data.source.local.entity.TVEntity
-import com.kotlin.andi.cinema.data.source.local.entity.favorite.MoviesFavEntity
-import com.kotlin.andi.cinema.data.source.local.entity.favorite.TVFavEntity
-import com.kotlin.andi.cinema.viewmodel.MovieViewModel
+import com.kotlin.andi.cinema.domain.model.Movies
+import com.kotlin.andi.cinema.domain.model.MoviesFav
+import com.kotlin.andi.cinema.domain.model.TV
+import com.kotlin.andi.cinema.domain.model.TVFav
+import com.kotlin.andi.cinema.viewmodel.DetailViewModel
 import com.kotlin.andi.cinema.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_detail.*
 
@@ -30,41 +30,41 @@ class DetailActivity : AppCompatActivity() {
         const val EXTRA_FAV_TV = "extra_fav_tv"
     }
 
-    private lateinit var moviesFavEntity: MoviesFavEntity
-    private lateinit var tvFavEntity: TVFavEntity
-    private lateinit var movieViewModel: MovieViewModel
+    private lateinit var moviesFav: MoviesFav
+    private lateinit var tvFav: TVFav
+    private lateinit var detailViewModel: DetailViewModel
     private var stateFav: Boolean = false
-    private lateinit var dataMovies: MoviesEntity
+    private lateinit var dataMovies: Movies
     private lateinit var movieId: String
-    private lateinit var dataTV: TVEntity
+    private lateinit var dataTV: TV
     private lateinit var tvId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
         // Mengambil data dari parcelable home
-        movieViewModel = obtainViewModel(this)
+        detailViewModel = obtainViewModel(this)
         when {
-            intent.getParcelableExtra<MoviesEntity>(EXTRA_MOVIE) != null -> {
+            intent.getParcelableExtra<Movies>(EXTRA_MOVIE) != null -> {
                 dataMovies = intent.getParcelableExtra(EXTRA_MOVIE) ?: return
                 moviesDetail(dataMovies)
             }
-            intent.getParcelableExtra<MoviesFavEntity>(EXTRA_FAV_MOVIE) != null -> {
-                moviesFavEntity = intent.getParcelableExtra(EXTRA_FAV_MOVIE) ?: return
-                moviesFavDetail(moviesFavEntity)
+            intent.getParcelableExtra<MoviesFav>(EXTRA_FAV_MOVIE) != null -> {
+                moviesFav = intent.getParcelableExtra(EXTRA_FAV_MOVIE) ?: return
+                moviesFavDetail(moviesFav)
             }
-            intent.getParcelableExtra<TVEntity>(EXTRA_TV) != null -> {
+            intent.getParcelableExtra<TV>(EXTRA_TV) != null -> {
                 dataTV = intent.getParcelableExtra(EXTRA_TV) ?: return
                 tvDetail(dataTV)
             }
-            intent.getParcelableExtra<TVFavEntity>(EXTRA_FAV_TV) != null -> {
-                tvFavEntity = intent.getParcelableExtra(EXTRA_FAV_TV) ?: return
-                tvFavDetail(tvFavEntity)
+            intent.getParcelableExtra<TVFav>(EXTRA_FAV_TV) != null -> {
+                tvFav = intent.getParcelableExtra(EXTRA_FAV_TV) ?: return
+                tvFavDetail(tvFav)
             }
         }
     }
 
-    private fun tvDetail(data: TVEntity?) {
+    private fun tvDetail(data: TV?) {
         tvId = data?.id.toString()
         initTVObserver()
         setFavorites()
@@ -77,20 +77,20 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun tvFavDetail(data: TVFavEntity?) {
+    private fun tvFavDetail(data: TVFav?) {
         tvId = data?.id.toString()
         stateFav = true
         setFavorites()
         getDataFavTV(data)
         fab_favorite.setOnClickListener {
             if (stateFav) removeFavTVShows()
-            else addMoviesToFavorites()
+            else addTVtoFavorites()
             stateFav = !stateFav
             setFavorites()
         }
     }
 
-    private fun moviesFavDetail(data: MoviesFavEntity?) {
+    private fun moviesFavDetail(data: MoviesFav?) {
         movieId = data?.id.toString()
         stateFav = true
         setFavorites()
@@ -103,7 +103,7 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun moviesDetail(data: MoviesEntity?) {
+    private fun moviesDetail(data: Movies?) {
         movieId = data?.id.toString()
         getDataMovies(data)
         initMovieObserver()
@@ -117,42 +117,42 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun initMovieObserver() {
-        movieViewModel.checkFavMovies(movieId).observe(this, moviesObserver)
+        detailViewModel.checkFavMovies(movieId).observe(this, moviesObserver)
     }
 
     private fun initTVObserver() {
-        movieViewModel.checkFavTV(tvId).observe(this, tvObserver)
+        detailViewModel.checkFavTV(tvId).observe(this, tvObserver)
     }
 
-    private val moviesObserver = Observer<List<MoviesFavEntity>> { movies ->
+    private val moviesObserver = Observer<List<MoviesFav>> { movies ->
         if (movies != null) {
             handleFavMovieDataFromDB(movies)
         }
     }
 
-    private val tvObserver = Observer<List<TVFavEntity>> { tv ->
+    private val tvObserver = Observer<List<TVFav>> { tv ->
         if (tv != null) {
             handleFavTVDataFromDB(tv)
         }
     }
 
-    private fun handleFavMovieDataFromDB(movies: List<MoviesFavEntity>) {
+    private fun handleFavMovieDataFromDB(movies: List<MoviesFav>) {
         if (movies.isEmpty()) {
             stateFav = false
             setFavorites()
         } else {
-            moviesFavEntity = movies.first()
+            moviesFav = movies.first()
             stateFav = true
             setFavorites()
         }
     }
 
-    private fun handleFavTVDataFromDB(tv: List<TVFavEntity>) {
+    private fun handleFavTVDataFromDB(tv: List<TVFav>) {
         if (tv.isEmpty()) {
             stateFav = false
             setFavorites()
         } else {
-            tvFavEntity = tv.first()
+            tvFav = tv.first()
             stateFav = true
             setFavorites()
         }
@@ -170,14 +170,14 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun obtainViewModel(context: Context): MovieViewModel {
+    private fun obtainViewModel(context: Context): DetailViewModel {
         val factory = ViewModelFactory.getInstance(context)
-        return ViewModelProvider(this, factory).get(MovieViewModel::class.java)
+        return ViewModelProvider(this, factory).get(DetailViewModel::class.java)
     }
 
     private fun addMoviesToFavorites() {
         when {
-            intent.getParcelableExtra<MoviesEntity>(EXTRA_MOVIE) != null -> {
+            intent.getParcelableExtra<Movies>(EXTRA_MOVIE) != null -> {
                 val movieId = dataMovies.id.toString()
                 val overview = dataMovies.overview
                 val poster = dataMovies.posterPath
@@ -186,8 +186,8 @@ class DetailActivity : AppCompatActivity() {
                 val titleMovie = dataMovies.title
                 val vote = dataMovies.voteAverage
                 val language = dataMovies.language
-                val inputMoviesEntity =
-                    MoviesFavEntity(
+                val inputMovies =
+                    MoviesFav(
                         0,
                         movieId,
                         overview,
@@ -198,20 +198,20 @@ class DetailActivity : AppCompatActivity() {
                         vote,
                         language
                     )
-                movieViewModel.addMoviesFav(inputMoviesEntity)
+                detailViewModel.addMoviesFav(inputMovies)
                 Toast.makeText(this, getString(R.string.add_favorite), Toast.LENGTH_SHORT).show()
             }
-            intent.getParcelableExtra<MoviesFavEntity>(EXTRA_FAV_MOVIE) != null -> {
-                val movieId = moviesFavEntity.id.toString()
-                val overview = moviesFavEntity.overview
-                val poster = moviesFavEntity.posterPath
-                val backdrop = moviesFavEntity.backdropPath
-                val nameMovie = moviesFavEntity.name
-                val titleMovie = moviesFavEntity.title
-                val vote = moviesFavEntity.voteAverage
-                val language = moviesFavEntity.language
-                val inputMoviesEntity =
-                    MoviesFavEntity(
+            intent.getParcelableExtra<MoviesFav>(EXTRA_FAV_MOVIE) != null -> {
+                val movieId = moviesFav.id.toString()
+                val overview = moviesFav.overview
+                val poster = moviesFav.posterPath
+                val backdrop = moviesFav.backdropPath
+                val nameMovie = moviesFav.name
+                val titleMovie = moviesFav.title
+                val vote = moviesFav.voteAverage
+                val language = moviesFav.language
+                val inputMovies =
+                    MoviesFav(
                         0,
                         movieId,
                         overview,
@@ -222,24 +222,24 @@ class DetailActivity : AppCompatActivity() {
                         vote,
                         language
                     )
-                movieViewModel.addMoviesFav(inputMoviesEntity)
+                detailViewModel.addMoviesFav(inputMovies)
                 Toast.makeText(this, getString(R.string.add_favorite), Toast.LENGTH_SHORT).show()
             }
         }
     }
 
     private fun removeFavMovies() {
-        movieViewModel = obtainViewModel(this)
-        moviesFavEntity.let {
-            movieViewModel.deleteMoviesFav(it)
-            movieViewModel.checkFavMovies(it.movieId ?: "")
+        detailViewModel = obtainViewModel(this)
+        moviesFav.let {
+            detailViewModel.deleteMoviesFav(it)
+            detailViewModel.checkFavMovies(it.movieId ?: "")
         }
         Toast.makeText(this, getString(R.string.delete_favorite), Toast.LENGTH_SHORT).show()
     }
 
     private fun addTVtoFavorites() {
         when {
-            intent.getParcelableExtra<TVEntity>(EXTRA_TV) != null -> {
+            intent.getParcelableExtra<TV>(EXTRA_TV) != null -> {
                 val tvId = dataTV.id.toString()
                 val overview = dataTV.overview
                 val poster = dataTV.posterPath
@@ -247,8 +247,8 @@ class DetailActivity : AppCompatActivity() {
                 val nameTVShows = dataTV.name
                 val vote = dataTV.voteAverage
                 val language = dataTV.language
-                val inputTVEntity =
-                    TVFavEntity(
+                val inputTV =
+                    TVFav(
                         0,
                         tvId,
                         overview,
@@ -258,19 +258,19 @@ class DetailActivity : AppCompatActivity() {
                         vote,
                         language
                     )
-                movieViewModel.addTVFav(inputTVEntity)
+                detailViewModel.addTVFav(inputTV)
                 Toast.makeText(this, getString(R.string.add_favorite), Toast.LENGTH_SHORT).show()
             }
-            intent.getParcelableExtra<TVFavEntity>(EXTRA_FAV_TV) != null -> {
-                val tvId = tvFavEntity.id.toString()
-                val overview = tvFavEntity.overview
-                val poster = tvFavEntity.posterPath
-                val backdrop = tvFavEntity.backdropPath
-                val nameTVShows = tvFavEntity.name
-                val vote = tvFavEntity.voteAverage
-                val language = tvFavEntity.language
-                val inputTVEntity =
-                    TVFavEntity(
+            intent.getParcelableExtra<TVFav>(EXTRA_FAV_TV) != null -> {
+                val tvId = tvFav.id.toString()
+                val overview = tvFav.overview
+                val poster = tvFav.posterPath
+                val backdrop = tvFav.backdropPath
+                val nameTVShows = tvFav.name
+                val vote = tvFav.voteAverage
+                val language = tvFav.language
+                val inputTV =
+                    TVFav(
                         0,
                         tvId,
                         overview,
@@ -280,22 +280,22 @@ class DetailActivity : AppCompatActivity() {
                         vote,
                         language
                     )
-                movieViewModel.addTVFav(inputTVEntity)
+                detailViewModel.addTVFav(inputTV)
                 Toast.makeText(this, getString(R.string.add_favorite), Toast.LENGTH_SHORT).show()
             }
         }
     }
 
     private fun removeFavTVShows() {
-        movieViewModel = obtainViewModel(this)
-        tvFavEntity.let {
-            movieViewModel.deleteTVFav(it)
-            movieViewModel.checkFavTV(it.tvId ?: "")
+        detailViewModel = obtainViewModel(this)
+        tvFav.let {
+            detailViewModel.deleteTVFav(it)
+            detailViewModel.checkFavTV(it.tvId ?: "")
         }
         Toast.makeText(this, getString(R.string.delete_favorite), Toast.LENGTH_SHORT).show()
     }
 
-    private fun getDataMovies(data: MoviesEntity?) {
+    private fun getDataMovies(data: Movies?) {
         Glide.with(this)
             .load(BuildConfig.BASE_IMG_URL + data?.posterPath)
             .apply(
@@ -323,7 +323,7 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun getDataFavMovies(data: MoviesFavEntity?) {
+    private fun getDataFavMovies(data: MoviesFav?) {
         Glide.with(this)
             .load(BuildConfig.BASE_IMG_URL + data?.posterPath)
             .apply(
@@ -351,7 +351,7 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun getDataTV(data: TVEntity?) {
+    private fun getDataTV(data: TV?) {
         Glide.with(this)
             .load(BuildConfig.BASE_IMG_URL + data?.posterPath)
             .apply(
@@ -379,7 +379,7 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun getDataFavTV(data: TVFavEntity?) {
+    private fun getDataFavTV(data: TVFav?) {
         Glide.with(this)
             .load(BuildConfig.BASE_IMG_URL + data?.posterPath)
             .apply(

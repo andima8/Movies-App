@@ -13,14 +13,14 @@ import com.google.android.material.snackbar.Snackbar
 import com.kotlin.andi.cinema.R
 import com.kotlin.andi.cinema.utils.invisible
 import com.kotlin.andi.cinema.utils.visible
-import com.kotlin.andi.cinema.viewmodel.MovieViewModel
+import com.kotlin.andi.cinema.viewmodel.FavoriteViewModel
 import com.kotlin.andi.cinema.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.fragment_tv_shows_fav.*
 
 class TvShowsFavFragment : Fragment() {
 
     private lateinit var tvShowsFavAdapter: TvShowsFavAdapter
-    private lateinit var viewModel: MovieViewModel
+    private lateinit var viewModel: FavoriteViewModel
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -28,7 +28,7 @@ class TvShowsFavFragment : Fragment() {
 
         if (activity != null) {
             val factory = ViewModelFactory.getInstance(requireContext())
-            viewModel = ViewModelProvider(this, factory)[MovieViewModel::class.java]
+            viewModel = ViewModelProvider(this, factory)[FavoriteViewModel::class.java]
             tvShowsFavAdapter = TvShowsFavAdapter()
             progressbar_fav_tv.visible()
             viewModel.readFavTV().observe(viewLifecycleOwner, { fav ->
