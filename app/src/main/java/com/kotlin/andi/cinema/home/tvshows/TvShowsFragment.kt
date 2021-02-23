@@ -1,5 +1,6 @@
 package com.kotlin.andi.cinema.home.tvshows
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,11 +9,12 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.kotlin.andi.cinema.R
-import com.kotlin.andi.cinema.core.utils.invisible
-import com.kotlin.andi.cinema.core.utils.visible
-import com.kotlin.andi.cinema.core.ui.viewmodel.HomeViewModel
-import com.kotlin.andi.cinema.core.vo.Status
-import com.kotlin.andi.cinema.core.ui.adapter.TVAdapter
+import com.kotlin.andi.cinema.detail.DetailActivity
+import com.kotlin.andi.cinema.home.HomeViewModel
+import com.kotlin.andi.core.ui.adapter.TVAdapter
+import com.kotlin.andi.core.utils.invisible
+import com.kotlin.andi.core.utils.visible
+import com.kotlin.andi.core.vo.Status
 import kotlinx.android.synthetic.main.fragment_tv_shows.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -23,7 +25,11 @@ class TvShowsFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         if (activity != null) {
-            val tvAdapter = TVAdapter()
+            val tvAdapter = TVAdapter {
+                val detailIntent = Intent(activity, DetailActivity::class.java)
+                detailIntent.putExtra(DetailActivity.EXTRA_TV, it)
+                startActivity(detailIntent)
+            }
             progressbar_tv.visible()
             homeViewModel.getAllTVShows.observe(viewLifecycleOwner, { tv ->
                if (tv != null) {

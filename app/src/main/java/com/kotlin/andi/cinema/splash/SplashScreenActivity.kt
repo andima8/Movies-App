@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.kotlin.andi.cinema.R
 import com.kotlin.andi.cinema.home.HomeActivity
-import com.kotlin.andi.cinema.core.utils.EspressoIdlingResource
+import com.kotlin.andi.core.utils.EspressoIdlingResource
 import kotlinx.android.synthetic.main.activity_splash_screen.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

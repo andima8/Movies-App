@@ -45,7 +45,6 @@ ext {
     navigationVersion = '2.3.2'
     retrofitVersion = '2.9.0'
     okhtppVersion = '4.9.0'
-    koinVersion = '2.2.0'
     idlingResource = '3.0.2'
     mockitoKotlinVersion = '2.2.0'
     roomVersion = '2.2.6'

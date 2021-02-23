@@ -1,24 +1,22 @@
 package com.kotlin.andi.cinema.detail
 
-import android.content.Context
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.kotlin.andi.cinema.BuildConfig
 import com.kotlin.andi.cinema.R
-import com.kotlin.andi.cinema.core.domain.model.Movies
-import com.kotlin.andi.cinema.core.domain.model.MoviesFav
-import com.kotlin.andi.cinema.core.domain.model.TV
-import com.kotlin.andi.cinema.core.domain.model.TVFav
-import com.kotlin.andi.cinema.core.ui.viewmodel.DetailViewModel
+import com.kotlin.andi.core.domain.model.Movies
+import com.kotlin.andi.core.domain.model.MoviesFav
+import com.kotlin.andi.core.domain.model.TV
+import com.kotlin.andi.core.domain.model.TVFav
+import com.kotlin.andi.core.ui.viewmodel.DetailViewModel
 import kotlinx.android.synthetic.main.activity_detail.*
 import org.koin.android.viewmodel.ext.android.viewModel
 

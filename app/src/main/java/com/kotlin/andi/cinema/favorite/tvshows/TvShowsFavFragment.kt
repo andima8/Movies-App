@@ -1,20 +1,21 @@
 package com.kotlin.andi.cinema.favorite.tvshows
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.kotlin.andi.cinema.R
-import com.kotlin.andi.cinema.core.utils.invisible
-import com.kotlin.andi.cinema.core.utils.visible
-import com.kotlin.andi.cinema.core.ui.viewmodel.FavoriteViewModel
-import com.kotlin.andi.cinema.core.ui.adapter.TvShowsFavAdapter
+import com.kotlin.andi.cinema.detail.DetailActivity
+import com.kotlin.andi.cinema.favorite.FavoriteViewModel
+import com.kotlin.andi.core.ui.adapter.TvShowsFavAdapter
+import com.kotlin.andi.core.utils.invisible
+import com.kotlin.andi.core.utils.visible
 import kotlinx.android.synthetic.main.fragment_tv_shows_fav.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -28,7 +29,11 @@ class TvShowsFavFragment : Fragment() {
         itemTouchHelper.attachToRecyclerView(rv_fav_tv_movie)
 
         if (activity != null) {
-            tvShowsFavAdapter = TvShowsFavAdapter()
+            tvShowsFavAdapter = TvShowsFavAdapter {
+                val detailIntent = Intent(activity, DetailActivity::class.java)
+                detailIntent.putExtra(DetailActivity.EXTRA_FAV_TV, it)
+                startActivity(detailIntent)
+            }
             progressbar_fav_tv.visible()
             favoriteViewModel.readFavTV.observe(viewLifecycleOwner, { fav ->
                 if (fav != null) {
