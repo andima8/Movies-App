@@ -9,8 +9,8 @@ import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import com.kotlin.andi.cinema.R
-import com.kotlin.andi.cinema.ui.splash.SplashScreenActivity
-import com.kotlin.andi.cinema.utils.EspressoIdlingResource
+import com.kotlin.andi.cinema.splash.SplashScreenActivity
+import com.kotlin.andi.cinema.core.utils.EspressoIdlingResource
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
