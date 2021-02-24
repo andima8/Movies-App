@@ -1,6 +1,5 @@
 package com.kotlin.andi.core.ui.adapter
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,8 +10,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.kotlin.andi.core.BuildConfig
 import com.kotlin.andi.core.R
+import com.kotlin.andi.core.databinding.ItemsMovieBinding
 import com.kotlin.andi.core.domain.model.TVFav
-import kotlinx.android.synthetic.main.items_movie.view.*
 
 class TvShowsFavAdapter(private val onItemClick: (TVFav) -> Unit) : PagedListAdapter<TVFav, TvShowsFavAdapter.TvViewHolder>(DIFF_CALLBACK) {
 
@@ -46,20 +45,21 @@ class TvShowsFavAdapter(private val onItemClick: (TVFav) -> Unit) : PagedListAda
     }
 
     class TvViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val binding = ItemsMovieBinding.bind(itemView)
         fun bind(movies: TVFav, onItemClick: (TVFav) -> Unit) {
-            with(itemView) {
-                title_movies.text = movies.name
-                rating_movies.rating = movies.voteAverage?.div(2) ?: 0f
-                setOnClickListener {
+            with(binding) {
+                titleMovies.text = movies.name
+                ratingMovies.rating = movies.voteAverage?.div(2) ?: 0f
+                root.setOnClickListener {
                    onItemClick(movies)
                 }
-                Glide.with(context)
+                Glide.with(itemView.context)
                     .load(BuildConfig.BASE_IMG_URL + movies.posterPath)
                     .apply(
                         RequestOptions.placeholderOf(R.drawable.ic_loading)
                             .error(R.drawable.ic_error)
                     )
-                    .into(img_movies)
+                    .into(imgMovies)
             }
         }
     }

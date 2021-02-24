@@ -40,6 +40,9 @@ android {
     kotlinOptions{
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
+    buildFeatures {
+        viewBinding = true
+    }
     //spek 2
     // Add Kotlin source directory to all source sets
     sourceSets.each {

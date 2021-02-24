@@ -1,28 +1,37 @@
 package com.kotlin.andi.favorite
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.kotlin.andi.favorite.R
+import androidx.fragment.app.Fragment
+import com.kotlin.andi.favorite.databinding.FragmentFavoriteBinding
 import com.kotlin.andi.favorite.di.favoriteModule
-import kotlinx.android.synthetic.main.fragment_favorite.*
 import org.koin.core.context.loadKoinModules
 
 class FavoriteFragment : Fragment() {
+
+    private var _binding: FragmentFavoriteBinding? = null
+    private val binding get() = _binding!!
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         loadKoinModules(favoriteModule)
         val favoritePagerAdapter = FavoritePagerAdapter(requireContext(), childFragmentManager)
-        view_pager_fav.adapter = favoritePagerAdapter
-        tabs_fav.setupWithViewPager(view_pager_fav)
+        binding.viewPagerFav.adapter = favoritePagerAdapter
+        binding.tabsFav.setupWithViewPager(binding.viewPagerFav)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_favorite, container, false)
+    ): View {
+        _binding = FragmentFavoriteBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

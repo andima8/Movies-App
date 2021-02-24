@@ -13,8 +13,6 @@ class LocalDataSource(private val mMovieDao: MovieDao) {
     companion object {
         private var INSTANCE: LocalDataSource? = null
 
-        fun getInstance(movieDao: MovieDao): LocalDataSource =
-            INSTANCE ?: LocalDataSource(movieDao)
     }
 
     // Insert All Movies Data

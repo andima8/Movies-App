@@ -12,12 +12,12 @@ import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.kotlin.andi.cinema.BuildConfig
 import com.kotlin.andi.cinema.R
+import com.kotlin.andi.cinema.databinding.ActivityDetailBinding
 import com.kotlin.andi.core.domain.model.Movies
 import com.kotlin.andi.core.domain.model.MoviesFav
 import com.kotlin.andi.core.domain.model.TV
 import com.kotlin.andi.core.domain.model.TVFav
 import com.kotlin.andi.core.ui.viewmodel.DetailViewModel
-import kotlinx.android.synthetic.main.activity_detail.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class DetailActivity : AppCompatActivity() {
@@ -37,10 +37,12 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var movieId: String
     private lateinit var dataTV: TV
     private lateinit var tvId: String
+    private lateinit var binding: ActivityDetailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail)
+        binding = ActivityDetailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         // Mengambil data dari parcelable home
         when {
             intent.getParcelableExtra<Movies>(EXTRA_MOVIE) != null -> {
@@ -67,7 +69,7 @@ class DetailActivity : AppCompatActivity() {
         initTVObserver()
         setFavorites()
         getDataTV(data)
-        fab_favorite.setOnClickListener {
+        binding.fabFavorite.setOnClickListener {
             if (stateFav) removeFavTVShows()
             else addTVtoFavorites()
             stateFav = !stateFav
@@ -80,7 +82,7 @@ class DetailActivity : AppCompatActivity() {
         stateFav = true
         setFavorites()
         getDataFavTV(data)
-        fab_favorite.setOnClickListener {
+        binding.fabFavorite.setOnClickListener {
             if (stateFav) removeFavTVShows()
             else addTVtoFavorites()
             stateFav = !stateFav
@@ -93,7 +95,7 @@ class DetailActivity : AppCompatActivity() {
         stateFav = true
         setFavorites()
         getDataFavMovies(data)
-        fab_favorite.setOnClickListener {
+        binding.fabFavorite.setOnClickListener {
             if (stateFav) removeFavMovies()
             else addMoviesToFavorites()
             stateFav = !stateFav
@@ -106,7 +108,7 @@ class DetailActivity : AppCompatActivity() {
         getDataMovies(data)
         initMovieObserver()
         setFavorites()
-        fab_favorite.setOnClickListener {
+        binding.fabFavorite.setOnClickListener {
             if (stateFav) removeFavMovies()
             else addMoviesToFavorites()
             stateFav = !stateFav
@@ -158,11 +160,11 @@ class DetailActivity : AppCompatActivity() {
 
     private fun setFavorites() {
         if (stateFav) {
-            fab_favorite.setImageDrawable(
+            binding.fabFavorite.setImageDrawable(
                 ContextCompat.getDrawable(this, R.drawable.ic_favorite_on)
             )
         } else {
-            fab_favorite.setImageDrawable(
+            binding.fabFavorite.setImageDrawable(
                 ContextCompat.getDrawable(this, R.drawable.ic_favorite_off)
             )
         }
@@ -287,114 +289,122 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun getDataMovies(data: Movies?) {
-        Glide.with(this)
-            .load(BuildConfig.BASE_IMG_URL + data?.posterPath)
-            .apply(
-                RequestOptions.placeholderOf(R.drawable.ic_loading)
-                    .error(R.drawable.ic_error)
-            )
-            .into(detail_movie_img)
+        with(binding) {
+            Glide.with(applicationContext)
+                .load(BuildConfig.BASE_IMG_URL + data?.posterPath)
+                .apply(
+                    RequestOptions.placeholderOf(R.drawable.ic_loading)
+                        .error(R.drawable.ic_error)
+                )
+                .into(detailMovieImg)
 
-        detail_movie_language.text = data?.language
-        tv_rating.text = (data?.voteAverage?.div(2)).toString()
-        if (data != null) {
-            detail_movie_rating.rating = data.voteAverage?.div(2) ?: 0f
-        }
-        detail_movie_desc.text = data?.overview
+            detailMovieLanguage.text = data?.language
+            tvRating.text = (data?.voteAverage?.div(2)).toString()
+            if (data != null) {
+                detailMovieRating.rating = data.voteAverage?.div(2) ?: 0f
+            }
+            detailMovieDesc.text = data?.overview
 
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
-        toolbar.setTitleTextColor(R.style.Collapse_Title)
-        setSupportActionBar(toolbar)
+            val toolbar = findViewById<Toolbar>(R.id.toolbar)
+            toolbar.setTitleTextColor(R.style.Collapse_Title)
+            setSupportActionBar(toolbar)
 
-        val collapsingToolbar =
-            findViewById<CollapsingToolbarLayout>(R.id.collapsing_toolbar)
-        collapsingToolbar.apply {
-            title = data?.title
-            setExpandedTitleTextAppearance(R.style.Collapse_Title)
+            val collapsingToolbar =
+                findViewById<CollapsingToolbarLayout>(R.id.collapsing_toolbar)
+            collapsingToolbar.apply {
+                title = data?.name
+                setExpandedTitleTextAppearance(R.style.Collapse_Title)
+            }
         }
     }
 
     private fun getDataFavMovies(data: MoviesFav?) {
-        Glide.with(this)
-            .load(BuildConfig.BASE_IMG_URL + data?.posterPath)
-            .apply(
-                RequestOptions.placeholderOf(R.drawable.ic_loading)
-                    .error(R.drawable.ic_error)
-            )
-            .into(detail_movie_img)
+        with(binding) {
+            Glide.with(applicationContext)
+                .load(BuildConfig.BASE_IMG_URL + data?.posterPath)
+                .apply(
+                    RequestOptions.placeholderOf(R.drawable.ic_loading)
+                        .error(R.drawable.ic_error)
+                )
+                .into(detailMovieImg)
 
-        detail_movie_language.text = data?.language
-        tv_rating.text = (data?.voteAverage?.div(2)).toString()
-        if (data != null) {
-            detail_movie_rating.rating = data.voteAverage?.div(2) ?: 0f
-        }
-        detail_movie_desc.text = data?.overview
+            detailMovieLanguage.text = data?.language
+            tvRating.text = (data?.voteAverage?.div(2)).toString()
+            if (data != null) {
+                detailMovieRating.rating = data.voteAverage?.div(2) ?: 0f
+            }
+            detailMovieDesc.text = data?.overview
 
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
-        toolbar.setTitleTextColor(R.style.Collapse_Title)
-        setSupportActionBar(toolbar)
+            val toolbar = findViewById<Toolbar>(R.id.toolbar)
+            toolbar.setTitleTextColor(R.style.Collapse_Title)
+            setSupportActionBar(toolbar)
 
-        val collapsingToolbar =
-            findViewById<CollapsingToolbarLayout>(R.id.collapsing_toolbar)
-        collapsingToolbar.apply {
-            title = data?.title
-            setExpandedTitleTextAppearance(R.style.Collapse_Title)
+            val collapsingToolbar =
+                findViewById<CollapsingToolbarLayout>(R.id.collapsing_toolbar)
+            collapsingToolbar.apply {
+                title = data?.name
+                setExpandedTitleTextAppearance(R.style.Collapse_Title)
+            }
         }
     }
 
     private fun getDataTV(data: TV?) {
-        Glide.with(this)
-            .load(BuildConfig.BASE_IMG_URL + data?.posterPath)
-            .apply(
-                RequestOptions.placeholderOf(R.drawable.ic_loading)
-                    .error(R.drawable.ic_error)
-            )
-            .into(detail_movie_img)
+        with(binding) {
+            Glide.with(applicationContext)
+                .load(BuildConfig.BASE_IMG_URL + data?.posterPath)
+                .apply(
+                    RequestOptions.placeholderOf(R.drawable.ic_loading)
+                        .error(R.drawable.ic_error)
+                )
+                .into(detailMovieImg)
 
-        detail_movie_language.text = data?.language
-        tv_rating.text = (data?.voteAverage?.div(2)).toString()
-        if (data != null) {
-            detail_movie_rating.rating = data.voteAverage?.div(2) ?: 0f
-        }
-        detail_movie_desc.text = data?.overview
+            detailMovieLanguage.text = data?.language
+            tvRating.text = (data?.voteAverage?.div(2)).toString()
+            if (data != null) {
+                detailMovieRating.rating = data.voteAverage?.div(2) ?: 0f
+            }
+            detailMovieDesc.text = data?.overview
 
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
-        toolbar.setTitleTextColor(R.style.Collapse_Title)
-        setSupportActionBar(toolbar)
+            val toolbar = findViewById<Toolbar>(R.id.toolbar)
+            toolbar.setTitleTextColor(R.style.Collapse_Title)
+            setSupportActionBar(toolbar)
 
-        val collapsingToolbar =
-            findViewById<CollapsingToolbarLayout>(R.id.collapsing_toolbar)
-        collapsingToolbar.apply {
-            title = data?.name
-            setExpandedTitleTextAppearance(R.style.Collapse_Title)
+            val collapsingToolbar =
+                findViewById<CollapsingToolbarLayout>(R.id.collapsing_toolbar)
+            collapsingToolbar.apply {
+                title = data?.name
+                setExpandedTitleTextAppearance(R.style.Collapse_Title)
+            }
         }
     }
 
     private fun getDataFavTV(data: TVFav?) {
-        Glide.with(this)
-            .load(BuildConfig.BASE_IMG_URL + data?.posterPath)
-            .apply(
-                RequestOptions.placeholderOf(R.drawable.ic_loading)
-                    .error(R.drawable.ic_error)
-            )
-            .into(detail_movie_img)
+        with(binding) {
+            Glide.with(applicationContext)
+                .load(BuildConfig.BASE_IMG_URL + data?.posterPath)
+                .apply(
+                    RequestOptions.placeholderOf(R.drawable.ic_loading)
+                        .error(R.drawable.ic_error)
+                )
+                .into(detailMovieImg)
 
-        detail_movie_language.text = data?.language
-        tv_rating.text = (data?.voteAverage?.div(2)).toString()
-        if (data != null) {
-            detail_movie_rating.rating = data.voteAverage?.div(2) ?: 0f
-        }
-        detail_movie_desc.text = data?.overview
+            detailMovieLanguage.text = data?.language
+            tvRating.text = (data?.voteAverage?.div(2)).toString()
+            if (data != null) {
+                detailMovieRating.rating = data.voteAverage?.div(2) ?: 0f
+            }
+            detailMovieDesc.text = data?.overview
 
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
-        toolbar.setTitleTextColor(R.style.Collapse_Title)
-        setSupportActionBar(toolbar)
+            val toolbar = findViewById<Toolbar>(R.id.toolbar)
+            toolbar.setTitleTextColor(R.style.Collapse_Title)
+            setSupportActionBar(toolbar)
 
-        val collapsingToolbar =
-            findViewById<CollapsingToolbarLayout>(R.id.collapsing_toolbar)
-        collapsingToolbar.apply {
-            title = data?.name
-            setExpandedTitleTextAppearance(R.style.Collapse_Title)
+            val collapsingToolbar =
+                findViewById<CollapsingToolbarLayout>(R.id.collapsing_toolbar)
+            collapsingToolbar.apply {
+                title = data?.name
+                setExpandedTitleTextAppearance(R.style.Collapse_Title)
+            }
         }
     }
 }

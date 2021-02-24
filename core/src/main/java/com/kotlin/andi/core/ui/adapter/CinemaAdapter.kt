@@ -11,7 +11,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.kotlin.andi.core.BuildConfig
 import com.kotlin.andi.core.domain.model.Movies
 import com.kotlin.andi.core.R
-import kotlinx.android.synthetic.main.items_movie.view.*
+import com.kotlin.andi.core.databinding.ItemsMovieBinding
 
 class CinemaAdapter(private val onItemClick: (Movies) -> Unit) : PagedListAdapter<Movies, CinemaAdapter.MovieViewHolder>(DIFF_CALLBACK) {
 
@@ -27,8 +27,6 @@ class CinemaAdapter(private val onItemClick: (Movies) -> Unit) : PagedListAdapte
         }
     }
 
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.items_movie, parent, false)
@@ -43,20 +41,21 @@ class CinemaAdapter(private val onItemClick: (Movies) -> Unit) : PagedListAdapte
     }
 
     class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val binding = ItemsMovieBinding.bind(itemView)
         fun bind(movies: Movies, onItemClick: (Movies) -> Unit) {
-            with(itemView) {
-                title_movies.text = movies.title
-                rating_movies.rating = movies.voteAverage?.div(2) ?: 0f
-                itemView.setOnClickListener {
+            with(binding) {
+                titleMovies.text = movies.title
+                ratingMovies.rating = movies.voteAverage?.div(2) ?: 0f
+                root.setOnClickListener {
                     onItemClick(movies)
                 }
-                Glide.with(context)
+                Glide.with(itemView.context)
                     .load(BuildConfig.BASE_IMG_URL + movies.posterPath)
                     .apply(
                         RequestOptions.placeholderOf(R.drawable.ic_loading)
                             .error(R.drawable.ic_error)
                     )
-                    .into(img_movies)
+                    .into(imgMovies)
             }
         }
     }

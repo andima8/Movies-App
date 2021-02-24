@@ -54,7 +54,7 @@ class MovieRepositoryTest {
         val movieEntities = Resource.success(PagedListUtil.mockPagedList(DataDummy.generateDummyMovies()))
         verify(local).getAllMovie()
         assertNotNull(movieEntities)
-        assertEquals(movieResponses.size.toLong(), movieEntities.data?.size?.toLong())
+        assertEquals(movieResponses.size.toLong(), movieEntities.data.size.toLong())
     }
 
     @Test
@@ -66,7 +66,7 @@ class MovieRepositoryTest {
         val movieEntities = Resource.success(PagedListUtil.mockPagedList(DataDummy.generateDummyTV()))
         verify(local).getAllTVShows()
         assertNotNull(movieEntities)
-        assertEquals(tvResponse.size.toLong(), movieEntities.data?.size?.toLong())
+        assertEquals(tvResponse.size.toLong(), movieEntities.data.size.toLong())
     }
 
     // Favorite Testing
@@ -79,7 +79,7 @@ class MovieRepositoryTest {
         val movieEntities = Resource.success(PagedListUtil.mockPagedList(DataDummy.generateDummyFavMovies()))
         verify(local).readFavMovies()
         assertNotNull(movieEntities)
-        assertEquals(movieFavResponses.size.toLong(), movieEntities.data?.size?.toLong())
+        assertEquals(movieFavResponses.size.toLong(), movieEntities.data.size.toLong())
     }
 
     @Test
@@ -91,7 +91,7 @@ class MovieRepositoryTest {
         val movieEntities = Resource.success(PagedListUtil.mockPagedList(DataDummy.generateDummyFavTV()))
         verify(local).readFavTV()
         assertNotNull(movieEntities)
-        assertEquals(tvFavResponse.size.toLong(), movieEntities.data?.size?.toLong())
+        assertEquals(tvFavResponse.size.toLong(), movieEntities.data.size.toLong())
     }
 
     @Test

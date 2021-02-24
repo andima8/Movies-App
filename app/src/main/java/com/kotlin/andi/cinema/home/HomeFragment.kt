@@ -5,17 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.kotlin.andi.cinema.R
-import kotlinx.android.synthetic.main.fragment_home.*
+import com.kotlin.andi.cinema.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
+
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         if (activity != null) {
             val sectionPagerAdapter = HomePagerAdapter(requireContext(), childFragmentManager)
-            view_pager.adapter = sectionPagerAdapter
-            tabs.setupWithViewPager(view_pager)
+            binding.viewPager.adapter = sectionPagerAdapter
+            binding.tabs.setupWithViewPager(binding.viewPager)
         }
     }
 
@@ -23,5 +25,12 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? = inflater.inflate(R.layout.fragment_home, container, false)
+    ): View? {
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

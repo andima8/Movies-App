@@ -10,9 +10,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.kotlin.andi.core.BuildConfig
 import com.kotlin.andi.core.R
+import com.kotlin.andi.core.databinding.ItemsMovieBinding
 import com.kotlin.andi.core.domain.model.TV
-
-import kotlinx.android.synthetic.main.items_movie.view.*
 
 class TVAdapter(private val onItemClick: (TV) -> Unit) : PagedListAdapter<TV, TVAdapter.MovieViewHolder>(DIFF_CALLBACK) {
 
@@ -42,20 +41,21 @@ class TVAdapter(private val onItemClick: (TV) -> Unit) : PagedListAdapter<TV, TV
     }
 
     class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val binding = ItemsMovieBinding.bind(itemView)
         fun bind(movies: TV, onItemClick: (TV) -> Unit) {
-            with(itemView) {
-                title_movies.text = movies.name
-                rating_movies.rating = movies.voteAverage?.div(2) ?: 0f
-                setOnClickListener {
+            with(binding) {
+                titleMovies.text = movies.name
+                ratingMovies.rating = movies.voteAverage?.div(2) ?: 0f
+                root.setOnClickListener {
                     onItemClick(movies)
                 }
-                Glide.with(context)
+                Glide.with(itemView.context)
                     .load(BuildConfig.BASE_IMG_URL + movies.posterPath)
                     .apply(
                         RequestOptions.placeholderOf(R.drawable.ic_loading)
                             .error(R.drawable.ic_error)
                     )
-                    .into(img_movies)
+                    .into(imgMovies)
             }
         }
     }

@@ -9,46 +9,48 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.kotlin.andi.cinema.R
+import com.kotlin.andi.cinema.databinding.FragmentCinemaBinding
 import com.kotlin.andi.cinema.detail.DetailActivity
 import com.kotlin.andi.cinema.detail.DetailActivity.Companion.EXTRA_MOVIE
-import com.kotlin.andi.core.ui.adapter.CinemaAdapter
 import com.kotlin.andi.cinema.home.HomeViewModel
-import com.kotlin.andi.core.domain.model.Movies
+import com.kotlin.andi.core.ui.adapter.CinemaAdapter
 import com.kotlin.andi.core.utils.invisible
 import com.kotlin.andi.core.utils.visible
 import com.kotlin.andi.core.vo.Status
-import kotlinx.android.synthetic.main.fragment_cinema.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class CinemaFragment : Fragment() {
 
     private val homeViewModel: HomeViewModel by viewModel()
+    private var _binding: FragmentCinemaBinding? = null
+    private val binding get() = _binding!!
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
         if (activity != null) {
             val movieAdapter = CinemaAdapter {
                 val detailIntent = Intent(activity, DetailActivity::class.java)
                 detailIntent.putExtra(EXTRA_MOVIE, it)
                 startActivity(detailIntent)
             }
-            progressbar_cinema.visible()
+            binding.progressbarCinema.visible()
             homeViewModel.getAllMovies.observe(viewLifecycleOwner, { movies ->
                 if (movies != null) {
                     when (movies.status) {
-                        Status.LOADING -> progressbar_cinema.visible()
+                        Status.LOADING -> binding.progressbarCinema.visible()
                         Status.SUCCESS -> {
-                            progressbar_cinema.invisible()
+                            binding.progressbarCinema.invisible()
                             movieAdapter.submitList(movies.data)
                             movieAdapter.notifyDataSetChanged()
                         }
                         Status.ERROR -> {
-                            progressbar_cinema.invisible()
+                            binding.progressbarCinema.invisible()
                             Toast.makeText(context, getString(R.string.error), Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
-                with(rv_cinema_movie) {
+                with(binding.rvCinemaMovie) {
                     layoutManager = GridLayoutManager(activity, 2)
                     setHasFixedSize(true)
                     adapter = movieAdapter
@@ -62,5 +64,12 @@ class CinemaFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? = inflater.inflate(R.layout.fragment_cinema, container, false)
+    ): View {
+        _binding = FragmentCinemaBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

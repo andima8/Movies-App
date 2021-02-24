@@ -5,13 +5,17 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.kotlin.andi.cinema.R
-import kotlinx.android.synthetic.main.activity_home.*
+import com.kotlin.andi.cinema.databinding.ActivityHomeBinding
+
 
 class HomeActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityHomeBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+        binding = ActivityHomeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         supportActionBar?.apply {
             setDisplayShowHomeEnabled(true)
         }
@@ -50,7 +54,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun bottomNavigation() {
-        bottom_navigation.setOnNavigationItemSelectedListener { item ->
+        binding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.home -> {
                     loadHomeFragment()
@@ -63,6 +67,6 @@ class HomeActivity : AppCompatActivity() {
             }
             true
         }
-        bottom_navigation.selectedItemId = R.id.home
+        binding.bottomNavigation.selectedItemId = R.id.home
     }
 }

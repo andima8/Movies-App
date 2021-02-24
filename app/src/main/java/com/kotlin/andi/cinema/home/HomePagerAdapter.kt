@@ -25,6 +25,6 @@ class HomePagerAdapter(private val mContext: Context, fm: FragmentManager) : Fra
             0 -> CinemaFragment()
             else -> TvShowsFragment()
         }
-    override fun getPageTitle(position: Int): CharSequence? = mContext.resources.getString(
+    override fun getPageTitle(position: Int): CharSequence = mContext.resources.getString(
         TAB_TITLES[position])
 }

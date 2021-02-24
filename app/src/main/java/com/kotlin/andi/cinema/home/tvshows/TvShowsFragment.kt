@@ -9,18 +9,20 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.kotlin.andi.cinema.R
+import com.kotlin.andi.cinema.databinding.FragmentTvShowsBinding
 import com.kotlin.andi.cinema.detail.DetailActivity
 import com.kotlin.andi.cinema.home.HomeViewModel
 import com.kotlin.andi.core.ui.adapter.TVAdapter
 import com.kotlin.andi.core.utils.invisible
 import com.kotlin.andi.core.utils.visible
 import com.kotlin.andi.core.vo.Status
-import kotlinx.android.synthetic.main.fragment_tv_shows.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class TvShowsFragment : Fragment() {
 
     private val homeViewModel: HomeViewModel by viewModel()
+    private var _binding: FragmentTvShowsBinding? = null
+    private val binding get() = _binding!!
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -30,23 +32,23 @@ class TvShowsFragment : Fragment() {
                 detailIntent.putExtra(DetailActivity.EXTRA_TV, it)
                 startActivity(detailIntent)
             }
-            progressbar_tv.visible()
+            binding.progressbarTv.visible()
             homeViewModel.getAllTVShows.observe(viewLifecycleOwner, { tv ->
                if (tv != null) {
                    when (tv.status) {
-                       Status.LOADING -> progressbar_tv.visible()
+                       Status.LOADING -> binding.progressbarTv.visible()
                        Status.SUCCESS -> {
-                           progressbar_tv.invisible()
+                           binding.progressbarTv.invisible()
                            tvAdapter.submitList(tv.data)
                        }
                        Status.ERROR -> {
-                           progressbar_tv.invisible()
+                           binding.progressbarTv.invisible()
                            Toast.makeText(context, getString(R.string.error), Toast.LENGTH_SHORT).show()
                        }
                    }
                }
             })
-            with(rv_tv_movie) {
+            with(binding.rvTvMovie) {
                 layoutManager = GridLayoutManager(activity, 2)
                 setHasFixedSize(true)
                 adapter = tvAdapter
@@ -58,5 +60,12 @@ class TvShowsFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_tv_shows, container, false)
+    ): View? {
+        _binding = FragmentTvShowsBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

@@ -16,13 +16,15 @@ import com.kotlin.andi.core.ui.adapter.CinemaFavAdapter
 import com.kotlin.andi.core.utils.invisible
 import com.kotlin.andi.core.utils.visible
 import com.kotlin.andi.favorite.R
-import kotlinx.android.synthetic.main.fragment_cinema_fav.*
+import com.kotlin.andi.favorite.databinding.FragmentCinemaFavBinding
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class CinemaFavFragment : Fragment() {
 
     private lateinit var movieAdapter: CinemaFavAdapter
     private val favoriteViewModel: FavoriteViewModel by viewModel()
+    private var _binding: FragmentCinemaFavBinding? = null
+    private val binding get() = _binding!!
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -32,23 +34,30 @@ class CinemaFavFragment : Fragment() {
                 detailIntent.putExtra(DetailActivity.EXTRA_FAV_MOVIE, it)
                 startActivity(detailIntent)
             }
-            progressbar_fav_cinema.visible()
-            rv_fav_cinema_movie.adapter = movieAdapter
-            rv_fav_cinema_movie.layoutManager = LinearLayoutManager(requireContext())
-            favoriteViewModel.readFavMovies.observe(viewLifecycleOwner, { fav ->
-                if (fav != null) {
-                    progressbar_fav_cinema.invisible()
-                    movieAdapter.submitList(fav)
-                    if (movieAdapter.itemCount == 0) {
-                        tv_fav_notFound.visible()
-                        iv_fav_notFound.visible()
-                    } else {
-                        tv_fav_notFound.invisible()
-                        iv_fav_notFound.invisible()
+            with(binding){
+                progressbarFavCinema.visible()
+                rvFavCinemaMovie.adapter = movieAdapter
+                rvFavCinemaMovie.layoutManager = LinearLayoutManager(requireContext())
+                favoriteViewModel.readFavMovies.observe(viewLifecycleOwner, { fav ->
+                    if (fav != null) {
+                        progressbarFavCinema.invisible()
+                        movieAdapter.submitList(fav)
+                        if (movieAdapter.itemCount == 0) {
+                            tvFavNotFound.visible()
+                            ivFavNotFound.visible()
+                        } else {
+                            tvFavNotFound.invisible()
+                            ivFavNotFound.invisible()
+                        }
                     }
+                })
+                itemTouchHelper.attachToRecyclerView(rvFavCinemaMovie)
+                with(rvFavCinemaMovie) {
+                    layoutManager = LinearLayoutManager(activity)
+                    setHasFixedSize(true)
+                    adapter = movieAdapter
                 }
-            })
-            itemTouchHelper.attachToRecyclerView(rv_fav_cinema_movie)
+            }
         }
     }
 
@@ -56,7 +65,14 @@ class CinemaFavFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? = inflater.inflate(R.layout.fragment_cinema_fav, container, false)
+    ): View{
+        _binding = FragmentCinemaFavBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
     private val itemTouchHelper = ItemTouchHelper(object : ItemTouchHelper.Callback() {
         override fun getMovementFlags(
@@ -83,6 +99,7 @@ class CinemaFavFragment : Fragment() {
                 confirmation.setAction(R.string.message_ok) { _ ->
                     movies?.let {
                         favoriteViewModel.addMoviesFav(it)
+                        binding.ivFavNotFound.visible()
                     }
                 }
                 confirmation.show()

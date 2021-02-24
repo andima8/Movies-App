@@ -3,10 +3,9 @@ package com.kotlin.andi.cinema.splash
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.kotlin.andi.cinema.R
+import com.kotlin.andi.cinema.databinding.ActivitySplashScreenBinding
 import com.kotlin.andi.cinema.home.HomeActivity
 import com.kotlin.andi.core.utils.EspressoIdlingResource
-import kotlinx.android.synthetic.main.activity_splash_screen.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
@@ -20,13 +19,15 @@ class SplashScreenActivity : AppCompatActivity() {
     }
 
     private val splashScope = CoroutineScope(Dispatchers.Main)
+    private lateinit var binding: ActivitySplashScreenBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash_screen)
+        binding = ActivitySplashScreenBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         // Start Animation
         EspressoIdlingResource.increment()
-        sp_animation.playAnimation()
+        binding.spAnimation.playAnimation()
         splashScope.launch(Dispatchers.IO) {
             for (i in 0 until A) {
                 Thread.sleep(B.toLong())
