@@ -1,4 +1,4 @@
-package com.kotlin.andi.cinema.favorite
+package com.kotlin.andi.favorite
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData

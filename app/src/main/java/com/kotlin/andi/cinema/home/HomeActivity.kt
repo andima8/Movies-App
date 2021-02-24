@@ -1,9 +1,10 @@
 package com.kotlin.andi.cinema.home
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.kotlin.andi.cinema.R
-import com.kotlin.andi.cinema.favorite.FavoriteFragment
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
@@ -26,13 +27,26 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun loadFavoriteFragment() {
+        val fragment = instantiateFragment()
+        if (fragment !=null) {navigationToFragment(fragment)}
+    }
+
+    private fun navigationToFragment(fragment: Fragment) {
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.main_container,
-                FavoriteFragment(),
-                FavoriteFragment::class.java.simpleName)
+                fragment)
             .addToBackStack(null)
             .commit()
+    }
+
+    private fun instantiateFragment(): Fragment? {
+        return try {
+            Class.forName("com.kotlin.andi.favorite.FavoriteFragment").newInstance() as Fragment
+        } catch (e: Exception) {
+            Toast.makeText(this, R.string.error, Toast.LENGTH_SHORT).show()
+            null
+        }
     }
 
     private fun bottomNavigation() {

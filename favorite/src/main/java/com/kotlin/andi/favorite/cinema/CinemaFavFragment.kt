@@ -1,4 +1,4 @@
-package com.kotlin.andi.cinema.favorite.cinema
+package com.kotlin.andi.favorite.cinema
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,12 +10,12 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
-import com.kotlin.andi.cinema.R
 import com.kotlin.andi.cinema.detail.DetailActivity
-import com.kotlin.andi.cinema.favorite.FavoriteViewModel
+import com.kotlin.andi.favorite.FavoriteViewModel
 import com.kotlin.andi.core.ui.adapter.CinemaFavAdapter
 import com.kotlin.andi.core.utils.invisible
 import com.kotlin.andi.core.utils.visible
+import com.kotlin.andi.favorite.R
 import kotlinx.android.synthetic.main.fragment_cinema_fav.*
 import org.koin.android.viewmodel.ext.android.viewModel
 

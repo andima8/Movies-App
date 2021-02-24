@@ -66,6 +66,7 @@ android {
             testLogging.events = ["passed", "skipped", "failed"]
         }
     }
+    dynamicFeatures = [':favorite']
 }
 
 detekt {
