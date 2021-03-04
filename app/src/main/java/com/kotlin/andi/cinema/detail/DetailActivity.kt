@@ -102,6 +102,7 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
+    // TV
     private fun addToTVFavorites() {
         when {
             intent.getParcelableExtra<TV>(EXTRA_TV) != null -> {
