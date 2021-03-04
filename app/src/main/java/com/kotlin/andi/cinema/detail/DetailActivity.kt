@@ -105,7 +105,7 @@ class DetailActivity : AppCompatActivity() {
             setFavorites()
         }
     }
-
+    //Movies Detail
     private fun moviesDetail(data: Movies?) {
         getDataMovies(data)
         initObserver()
