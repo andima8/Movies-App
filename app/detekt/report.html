@@ -73,7 +73,7 @@ pre {
 <div>
   <ul>
     <li>123 number of properties</li>
-    <li>64 number of functions</li>
+    <li>59 number of functions</li>
     <li>11 number of classes</li>
     <li>9 number of packages</li>
     <li>14 number of kt files</li>
@@ -85,57 +85,25 @@ pre {
 
 <div>
   <ul>
-    <li>1,152 lines of code (loc)</li>
-    <li>1,014 source lines of code (sloc)</li>
-    <li>681 logical lines of code (lloc)</li>
+    <li>1,133 lines of code (loc)</li>
+    <li>1,000 source lines of code (sloc)</li>
+    <li>671 logical lines of code (lloc)</li>
     <li>7 comment lines of code (cloc)</li>
-    <li>124 cyclomatic complexity (mcc)</li>
-    <li>58 cognitive complexity</li>
-    <li>2 number of total code smells</li>
+    <li>119 cyclomatic complexity (mcc)</li>
+    <li>61 cognitive complexity</li>
+    <li>0 number of total code smells</li>
     <li>0% comment source ratio</li>
-    <li>182 mcc per 1,000 lloc</li>
-    <li>2 code smells per 1,000 lloc</li>
+    <li>177 mcc per 1,000 lloc</li>
+    <li>0 code smells per 1,000 lloc</li>
   </ul>
 </div>
 
 
 <h2>Findings</h2>
-<div>Total: 2
-  <h3>complexity: 2</h3>
-  <details id="LongMethod" open="open">
-    <summary class="rule-container"><span class="rule">LongMethod: 1 </span><span class="description">One method should have one responsibility. Long methods tend to handle many things at once. Prefer smaller methods to make them easier to understand.</span></summary>
-    <ul>
-      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\detail\DetailActivity.kt:175:17</span><span class="message">The function addToFavorites is too long (96). The maximum length is 60.</span>
-        <pre><code><span class="lineno"> 172 </span>        }
-<span class="lineno"> 173 </span>    }
-<span class="lineno"> 174 </span>
-<span class="lineno"> 175 </span>    private fun <span class="error">addToFavorites</span>() {
-<span class="lineno"> 176 </span>        when {
-<span class="lineno"> 177 </span>            intent.getParcelableExtra&lt;Movies&gt;(EXTRA_MOVIE) != null -&gt; {
-<span class="lineno"> 178 </span>                val movieId = dataMovies.id.toString()
-</code></pre>
-      </li>
-    </ul>
-  </details>
-  <details id="TooManyFunctions" open="open">
-    <summary class="rule-container"><span class="rule">TooManyFunctions: 1 </span><span class="description">Too many functions inside a/an file/class/object/interface always indicate a violation of the single responsibility principle. Maybe the file/class/object/interface wants to manage too many things at once. Extract functionality which clearly belongs together.</span></summary>
-    <ul>
-      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\detail\DetailActivity.kt:23:7</span><span class="message">Class 'DetailActivity' with '15' functions detected. Defined threshold inside classes is set to '11'</span>
-        <pre><code><span class="lineno">  20 </span>import com.kotlin.andi.core.ui.viewmodel.DetailViewModel
-<span class="lineno">  21 </span>import org.koin.android.viewmodel.ext.android.viewModel
-<span class="lineno">  22 </span>
-<span class="lineno">  23 </span>class <span class="error">DetailActivity</span> : AppCompatActivity() {
-<span class="lineno">  24 </span>
-<span class="lineno">  25 </span>    companion object {
-<span class="lineno">  26 </span>        const val EXTRA_MOVIE = &quot;extra_movie&quot;
-</code></pre>
-      </li>
-    </ul>
-  </details>
-</div>
+<div>Total: 0</div>
 
 
-generated with <a href="https://arturbosch.github.io/detekt">detekt version 1.14.2</a> on 2021-03-04 20:40:15 UTC.
+generated with <a href="https://arturbosch.github.io/detekt">detekt version 1.14.2</a> on 2021-03-04 21:29:28 UTC.
 
 </body>
 </html>
