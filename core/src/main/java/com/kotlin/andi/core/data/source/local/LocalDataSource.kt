@@ -10,11 +10,6 @@ import com.kotlin.andi.core.data.source.local.room.MovieDao
 
 class LocalDataSource(private val mMovieDao: MovieDao) {
 
-    companion object {
-        private var INSTANCE: LocalDataSource? = null
-
-    }
-
     // Insert All Movies Data
     suspend fun addMovies(moviesEntity: List<MoviesEntity>) = mMovieDao.addMovies(moviesEntity)
     suspend fun addTVShows(tvEntity: List<TVEntity>) = mMovieDao.addTVShows(tvEntity)

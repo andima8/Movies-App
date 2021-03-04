@@ -60,7 +60,7 @@ class TvShowsFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentTvShowsBinding.inflate(inflater, container, false)
         return binding.root
     }

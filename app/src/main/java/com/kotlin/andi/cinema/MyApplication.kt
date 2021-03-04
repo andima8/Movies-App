@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package com.kotlin.andi.cinema
 
 import android.app.Application

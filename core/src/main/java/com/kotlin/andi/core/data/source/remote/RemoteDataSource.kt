@@ -2,7 +2,7 @@ package com.kotlin.andi.core.data.source.remote
 
 import android.util.Log
 import com.kotlin.andi.core.BuildConfig
-import com.kotlin.andi.core.api.ApiService
+import com.kotlin.andi.core.data.source.remote.api.ApiService
 import com.kotlin.andi.core.data.source.remote.response.ResultsMovies
 import com.kotlin.andi.core.data.source.remote.response.ResultsTV
 import com.kotlin.andi.core.utils.EspressoIdlingResource
@@ -12,16 +12,6 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
 class RemoteDataSource(private val apiService: ApiService) {
-
-    companion object {
-        @Volatile
-        private var instance: RemoteDataSource? = null
-
-        fun getInstance(apiService: ApiService): RemoteDataSource =
-            instance ?: synchronized(this) {
-                instance ?: RemoteDataSource(apiService)
-            }
-    }
 
     suspend fun getMovies(): Flow<ApiResponse<List<ResultsMovies>>> {
         return flow {

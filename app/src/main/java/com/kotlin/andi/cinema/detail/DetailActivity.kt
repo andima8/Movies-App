@@ -20,7 +20,7 @@ import com.kotlin.andi.core.domain.model.TVFav
 import com.kotlin.andi.core.ui.viewmodel.DetailViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class DetailActivity : AppCompatActivity() {
+class DetailActivity: AppCompatActivity() {
 
     companion object {
         const val EXTRA_MOVIE = "extra_movie"

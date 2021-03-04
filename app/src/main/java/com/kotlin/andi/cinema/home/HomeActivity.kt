@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import com.kotlin.andi.cinema.R
 import com.kotlin.andi.cinema.databinding.ActivityHomeBinding
 
-
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
@@ -32,7 +31,7 @@ class HomeActivity : AppCompatActivity() {
 
     private fun loadFavoriteFragment() {
         val fragment = instantiateFragment()
-        if (fragment !=null) {navigationToFragment(fragment)}
+        if (fragment != null) { navigationToFragment(fragment) }
     }
 
     private fun navigationToFragment(fragment: Fragment) {

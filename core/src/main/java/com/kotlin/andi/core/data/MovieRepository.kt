@@ -13,7 +13,6 @@ import com.kotlin.andi.core.domain.model.MoviesFav
 import com.kotlin.andi.core.domain.model.TV
 import com.kotlin.andi.core.domain.model.TVFav
 import com.kotlin.andi.core.domain.repository.IMoviesRepository
-import com.kotlin.andi.core.utils.AppExecutors
 import com.kotlin.andi.core.utils.DataMapper
 import com.kotlin.andi.core.vo.Resource
 import kotlinx.coroutines.flow.Flow
@@ -23,27 +22,14 @@ import kotlinx.coroutines.runBlocking
 class MovieRepository(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource,
-    private val appExecutors: AppExecutors,
 ) : IMoviesRepository {
 
     companion object {
         const val SIZE = 5
-
-        @Volatile
-        private var instance: MovieRepository? = null
-
-        fun getInstance(
-            remoteDataSource: RemoteDataSource,
-            localData: LocalDataSource,
-            appExecutors: AppExecutors,
-        ): MovieRepository =
-            instance ?: synchronized(this) {
-                instance ?: MovieRepository(remoteDataSource, localData, appExecutors)
-            }
     }
 
     override fun getAllMovies(): Flow<Resource<PagedList<Movies>>> =
-        object : NetworkBoundResource<PagedList<Movies>, List<ResultsMovies>>(appExecutors) {
+        object : NetworkBoundResource<PagedList<Movies>, List<ResultsMovies>>() {
             override fun loadFromDB(): Flow<PagedList<Movies>> {
                 val config = PagedList.Config.Builder()
                     .setEnablePlaceholders(false)
@@ -69,7 +55,7 @@ class MovieRepository(
 
 
     override fun getAllTVShows(): Flow<Resource<PagedList<TV>>> =
-        object : NetworkBoundResource<PagedList<TV>, List<ResultsTV>>(appExecutors) {
+        object : NetworkBoundResource<PagedList<TV>, List<ResultsTV>>() {
             override fun loadFromDB(): Flow<PagedList<TV>> {
                 val config = PagedList.Config.Builder()
                     .setEnablePlaceholders(false)

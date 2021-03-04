@@ -56,7 +56,6 @@ class CinemaFragment : Fragment() {
                     adapter = movieAdapter
                 }
             })
-
         }
     }
 

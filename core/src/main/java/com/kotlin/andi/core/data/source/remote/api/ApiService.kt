@@ -1,4 +1,4 @@
-package com.kotlin.andi.core.api
+package com.kotlin.andi.core.data.source.remote.api
 
 import com.kotlin.andi.core.data.source.remote.response.MovieResponse
 import com.kotlin.andi.core.data.source.remote.response.TVResponse

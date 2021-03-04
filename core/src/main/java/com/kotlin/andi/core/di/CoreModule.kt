@@ -2,13 +2,12 @@ package com.kotlin.andi.core.di
 
 import androidx.room.Room
 import com.kotlin.andi.core.BuildConfig
-import com.kotlin.andi.core.api.ApiService
 import com.kotlin.andi.core.data.MovieRepository
 import com.kotlin.andi.core.data.source.local.LocalDataSource
 import com.kotlin.andi.core.data.source.local.room.MovieDatabase
 import com.kotlin.andi.core.data.source.remote.RemoteDataSource
+import com.kotlin.andi.core.data.source.remote.api.ApiService
 import com.kotlin.andi.core.domain.repository.IMoviesRepository
-import com.kotlin.andi.core.utils.AppExecutors
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -48,6 +47,5 @@ val networkModule = module {
 val repositoryModule = module {
     single { LocalDataSource(get()) }
     single { RemoteDataSource(get()) }
-    factory { AppExecutors() }
-    single<IMoviesRepository> { MovieRepository(get(), get(), get()) }
+    single<IMoviesRepository> { MovieRepository(get(), get())}
 }
