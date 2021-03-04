@@ -72,8 +72,8 @@ pre {
 
 <div>
   <ul>
-    <li>121 number of properties</li>
-    <li>67 number of functions</li>
+    <li>123 number of properties</li>
+    <li>64 number of functions</li>
     <li>11 number of classes</li>
     <li>9 number of packages</li>
     <li>14 number of kt files</li>
@@ -85,82 +85,49 @@ pre {
 
 <div>
   <ul>
-    <li>1,150 lines of code (loc)</li>
-    <li>1,010 source lines of code (sloc)</li>
-    <li>676 logical lines of code (lloc)</li>
+    <li>1,152 lines of code (loc)</li>
+    <li>1,014 source lines of code (sloc)</li>
+    <li>681 logical lines of code (lloc)</li>
     <li>7 comment lines of code (cloc)</li>
-    <li>121 cyclomatic complexity (mcc)</li>
-    <li>51 cognitive complexity</li>
-    <li>4 number of total code smells</li>
+    <li>124 cyclomatic complexity (mcc)</li>
+    <li>58 cognitive complexity</li>
+    <li>2 number of total code smells</li>
     <li>0% comment source ratio</li>
-    <li>178 mcc per 1,000 lloc</li>
-    <li>5 code smells per 1,000 lloc</li>
+    <li>182 mcc per 1,000 lloc</li>
+    <li>2 code smells per 1,000 lloc</li>
   </ul>
 </div>
 
 
 <h2>Findings</h2>
-<div>Total: 4
-  <h3>complexity: 1</h3>
+<div>Total: 2
+  <h3>complexity: 2</h3>
+  <details id="LongMethod" open="open">
+    <summary class="rule-container"><span class="rule">LongMethod: 1 </span><span class="description">One method should have one responsibility. Long methods tend to handle many things at once. Prefer smaller methods to make them easier to understand.</span></summary>
+    <ul>
+      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\detail\DetailActivity.kt:175:17</span><span class="message">The function addToFavorites is too long (96). The maximum length is 60.</span>
+        <pre><code><span class="lineno"> 172 </span>        }
+<span class="lineno"> 173 </span>    }
+<span class="lineno"> 174 </span>
+<span class="lineno"> 175 </span>    private fun <span class="error">addToFavorites</span>() {
+<span class="lineno"> 176 </span>        when {
+<span class="lineno"> 177 </span>            intent.getParcelableExtra&lt;Movies&gt;(EXTRA_MOVIE) != null -&gt; {
+<span class="lineno"> 178 </span>                val movieId = dataMovies.id.toString()
+</code></pre>
+      </li>
+    </ul>
+  </details>
   <details id="TooManyFunctions" open="open">
     <summary class="rule-container"><span class="rule">TooManyFunctions: 1 </span><span class="description">Too many functions inside a/an file/class/object/interface always indicate a violation of the single responsibility principle. Maybe the file/class/object/interface wants to manage too many things at once. Extract functionality which clearly belongs together.</span></summary>
     <ul>
-      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\detail\DetailActivity.kt:23:7</span><span class="message">Class 'DetailActivity' with '18' functions detected. Defined threshold inside classes is set to '11'</span>
+      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\detail\DetailActivity.kt:23:7</span><span class="message">Class 'DetailActivity' with '15' functions detected. Defined threshold inside classes is set to '11'</span>
         <pre><code><span class="lineno">  20 </span>import com.kotlin.andi.core.ui.viewmodel.DetailViewModel
 <span class="lineno">  21 </span>import org.koin.android.viewmodel.ext.android.viewModel
 <span class="lineno">  22 </span>
-<span class="lineno">  23 </span>class <span class="error">DetailActivity</span>: AppCompatActivity() {
+<span class="lineno">  23 </span>class <span class="error">DetailActivity</span> : AppCompatActivity() {
 <span class="lineno">  24 </span>
 <span class="lineno">  25 </span>    companion object {
 <span class="lineno">  26 </span>        const val EXTRA_MOVIE = &quot;extra_movie&quot;
-</code></pre>
-      </li>
-    </ul>
-  </details>
-  <h3>exceptions: 1</h3>
-  <details id="TooGenericExceptionCaught" open="open">
-    <summary class="rule-container"><span class="rule">TooGenericExceptionCaught: 1 </span><span class="description">Caught exception is too generic. Prefer catching specific exceptions to the case that is currently handled.</span></summary>
-    <ul>
-      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\home\HomeActivity.kt:49:18</span><span class="message">Caught exception is too generic. Prefer catching specific exceptions to the case that is currently handled.</span>
-        <pre><code><span class="lineno">  46 </span>    private fun instantiateFragment(): Fragment? {
-<span class="lineno">  47 </span>        return try {
-<span class="lineno">  48 </span>            Class.forName(&quot;com.kotlin.andi.favorite.FavoriteFragment&quot;).newInstance() as Fragment
-<span class="lineno">  49 </span>        } catch (<span class="error">e: Exception</span>) {
-<span class="lineno">  50 </span>            Toast.makeText(this, R.string.error, Toast.LENGTH_SHORT).show()
-<span class="lineno">  51 </span>            null
-<span class="lineno">  52 </span>        }
-</code></pre>
-      </li>
-    </ul>
-  </details>
-  <h3>formatting: 1</h3>
-  <details id="SpacingAroundColon" open="open">
-    <summary class="rule-container"><span class="rule">SpacingAroundColon: 1 </span><span class="description">Reports spaces around colons</span></summary>
-    <ul>
-      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\detail\DetailActivity.kt:23:21</span><span class="message">Missing spacing before &quot;:&quot;</span>
-        <pre><code><span class="lineno">  20 </span>import com.kotlin.andi.core.ui.viewmodel.DetailViewModel
-<span class="lineno">  21 </span>import org.koin.android.viewmodel.ext.android.viewModel
-<span class="lineno">  22 </span>
-<span class="lineno">  23 </span>class DetailActivity<span class="error">:</span> AppCompatActivity() {
-<span class="lineno">  24 </span>
-<span class="lineno">  25 </span>    companion object {
-<span class="lineno">  26 </span>        const val EXTRA_MOVIE = &quot;extra_movie&quot;
-</code></pre>
-      </li>
-    </ul>
-  </details>
-  <h3>style: 1</h3>
-  <details id="ReturnCount" open="open">
-    <summary class="rule-container"><span class="rule">ReturnCount: 1 </span><span class="description">Restrict the number of return statements in methods.</span></summary>
-    <ul>
-      <li><span class="location">G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\detail\DetailActivity.kt:42:18</span><span class="message">Function onCreate has 4 return statements which exceeds the limit of 2.</span>
-        <pre><code><span class="lineno">  39 </span>    private lateinit var tvId: String
-<span class="lineno">  40 </span>    private lateinit var binding: ActivityDetailBinding
-<span class="lineno">  41 </span>
-<span class="lineno">  42 </span>    override fun <span class="error">onCreate</span>(savedInstanceState: Bundle?) {
-<span class="lineno">  43 </span>        super.onCreate(savedInstanceState)
-<span class="lineno">  44 </span>        binding = ActivityDetailBinding.inflate(layoutInflater)
-<span class="lineno">  45 </span>        setContentView(binding.root)
 </code></pre>
       </li>
     </ul>
@@ -168,7 +135,7 @@ pre {
 </div>
 
 
-generated with <a href="https://arturbosch.github.io/detekt">detekt version 1.14.2</a> on 2021-02-24 14:45:23 UTC.
+generated with <a href="https://arturbosch.github.io/detekt">detekt version 1.14.2</a> on 2021-03-04 20:40:15 UTC.
 
 </body>
 </html>

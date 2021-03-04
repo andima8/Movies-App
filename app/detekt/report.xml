@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <checkstyle version="4.3">
 <file name="G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\detail\DetailActivity.kt">
-	<error line="23" column="7" severity="warning" message="Class &apos;DetailActivity&apos; with &apos;18&apos; functions detected. Defined threshold inside classes is set to &apos;11&apos;" source="detekt.TooManyFunctions" />
-	<error line="23" column="21" severity="warning" message="Missing spacing before &quot;:&quot;" source="detekt.SpacingAroundColon" />
-	<error line="42" column="18" severity="warning" message="Function onCreate has 4 return statements which exceeds the limit of 2." source="detekt.ReturnCount" />
-</file>
-<file name="G:\Cinema\app\src\main\java\com\kotlin\andi\cinema\home\HomeActivity.kt">
-	<error line="49" column="18" severity="error" message="Caught exception is too generic. Prefer catching specific exceptions to the case that is currently handled." source="detekt.TooGenericExceptionCaught" />
+	<error line="175" column="17" severity="warning" message="The function addToFavorites is too long (96). The maximum length is 60." source="detekt.LongMethod" />
+	<error line="23" column="7" severity="warning" message="Class &apos;DetailActivity&apos; with &apos;15&apos; functions detected. Defined threshold inside classes is set to &apos;11&apos;" source="detekt.TooManyFunctions" />
 </file>
 </checkstyle>
