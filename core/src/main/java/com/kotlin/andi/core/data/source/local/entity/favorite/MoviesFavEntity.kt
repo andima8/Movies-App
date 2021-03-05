@@ -3,7 +3,7 @@ package com.kotlin.andi.core.data.source.local.entity.favorite
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Entity(tableName = "movie_fav_table")
 @Parcelize

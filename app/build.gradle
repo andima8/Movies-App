@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
+    id 'kotlin-parcelize'
     id 'de.mannodermaus.android-junit5'
     id "io.gitlab.arturbosch.detekt"
     id 'kotlin-kapt'
@@ -106,4 +106,12 @@ dependencies {
     detektPlugins "io.gitlab.arturbosch.detekt:detekt-formatting:$detektVersion"
     detekt "io.gitlab.arturbosch.detekt:detekt-formatting:$detektVersion"
     detekt "io.gitlab.arturbosch.detekt:detekt-cli:$detektVersion"
+    // jUnit 4
+    testImplementation "junit:junit:$junit4Version"
+    androidTestImplementation "junit:junit:$junit4Version"
+    // espresso
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$espressoVersion"
+    androidTestImplementation "androidx.test:rules:$androidXTestVersion"
+    androidTestImplementation "androidx.test.ext:junit-ktx:$extJunitKTXTest"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
 }

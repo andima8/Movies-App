@@ -2,7 +2,7 @@ package com.kotlin.andi.core.domain.model
 
 import android.os.Parcelable
 import androidx.room.PrimaryKey
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Movies(
