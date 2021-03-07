@@ -18,6 +18,7 @@ import com.kotlin.andi.core.domain.model.MoviesFav
 import com.kotlin.andi.core.domain.model.TV
 import com.kotlin.andi.core.domain.model.TVFav
 import com.kotlin.andi.core.ui.viewmodel.DetailViewModel
+import kotlinx.coroutines.flow.first
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class DetailActivity : AppCompatActivity() {
@@ -35,10 +36,8 @@ class DetailActivity : AppCompatActivity() {
     private var stateFav: Boolean = false
     private lateinit var dataMovies: Movies
     private lateinit var movieId: String
-    private lateinit var movieFavId: String
     private lateinit var dataTV: TV
     private lateinit var tvId: String
-    private lateinit var tvFavId: String
     private lateinit var binding: ActivityDetailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,7 +49,6 @@ class DetailActivity : AppCompatActivity() {
             intent.getParcelableExtra<Movies>(EXTRA_MOVIE) != null -> {
                 dataMovies = intent.getParcelableExtra(EXTRA_MOVIE) ?: dataMovies
                 movieId = dataMovies.id.toString()
-                getDataMovies(dataMovies)
                 initObserver()
                 setFavorites()
                 binding.fabFavorite.setOnClickListener {
@@ -59,46 +57,59 @@ class DetailActivity : AppCompatActivity() {
                     stateFav = !stateFav
                     setFavorites()
                 }
+                getDataMovies(dataMovies)
             }
             intent.getParcelableExtra<MoviesFav>(EXTRA_FAV_MOVIE) != null -> {
                 moviesFav = intent.getParcelableExtra(EXTRA_FAV_MOVIE) ?: moviesFav
-                movieFavId = moviesFav.id.toString()
-                stateFav = true
+                movieId = moviesFav.movieId.toString()
+                initObserver()
                 setFavorites()
-                getDataFavMovies(moviesFav)
                 binding.fabFavorite.setOnClickListener {
                     if (stateFav) removeFavorite()
                     else addToMoviesFavorites()
                     stateFav = !stateFav
                     setFavorites()
                 }
+                getDataFavMovies(moviesFav)
             }
             intent.getParcelableExtra<TV>(EXTRA_TV) != null -> {
                 dataTV = intent.getParcelableExtra(EXTRA_TV) ?: dataTV
                 tvId = dataTV.id.toString()
                 initObserver()
                 setFavorites()
-                getDataTV(dataTV)
                 binding.fabFavorite.setOnClickListener {
                     if (stateFav) removeFavorite()
                     else addToTVFavorites()
                     stateFav = !stateFav
                     setFavorites()
                 }
+                getDataTV(dataTV)
             }
             intent.getParcelableExtra<TVFav>(EXTRA_FAV_TV) != null -> {
                 tvFav = intent.getParcelableExtra(EXTRA_FAV_TV) ?: tvFav
-                tvFavId = tvFav.id.toString()
-                stateFav = true
+                tvId = tvFav.tvId.toString()
+                initObserver()
                 setFavorites()
-                getDataFavTV(tvFav)
                 binding.fabFavorite.setOnClickListener {
                     if (stateFav) removeFavorite()
                     else addToTVFavorites()
                     stateFav = !stateFav
                     setFavorites()
                 }
+                getDataFavTV(tvFav)
             }
+        }
+    }
+
+    private fun initObserver() {
+        when {
+            intent.getParcelableExtra<Movies>(EXTRA_MOVIE) != null ||
+                    intent.getParcelableExtra<MoviesFav>(EXTRA_FAV_MOVIE) != null ->
+                detailViewModel.checkFavMovies(movieId).asLiveData().observe(this, moviesObserver)
+
+            intent.getParcelableExtra<TV>(EXTRA_TV) != null ||
+                    intent.getParcelableExtra<TVFav>(EXTRA_FAV_TV) != null ->
+                detailViewModel.checkFavTV(tvId).asLiveData().observe(this, tvObserver)
         }
     }
 
@@ -127,7 +138,7 @@ class DetailActivity : AppCompatActivity() {
                 Toast.makeText(this, getString(R.string.add_favorite), Toast.LENGTH_SHORT).show()
             }
             intent.getParcelableExtra<TVFav>(EXTRA_FAV_TV) != null -> {
-                val tvId = tvFav.id.toString()
+                val tvId = tvFav.tvId.toString()
                 val overview = tvFav.overview
                 val poster = tvFav.posterPath
                 val backdrop = tvFav.backdropPath
@@ -151,37 +162,25 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun initObserver() {
-        if (intent.getParcelableExtra<Movies>(EXTRA_MOVIE) != null) {
-            detailViewModel.checkFavMovies(movieId).asLiveData().observe(this, moviesObserver)
-        } else if (intent.getParcelableExtra<TV>(EXTRA_TV) != null) {
-            detailViewModel.checkFavTV(tvId).asLiveData().observe(this, tvObserver)
-        }
-    }
-
     private val moviesObserver = Observer<List<MoviesFav>> { movies ->
-        if (movies != null) {
-            if (movies.isEmpty()) {
-                stateFav = false
-                setFavorites()
-            } else {
-                moviesFav = movies.first()
-                stateFav = true
-                setFavorites()
-            }
+        if (movies.isEmpty()) {
+            stateFav = false
+            setFavorites()
+        } else {
+            moviesFav = movies.first()
+            stateFav = true
+            setFavorites()
         }
     }
 
     private val tvObserver = Observer<List<TVFav>> { tv ->
-        if (tv != null) {
-            if (tv.isEmpty()) {
-                stateFav = false
-                setFavorites()
-            } else {
-                tvFav = tv.first()
-                stateFav = true
-                setFavorites()
-            }
+        if (tv.isEmpty()) {
+            stateFav = false
+            setFavorites()
+        } else {
+            tvFav = tv.first()
+            stateFav = true
+            setFavorites()
         }
     }
 
@@ -224,7 +223,7 @@ class DetailActivity : AppCompatActivity() {
                 Toast.makeText(this, getString(R.string.add_favorite), Toast.LENGTH_SHORT).show()
             }
             intent.getParcelableExtra<MoviesFav>(EXTRA_FAV_MOVIE) != null -> {
-                val movieId = moviesFav.id.toString()
+                val movieId = moviesFav.movieId.toString()
                 val overview = moviesFav.overview
                 val poster = moviesFav.posterPath
                 val backdrop = moviesFav.backdropPath
@@ -293,7 +292,7 @@ class DetailActivity : AppCompatActivity() {
             val collapsingToolbar =
                 findViewById<CollapsingToolbarLayout>(R.id.collapsing_toolbar)
             collapsingToolbar.apply {
-                title = data?.name
+                title = data?.title
                 setExpandedTitleTextAppearance(R.style.Collapse_Title)
             }
         }
@@ -323,7 +322,7 @@ class DetailActivity : AppCompatActivity() {
             val collapsingToolbar =
                 findViewById<CollapsingToolbarLayout>(R.id.collapsing_toolbar)
             collapsingToolbar.apply {
-                title = data?.name
+                title = data?.title
                 setExpandedTitleTextAppearance(R.style.Collapse_Title)
             }
         }

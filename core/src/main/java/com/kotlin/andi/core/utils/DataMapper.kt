@@ -109,6 +109,7 @@ object DataMapper {
 
     fun mapEntitiesToTVFavDomain(input: TVFavEntity) = TVFav(
         id = input.id,
+        tvId = input.tvId,
         overview = input.overview,
         posterPath = input.posterPath,
         backdropPath = input.backdropPath,
@@ -118,7 +119,6 @@ object DataMapper {
     )
 
     //Check
-
     fun mapCheckMovies(input: List<MoviesFavEntity>): List<MoviesFav> =
         input.map {
             MoviesFav(

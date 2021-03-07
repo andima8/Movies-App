@@ -16,18 +16,11 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        navigationToFragment(HomeFragment())
         supportActionBar?.apply {
             setDisplayShowHomeEnabled(true)
         }
         bottomNavigation()
-    }
-
-    private fun loadHomeFragment() {
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.main_container, HomeFragment(), HomeFragment::class.java.simpleName)
-            .addToBackStack(null)
-            .commit()
     }
 
     private fun loadFavoriteFragment() {
@@ -40,7 +33,6 @@ class HomeActivity : AppCompatActivity() {
             .beginTransaction()
             .replace(R.id.main_container,
                 fragment)
-            .addToBackStack(null)
             .commit()
     }
 
@@ -57,7 +49,7 @@ class HomeActivity : AppCompatActivity() {
         binding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.home -> {
-                    loadHomeFragment()
+                    navigationToFragment(HomeFragment())
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.favorite -> {

@@ -107,5 +107,5 @@ dependencies {
     detekt "io.gitlab.arturbosch.detekt:detekt-formatting:$detektVersion"
     detekt "io.gitlab.arturbosch.detekt:detekt-cli:$detektVersion"
     // Leak Canary
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.4'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.6'
 }

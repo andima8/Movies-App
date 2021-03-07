@@ -72,6 +72,7 @@ class CinemaFavFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        itemTouchHelper.attachToRecyclerView(null)
     }
 
     private val itemTouchHelper = ItemTouchHelper(object : ItemTouchHelper.Callback() {

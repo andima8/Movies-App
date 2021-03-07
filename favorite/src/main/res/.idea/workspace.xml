@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="fbdcfe06-be6f-45f4-a3d8-aa49436add19" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../app/src/main/java/com/kotlin/andi/cinema/detail/DetailActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../app/src/main/java/com/kotlin/andi/cinema/detail/DetailActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../core/src/main/java/com/kotlin/andi/core/utils/DataMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../core/src/main/java/com/kotlin/andi/core/utils/DataMapper.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/kotlin/andi/favorite/tvshows/TvShowsFavFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../java/com/kotlin/andi/favorite/tvshows/TvShowsFavFragment.kt" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
+  </component>
+  <component name="ProjectId" id="1pLk1bjciq7LGtiHa4AWNW6RoK5" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="android.project.structure.last.selected" value="SDK Location" />
+    <property name="android.project.structure.proportion" value="0.15" />
+    <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fbdcfe06-be6f-45f4-a3d8-aa49436add19" name="Default Changelist" comment="" />
+      <created>1614969543356</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1614969543356</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1614969614188">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1614969614188" />
+    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1614969719430">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1614969719430" />
+  </component>
+</project>
