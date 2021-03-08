@@ -83,14 +83,9 @@
 -keep class com.bumptech.glide.load.data.ParcelFileDescriptorRewinder$InternalRewinder {
   *** rewind();
 }
-##---------------Begin: proguard configuration for Leak Canary  ----------
--dontwarn com.squareup.haha.guava.**
--dontwarn com.squareup.haha.perflib.**
--dontwarn com.squareup.haha.trove.**
--dontwarn com.squareup.leakcanary.**
--keep class com.squareup.haha.** { *; }
--keep class com.squareup.leakcanary.** { *; }
 
 #---------------Begin: proguard configuration for Favorite  ----------
 -keep class com.kotlin.andi.core.domain.model.MoviesFav
 -keep class com.kotlin.andi.core.domain.model.TVFav
+
+-keepattributes SourceFile,LineNumberTable
