@@ -18,7 +18,6 @@ import com.kotlin.andi.core.domain.model.MoviesFav
 import com.kotlin.andi.core.domain.model.TV
 import com.kotlin.andi.core.domain.model.TVFav
 import com.kotlin.andi.core.ui.viewmodel.DetailViewModel
-import kotlinx.coroutines.flow.first
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class DetailActivity : AppCompatActivity() {

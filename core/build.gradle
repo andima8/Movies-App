@@ -26,7 +26,11 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -71,4 +75,7 @@ dependencies {
     implementation "androidx.room:room-ktx:$roomVersion"
     androidTestImplementation "androidx.room:room-testing:$roomVersion"
 
+    //Sql Cipher
+    implementation "net.zetetic:android-database-sqlcipher:4.4.0"
+    implementation "androidx.sqlite:sqlite-ktx:2.1.0"
 }

@@ -8,6 +8,9 @@ import com.kotlin.andi.core.data.source.local.room.MovieDatabase
 import com.kotlin.andi.core.data.source.remote.RemoteDataSource
 import com.kotlin.andi.core.data.source.remote.api.ApiService
 import com.kotlin.andi.core.domain.repository.IMoviesRepository
+import net.sqlcipher.database.SQLiteDatabase
+import net.sqlcipher.database.SupportFactory
+import okhttp3.CertificatePinner
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -19,19 +22,28 @@ import java.util.concurrent.*
 val databaseModule = module {
     factory { get<MovieDatabase>().movieDao() }
     single {
+        val passphrase: ByteArray = SQLiteDatabase.getBytes("andima8".toCharArray())
+        val factory = SupportFactory(passphrase)
         Room.databaseBuilder(
             androidContext(),
             MovieDatabase::class.java, "movie_database"
-        ).fallbackToDestructiveMigration().build()
+        ).fallbackToDestructiveMigration()
+            .openHelperFactory(factory)
+            .build()
     }
 }
 
 val networkModule = module {
     single {
+        val hostname = "api.themoviedb.org"
+        val certificatePinner = CertificatePinner.Builder()
+            .add(hostname, "sha256/+vqZVAzTqUP8BGkfl88yU7SQ3C8J2uNEa55B7RZjEg0=")
+            .build()
         OkHttpClient.Builder()
             .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .connectTimeout(120, TimeUnit.SECONDS)
             .readTimeout(120, TimeUnit.SECONDS)
+            .certificatePinner(certificatePinner)
             .build()
     }
     single {
